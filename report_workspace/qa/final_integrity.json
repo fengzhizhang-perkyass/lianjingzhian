@@ -1,0 +1,14 @@
+{
+  "status": "content_complete",
+  "pages": 66,
+  "figures": 38,
+  "tables": 20,
+  "references": 19,
+  "abstract_characters": 442,
+  "missing_paragraphs": [],
+  "privacy_hits": [],
+  "field_errors": [],
+  "docx_sha256": "d4a122fd613049fdaa8fa4372d082df6d6a53901c4003642cacf0e322a07b7db",
+  "layout_review": "Complete: initial 65-page render reviewed; 18 changed pages in 66-page final render reviewed; remaining pages matched previous render.",
+  "final_hash_reverified": true
+}

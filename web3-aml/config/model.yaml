@@ -1,0 +1,57 @@
+model:
+  behavior_hidden: 128
+  graph_hidden: 128
+  embedding_dim: 64
+  dropout: 0.2
+  embedding_normalization: none
+  fusion_mode: learned
+graphsage:
+  num_neighbors:
+  - 15
+  - 10
+  batch_size: 256
+  inference_batch_size: 512
+  num_workers: 0
+training:
+  seed: 43
+  epochs: 35
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  early_stop_patience: 5
+  monitor: pr_auc
+  device: auto
+  torch_threads: 4
+  loss: bce
+  gradient_clip: 5.0
+  auxiliary_behavior_weight: 0.2
+  auxiliary_graph_weight: 0.2
+focal_loss:
+  alpha: 0.75
+  gamma: 2.0
+calibration:
+  max_iter: 50
+risk_level:
+  low: 30
+  medium: 60
+  high: 80
+baseline:
+  n_estimators: 300
+  learning_rate: 0.05
+  num_leaves: 31
+  n_jobs: 4
+explanation:
+  top_k: 5
+  ig_steps: 32
+  two_hop_sample_size: 200
+demo:
+  cases_per_group: 3
+  path_candidate_limit: 5000
+  preferred_min_paths: 3
+feature_preprocessing:
+  method: signed_log
+  standardized_clip: 8.0
+  exclude_features:
+  - first_block_appeared_in
+  - last_block_appeared_in
+  - first_sent_block
+  - first_received_block

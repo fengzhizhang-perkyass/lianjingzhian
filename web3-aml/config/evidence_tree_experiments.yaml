@@ -1,0 +1,30 @@
+experiment:
+  name: evidence_tree_v1
+  source_signals: graph_signals_v1
+  seed: 42
+  final_seeds: [42, 43, 44]
+  folds:
+    - {name: early_shift, train_end: 22, val_end: 28}
+    - {name: late_train, train_end: 28, val_end: 34}
+  # The latest validation period dominates deployment selection; test never chooses it.
+  selection_weights: {early_shift: 0.2, late_train: 0.2, final_validation: 0.6}
+  selection_metric: weighted_validation_ap
+  patience: 15
+  tree_common: {n_estimators: 600, learning_rate: 0.04, n_jobs: 2}
+  tree_candidates:
+    compact: {num_leaves: 15, reg_lambda: 2.0, min_child_samples: 40}
+    regularized: {num_leaves: 31, reg_lambda: 5.0, min_child_samples: 40}
+    randomized: {num_leaves: 31, reg_lambda: 2.0, colsample_bytree: 0.85, subsample: 0.85, subsample_freq: 1}
+  zscore_std_floor: 0.5
+  zscore_clip: 8.0
+  recipes:
+    mean_fusion: [self, out1, in1, structure]
+    deviation_fusion: [self, out_residual, in_residual, structure]
+    dispersion_fusion: [self, out1, in1, out_std, in_std, structure]
+    standardized_deviation_fusion: [self, out_zscore, in_zscore, structure]
+  matched_controls:
+    behavior_only: [self]
+    context_only: [out1, in1]
+    structure_only: [structure]
+  review_top_k: [100, 500]
+  review_fractions: [0.01, 0.05]

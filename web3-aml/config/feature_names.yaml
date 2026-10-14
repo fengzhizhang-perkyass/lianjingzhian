@@ -1,0 +1,31 @@
+# Only verified meanings may be added here. Unmapped fields retain raw names.
+feature_names:
+  num_txs_as_sender: 作为发送方的交易次数
+  num_txs_as receiver: 作为接收方的交易次数
+  first_block_appeared_in: 首次出现区块
+  last_block_appeared_in: 最后出现区块
+  lifetime_in_blocks: 生命周期区块数
+  total_txs: 总交易次数
+  first_sent_block: 首次发送区块
+  first_received_block: 首次接收区块
+  num_timesteps_appeared_in: 出现的时间步数量
+  btc_transacted_total: BTC 交易总量
+  btc_transacted_min: BTC 单次交易最小值
+  btc_transacted_max: BTC 单次交易最大值
+  btc_transacted_mean: BTC 交易量均值
+  btc_transacted_median: BTC 交易量中位数
+  btc_sent_total: BTC 发送总量
+  btc_sent_min: BTC 发送最小值
+  btc_sent_max: BTC 发送最大值
+  btc_sent_mean: BTC 发送量均值
+  btc_sent_median: BTC 发送量中位数
+  btc_received_total: BTC 接收总量
+  btc_received_min: BTC 接收最小值
+  btc_received_max: BTC 接收最大值
+  btc_received_mean: BTC 接收量均值
+  btc_received_median: BTC 接收量中位数
+  fees_total: 手续费总额
+  fees_min: 手续费最小值
+  fees_max: 手续费最大值
+  fees_mean: 手续费均值
+  fees_median: 手续费中位数

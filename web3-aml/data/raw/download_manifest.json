@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/git-disl/EllipticPlusPlus",
+  "files": [
+    {
+      "name": "wallets_features.csv",
+      "bytes": 606463522,
+      "sha256": "317daca2810c355ddfdb8c0dab34cf11d1aa90567fe975090c7e5a901386eb77",
+      "url": "https://media.githubusercontent.com/media/git-disl/EllipticPlusPlus/main/Actors%20Dataset/wallets_features.csv"
+    },
+    {
+      "name": "wallets_classes.csv",
+      "bytes": 30421134,
+      "sha256": "4e5132c99f941666bf1fefd4100a1428d339c9252ec6987909e1adf8eac902f9",
+      "url": "https://media.githubusercontent.com/media/git-disl/EllipticPlusPlus/main/Actors%20Dataset/wallets_classes.csv"
+    },
+    {
+      "name": "AddrAddr_edgelist.csv",
+      "bytes": 200631481,
+      "sha256": "ffba894458e262a691e5e4d006f5dc1d0e069fabfe828f443fd157bf7f8393f2",
+      "url": "https://media.githubusercontent.com/media/git-disl/EllipticPlusPlus/main/Actors%20Dataset/AddrAddr_edgelist.csv"
+    }
+  ]
+}

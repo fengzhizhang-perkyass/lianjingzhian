@@ -1,0 +1,28 @@
+dataset:
+  name: Elliptic++
+  features_file: data/raw/wallets_features.csv
+  labels_file: data/raw/wallets_classes.csv
+  edges_file: data/raw/AddrAddr_edgelist.csv
+columns:
+  address_id: address
+  label: class
+  src: input_address
+  dst: output_address
+  timestep: Time step
+label_map:
+  '1': 1
+  '2': 0
+  '3': -1
+  illicit: 1
+  licit: 0
+  unknown: -1
+preprocessing:
+  seed: 42
+  split_ratios: [0.70, 0.15, 0.15]
+  # null means all addresses. Override with --max-nodes for a real-data pilot.
+  max_nodes: null
+  duplicate_policy: latest_timestep
+  exclude_columns: []
+  edge_chunksize: 300000
+  feature_chunksize: 50000
+  missing_edge_policy: drop_with_count

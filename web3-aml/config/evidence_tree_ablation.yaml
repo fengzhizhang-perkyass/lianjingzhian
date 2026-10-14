@@ -1,0 +1,11 @@
+experiment:
+  name: evidence_tree_v1_ablation
+  seed: 42
+  recipes:
+    context_z_only: [out_zscore, in_zscore]
+    without_behavior: [out_zscore, in_zscore, structure]
+    without_context: [self, structure]
+    without_structure: [self, out_zscore, in_zscore]
+    direction_removed: [self, out_zscore, in_zscore, structure]
+  # Same model budget, split, early stop, calibration and seed as the selected joint model.
+  use_selected_parameter: true

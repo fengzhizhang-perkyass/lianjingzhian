@@ -1,0 +1,13 @@
+seed: 42
+variants: 12
+faults:
+  - unreferenced_number
+  - missing_reference
+  - path_score_as_risk
+  - chinese_amount
+  - invented_time
+  - invented_identity
+  - legal_conclusion
+  - metadata_as_risk
+  - subject_swap
+  - unit_swap

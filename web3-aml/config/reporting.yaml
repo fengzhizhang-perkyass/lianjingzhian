@@ -1,0 +1,13 @@
+protocol: report_claims_v1
+max_repair_attempts: 1
+max_claims: 180
+max_facts: 1200
+max_candidate_chars: 160000
+max_prompt_chars: 160000
+feature_top_k: 5
+max_path_addresses_in_sentence: 6
+score_digits: 2
+attribution_digits: 4
+require_minimum_coverage: true
+persist_audit: true
+source_index_path: artifacts/reporting/source_index.json

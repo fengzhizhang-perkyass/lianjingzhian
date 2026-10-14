@@ -1,0 +1,29 @@
+# Each deployed candidate uses at most one GraphSAGE encoder.
+experiment:
+  name: roles_v1
+  source_experiment: risk_v2
+  source_investigation: investigation_v1
+  seed: 42
+  final_seeds: [42, 43, 44]
+  folds:
+    - {name: early_shift, train_end: 22, val_end: 28}
+    - {name: late_train, train_end: 28, val_end: 34}
+  weight_step: 0.25
+  tree: {n_estimators: 300, learning_rate: 0.05, num_leaves: 31, n_jobs: 4}
+  patience: 8
+  review_top_k: [100, 500]
+  review_fractions: [0.01, 0.05]
+  local_exclude_prefixes: [first_block_, last_block_, first_sent_, first_received_, num_addr_, transacted_w_]
+  trees: [local_behavior, structure8, structure18, undirected3]
+  families:
+    dual_and_tree: [dual_view, enhanced_tree]
+    dual_and_direction8: [dual_view, structure8]
+    dual_and_direction18: [dual_view, structure18]
+    local_and_graph: [local_behavior, graphsage]
+    local_graph_direction8: [local_behavior, graphsage, structure8]
+    local_graph_direction18: [local_behavior, graphsage, structure18]
+    mlp_graph_direction8: [behavior, graphsage, structure8]
+    shared_heads_direction8: [behavior_head, graph_head, structure8]
+    shared_heads_direction18: [behavior_head, graph_head, structure18]
+    dual_and_undirected: [dual_view, undirected3]
+  selection_rule: highest_mean_development_ap_then_worst_fold

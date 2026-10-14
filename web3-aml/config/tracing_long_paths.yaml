@@ -1,0 +1,22 @@
+# Exploratory repeat on the existing public-data seeds; not a new blind test.
+index_depth: 64
+demo_count: 3
+methods:
+  current_depth4:
+    max_depth: 4
+    max_bridge_nodes: 3
+  depth8:
+    max_depth: 8
+    max_bridge_nodes: 3
+  depth16:
+    max_depth: 16
+    max_bridge_nodes: 3
+  depth32:
+    max_depth: 32
+    max_bridge_nodes: 3
+  long_connectors16:
+    max_depth: 16
+    max_bridge_nodes: 15
+  long_connectors32:
+    max_depth: 32
+    max_bridge_nodes: 31

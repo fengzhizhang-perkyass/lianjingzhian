@@ -1,0 +1,9 @@
+# Read-only audit of existing risk-model checkpoints; no test-set tuning.
+diagnostics:
+  phases: [train, val]
+  modes: [behavior, graphsage, dual_view]
+  extreme_standardized_value: 10.0
+  top_features: 8
+  gate_boundary: 0.05
+  probability_boundary: 0.01
+  calibration_bins: 10

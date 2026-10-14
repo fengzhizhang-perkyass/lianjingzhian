@@ -1,0 +1,40 @@
+experiment:
+  name: graph_signals_v1
+  source_roles: roles_v1
+  seed: 42
+  final_seeds: [42, 43, 44]
+  folds:
+    - {name: early_shift, train_end: 22, val_end: 28}
+    - {name: late_train, train_end: 28, val_end: 34}
+  tree: {n_estimators: 500, learning_rate: 0.04, num_leaves: 31, n_jobs: 4, reg_lambda: 1.0}
+  patience: 15
+  behavior_columns: active_raw_features
+  weight_step: 0.25
+  review_top_k: [100, 500]
+  review_fractions: [0.01, 0.05]
+  candidates:
+    behavior: [self]
+    context_directed1: [out1, in1]
+    context_directed2: [out1, in1, out2, in2]
+    context_undirected1: [union1]
+    context_undirected2: [union1, union2]
+    contrast_directed: [out_residual, in_residual]
+    beta_wavelet: [beta_low, beta_mid, beta_high]
+    beta_high: [beta_mid, beta_high]
+    joint_directed1: [self, out1, in1, structure]
+    joint_directed2: [self, out1, in1, out2, in2, structure]
+    joint_contrast: [self, out1, in1, out_residual, in_residual, structure]
+    joint_beta: [self, beta_low, beta_mid, beta_high, structure]
+  # Screen on chronological development only; final test cannot pick methods or weights.
+  families:
+    behavior_context_structure: [behavior, context_directed1, structure18]
+    behavior_multiscale_structure: [behavior, context_directed2, structure18]
+    behavior_contrast_structure: [behavior, contrast_directed, structure18]
+    behavior_wavelet_structure: [behavior, beta_high, structure18]
+    graphsage_context_structure: [graphsage, context_directed1, structure18]
+    graphsage_contrast_structure: [graphsage, contrast_directed, structure18]
+    dual_context: [dual_view, context_directed1]
+    dual_contrast: [dual_view, contrast_directed]
+    dual_wavelet: [dual_view, beta_high]
+    dual_joint_direction: [dual_view, joint_directed1]
+    dual_joint_wavelet: [dual_view, joint_beta]

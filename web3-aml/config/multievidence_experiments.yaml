@@ -1,0 +1,34 @@
+experiment:
+  name: multievidence_v1
+  source_signals: graph_signals_v1
+  seed: 42
+  final_seeds: [42, 43, 44]
+  folds:
+    - {name: early_shift, train_end: 22, val_end: 28}
+    - {name: late_train, train_end: 28, val_end: 34}
+  hidden_dim: 128
+  embedding_dim: 64
+  dropout: 0.2
+  epochs: 40
+  patience: 6
+  batch_size: 2048
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip: 5.0
+  signal_clip: 8.0
+  auxiliary_weight: 0.1
+  torch_threads: 4
+  review_top_k: [100, 500]
+  review_fractions: [0.01, 0.05]
+  routes:
+    behavior: [self]
+    context: [union1, union2]
+    contrast: [out_residual, in_residual, structure]
+    wavelet: [beta_mid, beta_high, structure]
+  candidates:
+    behavior_only: {routes: [behavior], fusion: concat}
+    context_only: {routes: [context], fusion: concat}
+    contrast_only: {routes: [contrast], fusion: concat}
+    contrast_gated: {routes: [behavior, context, contrast], fusion: gated}
+    wavelet_gated: {routes: [behavior, context, wavelet], fusion: gated}
+    wavelet_concat: {routes: [behavior, context, wavelet], fusion: concat}

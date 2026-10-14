@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+data/raw/*.csv
+data/processed/*
+!data/processed/README.md
+artifacts/*/*
+!artifacts/*/README.md
+logs/*.log

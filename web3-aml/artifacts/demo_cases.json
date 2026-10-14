@@ -1,0 +1,17 @@
+{
+  "high_risk_known": [
+    "13WxaB3pteCUbMQFt6MwZCTzRAFFKaXhFX",
+    "16yQ4fyBcKBHNcAi6gPosD6LhcpxPFAQBP",
+    "1HqybjbhXiox7J9jMsVR7evd43BPVRqKTK"
+  ],
+  "low_risk_known": [
+    "1EnTtBfCCgxLhPc8vj14g61UcqqnVbV7uL",
+    "1LiDqPygAFQq2h19Z9JeM8WDWY86h9HCaa",
+    "12JWWm3mxydqEPo94YjoHpgsLqRWmH1yUd"
+  ],
+  "high_risk_unknown": [
+    "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+    "1FLk5re5WjjuMzk8xsKTu8a6cyK87tGTT",
+    "1FENLYnwL4VGKQ1HKaGrSoYJUYytBLgsqn"
+  ]
+}

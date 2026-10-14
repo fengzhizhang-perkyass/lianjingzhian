@@ -1,0 +1,44 @@
+max_depth: 4
+beam_width: 5
+risk_threshold: 30
+output_anchor_threshold: 0
+max_neighbors_per_node: 50
+top_paths: 10
+cycle_check: true
+length_decay: 0.03
+high_risk_threshold: 60
+edge_budget: 2000
+max_frontier: 1000
+traversal: beam
+ppr_enabled: false
+bridge_enabled: true
+anchor_index_enabled: true
+diverse_search: true
+diverse_selection: true
+fold_prefixes: true
+ppr_budget_fraction: 0.15
+bridge_budget_fraction: 0.3
+restart_probability: 0.2
+ppr_tolerance: 0.0001
+max_ppr_pushes: 1000
+max_bridge_candidates: 8
+max_bridge_nodes: 3
+max_event_records: 100
+relevance_weight: 0.15
+coverage_weight: 0.3
+overlap_weight: 0.15
+bridge_penalty: 0.03
+edge_coverage_weight: 0.1
+score_weight:
+  risk: 0.75
+  neighbor_risk: 0.15
+  degree_penalty: 0.1
+method: budgeted
+profile: indexed_bridge3
+display_name: 风险锚点约束的预算化证据路径追踪
+anchor_index_path: artifacts/tracing/anchor_index/risk_6460ec5d_trace_121b2e0a_t30_d64
+long_path_profile:
+  max_depth: 32
+  max_bridge_nodes: 31
+  edge_budget: 2000
+long_path_cases: artifacts/tracing/long_path_cases.json

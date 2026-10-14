@@ -1,0 +1,35 @@
+# Frozen before experiments. Model selection uses development periods only.
+experiment:
+  name: risk_v2
+  development_folds:
+    - {name: early_shift, train_end: 22, val_end: 28}
+    - {name: late_train, train_end: 28, val_end: 34}
+  development_seed: 42
+  final_seeds: [42, 43, 44]
+  development_epochs: 20
+  final_epochs: 35
+  early_stop_patience: 5
+  learning_rate: 0.001
+  gradient_clip: 5.0
+  auxiliary_behavior_weight: 0.2
+  auxiliary_graph_weight: 0.2
+  loss_candidates: [focal, bce]
+  feature_candidates:
+    - {name: standard, method: standard}
+    - {name: signed_log, method: signed_log}
+    - {name: signed_log_clip, method: signed_log, standardized_clip: 8.0}
+    - name: signed_log_clip_no_block_height
+      method: signed_log
+      standardized_clip: 8.0
+      exclude_features: [first_block_appeared_in, last_block_appeared_in, first_sent_block, first_received_block]
+  fusion_candidates:
+    - {name: graphsage, mode: graphsage, embedding_normalization: none, fusion_mode: learned}
+    - {name: gated, mode: dual_view, embedding_normalization: none, fusion_mode: learned}
+    - {name: gated_normalized, mode: dual_view, embedding_normalization: layernorm, fusion_mode: learned}
+    - {name: fixed_normalized, mode: dual_view, embedding_normalization: layernorm, fusion_mode: fixed}
+  fixed_behavior_weight: 0.5
+  review_top_k: [100, 500]
+  review_top_fractions: [0.01, 0.05]
+  # Deployment guardrails; do not change these after seeing final test outcomes.
+  promotion_min_test_ap: 0.31068066161012164
+  promotion_min_test_f1: 0.28301292152537033

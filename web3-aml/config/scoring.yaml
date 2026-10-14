@@ -1,0 +1,7 @@
+# Competition scoring backend. Historical neural models remain comparison baselines.
+backend: evidence_tree
+experiment: evidence_tree_v1
+model_name: 有向邻域对比证据融合
+version: V2.0
+batch_size: 8192
+explanation_top_k: 5

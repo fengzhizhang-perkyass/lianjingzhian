@@ -1,0 +1,120 @@
+# First development protocol: all methods share these limits and frozen risks.
+seed: 42
+development_seeds_per_risk_band: 12
+evaluation_seeds_per_risk_band: 24
+common:
+  max_depth: 4
+  beam_width: 5
+  risk_threshold: 30
+  output_anchor_threshold: 0
+  max_neighbors_per_node: 50
+  top_paths: 10
+  cycle_check: true
+  length_decay: 0.03
+  high_risk_threshold: 60
+  edge_budget: 2000
+  max_frontier: 1000
+  traversal: beam
+  ppr_enabled: false
+  bridge_enabled: false
+  anchor_index_enabled: false
+  diverse_search: false
+  diverse_selection: false
+  fold_prefixes: false
+  ppr_budget_fraction: 0.15
+  bridge_budget_fraction: 0.30
+  restart_probability: 0.2
+  ppr_tolerance: 0.0001
+  max_ppr_pushes: 1000
+  max_bridge_candidates: 8
+  max_bridge_nodes: 1
+  max_event_records: 100
+  relevance_weight: 0.15
+  coverage_weight: 0.3
+  overlap_weight: 0.15
+  bridge_penalty: 0.03
+  edge_coverage_weight: 0.1
+  score_weight:
+    risk: 0.75
+    neighbor_risk: 0.15
+    degree_penalty: 0.10
+methods:
+  bounded_bfs:
+    traversal: bfs
+    risk_threshold: 0
+  budget_beam: {}
+  lower_threshold_beam:
+    risk_threshold: 10
+  zero_threshold_beam:
+    risk_threshold: 0
+  coverage_only:
+    fold_prefixes: true
+    diverse_selection: true
+  ppr_only:
+    ppr_enabled: true
+  ppr_bridge:
+    ppr_enabled: true
+    bridge_enabled: true
+  full:
+    ppr_enabled: true
+    bridge_enabled: true
+    diverse_search: true
+    diverse_selection: true
+    fold_prefixes: true
+  no_ppr:
+    bridge_enabled: true
+    diverse_search: true
+    diverse_selection: true
+    fold_prefixes: true
+  no_bridge:
+    ppr_enabled: true
+    diverse_search: true
+    diverse_selection: true
+    fold_prefixes: true
+  no_diversity:
+    ppr_enabled: true
+    bridge_enabled: true
+  bridge2_coverage:
+    max_bridge_nodes: 2
+    bridge_enabled: true
+    diverse_search: true
+    diverse_selection: true
+    fold_prefixes: true
+  bridge3_coverage:
+    max_bridge_nodes: 3
+    bridge_enabled: true
+    diverse_search: true
+    diverse_selection: true
+    fold_prefixes: true
+  bridge2_ppr_full:
+    max_bridge_nodes: 2
+    ppr_enabled: true
+    bridge_enabled: true
+    diverse_search: true
+    diverse_selection: true
+    fold_prefixes: true
+  zero_beam_anchor_filter:
+    risk_threshold: 0
+    output_anchor_threshold: 30
+    diverse_selection: true
+    fold_prefixes: true
+  bfs_anchor_filter:
+    traversal: bfs
+    risk_threshold: 0
+    output_anchor_threshold: 30
+    diverse_selection: true
+    fold_prefixes: true
+  bridge3_no_diversity:
+    max_bridge_nodes: 3
+    bridge_enabled: true
+  indexed_bridge3:
+    max_bridge_nodes: 3
+    bridge_enabled: true
+    anchor_index_enabled: true
+    diverse_search: true
+    diverse_selection: true
+    fold_prefixes: true
+  indexed_bridge3_no_diversity:
+    max_bridge_nodes: 3
+    bridge_enabled: true
+    anchor_index_enabled: true
