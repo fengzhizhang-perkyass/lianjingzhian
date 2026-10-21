@@ -1,0 +1,176 @@
+{
+  "status": "passed",
+  "version": "landing_workspace_v2",
+  "url": "http://127.0.0.1:8000",
+  "results": [
+    {
+      "name": "宣传首页品牌、三导航与业务延迟加载",
+      "status": "passed"
+    },
+    {
+      "name": "宣传页仅呈现优势，没有业务表单或防御性文案",
+      "status": "passed"
+    },
+    {
+      "name": "科技感动态首屏与背景暂停恢复",
+      "status": "passed"
+    },
+    {
+      "name": "三锚点定位、高亮与固定导航偏移",
+      "status": "passed"
+    },
+    {
+      "name": "静态报告样张来自真实证据，编号只作展示",
+      "status": "passed"
+    },
+    {
+      "name": "首次进入调查优先队列，只显示当前模块",
+      "status": "passed"
+    },
+    {
+      "name": "进入工作台后宣传背景停止",
+      "status": "passed"
+    },
+    {
+      "name": "四模块顺序、位置条与切换不重新计算",
+      "status": "passed"
+    },
+    {
+      "name": "队列分页、候选与当前 CSV 下载",
+      "status": "passed"
+    },
+    {
+      "name": "队列分页状态在模块切换后保留",
+      "status": "passed"
+    },
+    {
+      "name": "队列选中地址自动进入风险分析",
+      "status": "passed"
+    },
+    {
+      "name": "真实风险、三类诊断与原有评分排布",
+      "status": "passed",
+      "score": 72.76251302295131
+    },
+    {
+      "name": "切换模块保留输入草稿及已确认地址结果",
+      "status": "passed"
+    },
+    {
+      "name": "特征表与评分核对图保留",
+      "status": "passed"
+    },
+    {
+      "name": "模型评估、历史对照及设计文档仍可使用",
+      "status": "passed"
+    },
+    {
+      "name": "继续关系追踪按钮切换模块，不自动搜索",
+      "status": "passed"
+    },
+    {
+      "name": "真实方向图、逐跳明细、路径选择与 JSON 下载",
+      "status": "passed"
+    },
+    {
+      "name": "图表隐藏后恢复路径和追踪结果",
+      "status": "passed"
+    },
+    {
+      "name": "同一评分与追踪生成完整模板报告",
+      "status": "passed"
+    },
+    {
+      "name": "声明定位与全部报告下载保留",
+      "status": "passed"
+    },
+    {
+      "name": "返回宣传页再进入，恢复模块、报告与所选证据且不重算",
+      "status": "passed"
+    },
+    {
+      "name": "浏览器前进后退保留工作台状态",
+      "status": "passed"
+    },
+    {
+      "name": "模拟故障注入与修复仍可使用",
+      "status": "passed"
+    },
+    {
+      "name": "参数变化继续使旧报告失效",
+      "status": "passed"
+    },
+    {
+      "name": "真实 32 跳长链仍可运行",
+      "status": "passed"
+    },
+    {
+      "name": "新地址清除旧路径与报告",
+      "status": "passed"
+    },
+    {
+      "name": "未追踪生成报告时补全默认追踪并同步设置",
+      "status": "passed"
+    },
+    {
+      "name": "旧评分晚返回不能覆盖新地址",
+      "status": "passed"
+    },
+    {
+      "name": "旧报告晚返回不能覆盖新地址",
+      "status": "passed"
+    },
+    {
+      "name": "错误地址保留明确错误与重试入口",
+      "status": "passed"
+    },
+    {
+      "name": "空路径、对应报告与故障选项仍正确",
+      "status": "passed"
+    },
+    {
+      "name": "四种宽度下两页与完整四项导航均不溢出",
+      "status": "passed",
+      "responsive": [
+        {
+          "viewport": 375,
+          "document": 375
+        },
+        {
+          "viewport": 768,
+          "document": 768
+        },
+        {
+          "viewport": 1024,
+          "document": 1024
+        },
+        {
+          "viewport": 1440,
+          "document": 1440
+        }
+      ]
+    },
+    {
+      "name": "减少动态效果模式仍可使用两页",
+      "status": "passed"
+    },
+    {
+      "name": "手机证据定位与返回声明保留",
+      "status": "passed"
+    },
+    {
+      "name": "直接访问工作台路径正常启动为空状态",
+      "status": "passed"
+    },
+    {
+      "name": "工作台断线恢复不影响宣传页",
+      "status": "passed"
+    },
+    {
+      "name": "宣传锚点直达与键盘导航",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "external_llm_called": false
+}

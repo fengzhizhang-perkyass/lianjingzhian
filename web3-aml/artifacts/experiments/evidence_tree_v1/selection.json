@@ -1,0 +1,43 @@
+{
+  "recipe": "standardized_deviation_fusion",
+  "parameter": "compact",
+  "weighted_validation_ap": 0.8143028450697349,
+  "recipe_choices": {
+    "mean_fusion": {
+      "parameter": "randomized",
+      "weighted_validation_ap": 0.7807659613892015
+    },
+    "deviation_fusion": {
+      "parameter": "randomized",
+      "weighted_validation_ap": 0.7545704320392327
+    },
+    "dispersion_fusion": {
+      "parameter": "randomized",
+      "weighted_validation_ap": 0.8054554685438411
+    },
+    "standardized_deviation_fusion": {
+      "parameter": "compact",
+      "weighted_validation_ap": 0.8143028450697349
+    },
+    "behavior_only": {
+      "parameter": "regularized",
+      "weighted_validation_ap": 0.628450118449714
+    },
+    "context_only": {
+      "parameter": "regularized",
+      "weighted_validation_ap": 0.7452533282289369
+    },
+    "structure_only": {
+      "parameter": "compact",
+      "weighted_validation_ap": 0.7126677820847562
+    }
+  },
+  "rule": "weighted_validation_ap",
+  "selection_weights": {
+    "early_shift": 0.2,
+    "late_train": 0.2,
+    "final_validation": 0.6
+  },
+  "test_used_for_selection": false,
+  "test_already_observed": true
+}

@@ -1,0 +1,17 @@
+{
+  "status": "adapter_and_first_live_report_passed",
+  "tests_passed": 107,
+  "tests_skipped": 2,
+  "test_duration_seconds": 82.1,
+  "reporting_revision": "0449007b3a99138b3accee6933e99acc96f7616fb45ea75b25daad97fefffa3c",
+  "offline_regression_experiment": "report_v3_deepseek_adapter",
+  "fault_rejections": 120,
+  "mock_repairs": 120,
+  "real_evidence_cases": 10,
+  "live_api_tested": true,
+  "requested_model": "deepseek-v4-flash",
+  "official_alias_currently_served_by": "DeepSeek-V4.1-Flash",
+  "thinking_mode": "disabled",
+  "max_tokens": 8192,
+  "live_acceptance": "artifacts/metrics/deepseek_live_acceptance.json"
+}

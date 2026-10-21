@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-21",
+  "status": "passed",
+  "backend_tests": 48,
+  "original_runtime_files_verified": 174,
+  "original_runtime_mismatches": [],
+  "frontend_and_check_artifacts_contain_key": false,
+  "env_permissions": "0o600",
+  "source_sha256": {
+    "api/reporting.py": "2d3c9a82d6658b9422a5e0ca463a44ba55efe72cbfed2dae486086618b6341a5",
+    "api/runtime.py": "114f6d7bcede504317d686447c971506e40051989e9e19e6fff19b77461089b0",
+    "frontend/js/workspace.js": "ccd4dcdc89a4d405b5ea0170142379408a100807308c55a16e1d5c38f6d697de",
+    "tests/test_web_reporting.py": "5648fd942827ebabb690db4675a36d4523c7a10609c5ab213d96af2e774e84f4",
+    "README_WEB.md": "e05845c90e8255194e92491f6e6f5650f367c09d5ca0f08b19af14f13919cf40",
+    "artifacts/llm_recheck/检查说明.md": "d11edbd6b9d9ebd5f51175a51c790b6d3ffc493649563a1e4715ce8020f78e40"
+  },
+  "live_long_report": "artifacts/llm_recheck/fixed-99-facts.json",
+  "browser_retry": "artifacts/llm_recheck/retry-browser.json",
+  "diagnosis": "artifacts/llm_recheck/diagnosis-original.json"
+}

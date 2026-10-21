@@ -1,0 +1,33 @@
+{
+  "connection_passed": true,
+  "endpoint_host": "api.deepseek.com",
+  "requested_model": "deepseek-v4-flash",
+  "provider": "deepseek",
+  "thinking_mode": "disabled",
+  "probe_usage": {
+    "completion_tokens": 5,
+    "prompt_tokens": 46,
+    "total_tokens": 51,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 46
+  },
+  "live_report_tested": true,
+  "report_id": "report_20261012T083632_9c63389b3e62",
+  "report_source": "llm",
+  "initial_passed": 52,
+  "repaired": 0,
+  "coverage_added": 0,
+  "api_calls": 1,
+  "candidate_errors": 0,
+  "bundle_path": "E:\\网安比赛\\web3-aml\\artifacts\\reports\\report_20261012T083632_9c63389b3e62",
+  "elapsed_ms": 18857.358300010674,
+  "reporting_revision": "0449007b3a99138b3accee6933e99acc96f7616fb45ea75b25daad97fefffa3c",
+  "llm_report_passed": true,
+  "fallback_used": false
+}

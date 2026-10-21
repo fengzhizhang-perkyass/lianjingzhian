@@ -4,7 +4,6 @@ from src.inference.risk_predictor import RiskPredictor
 from src.tracing.graph_loader import DirectedGraph
 from src.tracing.beam_search import RiskGuidedTracer
 from src.explain.graph_evidence import GraphEvidence
-from src.explain.behavior_explainer import BehaviorExplainer
 from src.report.evidence_builder import build_evidence
 from src.report.llm_reporter import LLMReporter
 from src.utils.io import ROOT, load_config, read_json, save_json, artifact_key
@@ -65,6 +64,7 @@ class AnalysisService:
             return {**risk, 'scoring_analysis': scoring, 'behavior_evidence': scoring['evidence']['behavior'],
                     'graph_evidence': self.graph_evidence.explain(risk['address_id'])}
         if self._behavior is None:
+            from src.explain.behavior_explainer import BehaviorExplainer
             self._behavior = BehaviorExplainer(self.root)
         result = {**risk, "behavior_evidence": self._behavior.explain(risk["node_idx"]),
                   "graph_evidence": self.graph_evidence.explain(risk["address_id"])}

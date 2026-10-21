@@ -1,0 +1,619 @@
+{
+  "meta": {
+    "dataset": "Elliptic++",
+    "analysis_type": "automated AML risk analysis",
+    "generated_at": "2026-10-20T06:01:46.471232+00:00",
+    "scope": "full",
+    "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+    "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+    "model_kind": "evidence_tree",
+    "scoring_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e"
+  },
+  "target": {
+    "address_id": "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS"
+  },
+  "risk_analysis": {
+    "overall_score": 72.76251302295131,
+    "risk_level": "HIGH",
+    "behavior_score": 15.930352722160343,
+    "graph_score": 7.637560710310018,
+    "behavior_weight": null,
+    "graph_weight": null
+  },
+  "behavior_evidence": [
+    {
+      "feature": "fees_as_share_max",
+      "value": 0.0003167999966535717,
+      "contribution": 0.718653754326036,
+      "attribution_target": "joint_tree_raw_margin",
+      "baseline": null,
+      "direction": "increases_joint_margin",
+      "convergence_delta": null
+    },
+    {
+      "feature": "BTC 交易总量",
+      "value": 0.7799999713897705,
+      "contribution": 0.2445170875106618,
+      "attribution_target": "joint_tree_raw_margin",
+      "baseline": null,
+      "direction": "increases_joint_margin",
+      "convergence_delta": null
+    },
+    {
+      "feature": "手续费最小值",
+      "value": 0.0003167999966535717,
+      "contribution": 0.16952469638672338,
+      "attribution_target": "joint_tree_raw_margin",
+      "baseline": null,
+      "direction": "increases_joint_margin",
+      "convergence_delta": null
+    },
+    {
+      "feature": "fees_as_share_total",
+      "value": 0.000491365441121161,
+      "contribution": 0.15952685299961442,
+      "attribution_target": "joint_tree_raw_margin",
+      "baseline": null,
+      "direction": "increases_joint_margin",
+      "convergence_delta": null
+    },
+    {
+      "feature": "transacted_w_address_total",
+      "value": 2.0,
+      "contribution": 0.07890072599664198,
+      "attribution_target": "joint_tree_raw_margin",
+      "baseline": null,
+      "direction": "increases_joint_margin",
+      "convergence_delta": null
+    }
+  ],
+  "graph_evidence": {
+    "out_degree": 1,
+    "in_degree": 1,
+    "one_hop_neighbor_count": 2,
+    "one_hop_avg_risk": 21.770505882278098,
+    "one_hop_high_risk_count": 0,
+    "one_hop_high_risk_ratio": 0.0,
+    "two_hop_avg_risk": 36.977972914390214,
+    "two_hop_high_risk_ratio": 0.3,
+    "two_hop_sample_count": 10,
+    "neighbor_view": "unique incoming/outgoing union; self excluded",
+    "high_risk_threshold": 60,
+    "two_hop_sampling": "bounded two-stage neighbor sampling"
+  },
+  "trace_analysis": {
+    "max_depth": 4,
+    "config": {
+      "max_depth": 4,
+      "beam_width": 5,
+      "risk_threshold": 30,
+      "output_anchor_threshold": 0,
+      "max_neighbors_per_node": 50,
+      "top_paths": 10,
+      "cycle_check": true,
+      "length_decay": 0.03,
+      "high_risk_threshold": 60,
+      "edge_budget": 2000,
+      "max_frontier": 1000,
+      "traversal": "beam",
+      "ppr_enabled": false,
+      "bridge_enabled": true,
+      "anchor_index_enabled": true,
+      "diverse_search": true,
+      "diverse_selection": true,
+      "fold_prefixes": true,
+      "ppr_budget_fraction": 0.15,
+      "bridge_budget_fraction": 0.3,
+      "restart_probability": 0.2,
+      "ppr_tolerance": 0.0001,
+      "max_ppr_pushes": 1000,
+      "max_bridge_candidates": 8,
+      "max_bridge_nodes": 3,
+      "max_event_records": 100,
+      "relevance_weight": 0.15,
+      "coverage_weight": 0.3,
+      "overlap_weight": 0.15,
+      "bridge_penalty": 0.03,
+      "edge_coverage_weight": 0.1,
+      "score_weight": {
+        "risk": 0.75,
+        "neighbor_risk": 0.15,
+        "degree_penalty": 0.1
+      },
+      "method": "budgeted",
+      "profile": "indexed_bridge3",
+      "display_name": "风险锚点约束的预算化证据路径追踪",
+      "anchor_index_path": "artifacts/tracing/anchor_index/risk_6460ec5d_trace_121b2e0a_t30_d64",
+      "long_path_profile": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000
+      },
+      "long_path_cases": "artifacts/tracing/long_path_cases.json"
+    },
+    "visited_nodes": 8,
+    "candidate_nodes": 10,
+    "high_risk_nodes": 2,
+    "pruned_nodes": 4,
+    "pruned_expansions": 4,
+    "max_reached_depth": 4,
+    "top_paths": [
+      {
+        "nodes": [
+          "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+          "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+          "15QVSV49vfyFUxvsXS6ajV9GNStQaJa2Kj",
+          "15oPbAGPBxWEytCbc9X7e4yPkqLADhenrR"
+        ],
+        "path_score": 0.44498149008222,
+        "bridge_witnesses": [],
+        "score_components": {
+          "risk_path_score": 0.44498149008222,
+          "seed_relevance_score": 0.0,
+          "relevance_weight": 0,
+          "bridge_penalty": 0.0
+        },
+        "selection": {
+          "utility": 0.6976290863309146,
+          "marginal_risk_coverage": 1.7098937815306816,
+          "new_nodes": 3,
+          "new_edges": 3,
+          "max_edge_overlap": 0
+        },
+        "rank": 1,
+        "node_risks": [
+          72.76251302295131,
+          36.25793332717354,
+          62.455620650623345,
+          42.27582417527127
+        ],
+        "hop_count": 3,
+        "path_id": "path_fab7c75a2b430bbc4e8ff0a4",
+        "evidence_id": "trace_95a5ff9637e1c536a616eeb3",
+        "bridge_nodes": [],
+        "reason_codes": [
+          "RISK_GUIDED_PATH"
+        ],
+        "source_references": {
+          "risk_field": "overall_risk_score",
+          "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+          "graph": "original_directed_address_relations"
+        },
+        "amount_evidence": "unavailable",
+        "transaction_time_evidence": "unavailable"
+      },
+      {
+        "nodes": [
+          "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+          "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+          "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96",
+          "1J4zJzYPKJmBiRJfEFcQNjNtsjfhbnpNnM",
+          "1FHp5TXDu9goiGFzcHTwomedWxkjJyjnLn"
+        ],
+        "path_score": 0.37913434030683196,
+        "bridge_witnesses": [
+          {
+            "bridge_node": "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96",
+            "bridge_nodes": [
+              "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96"
+            ],
+            "anchor_node": "1J4zJzYPKJmBiRJfEFcQNjNtsjfhbnpNnM",
+            "edges": [
+              [
+                "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+                "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96"
+              ],
+              [
+                "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96",
+                "1J4zJzYPKJmBiRJfEFcQNjNtsjfhbnpNnM"
+              ]
+            ],
+            "reason_code": "BRIDGE_WITNESS_FOUND"
+          }
+        ],
+        "score_components": {
+          "risk_path_score": 0.38663434030683197,
+          "seed_relevance_score": 0.0,
+          "relevance_weight": 0,
+          "bridge_penalty": 0.0075
+        },
+        "selection": {
+          "utility": 0.5857853247786234,
+          "marginal_risk_coverage": 1.5677908031385963,
+          "new_nodes": 3,
+          "new_edges": 3,
+          "max_edge_overlap": 0.16666666666666666
+        },
+        "rank": 2,
+        "node_risks": [
+          72.76251302295131,
+          36.25793332717354,
+          16.095973608540817,
+          61.01898039182486,
+          49.66412631349396
+        ],
+        "hop_count": 4,
+        "path_id": "path_572f035c04e286ffc6d84138",
+        "evidence_id": "trace_9fe617a587ac57ad1bde026a",
+        "bridge_nodes": [
+          "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96"
+        ],
+        "reason_codes": [
+          "RISK_GUIDED_PATH",
+          "BRIDGE_WITNESS_FOUND"
+        ],
+        "source_references": {
+          "risk_field": "overall_risk_score",
+          "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+          "graph": "original_directed_address_relations"
+        },
+        "amount_evidence": "unavailable",
+        "transaction_time_evidence": "unavailable"
+      },
+      {
+        "nodes": [
+          "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+          "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+          "182tnCCD9p7PmpH74PmCZqp9t6nKHt3pkk"
+        ],
+        "path_score": 0.36383720216854964,
+        "bridge_witnesses": [],
+        "score_components": {
+          "risk_path_score": 0.36383720216854964,
+          "seed_relevance_score": 0.0,
+          "relevance_weight": 0,
+          "bridge_penalty": 0.0
+        },
+        "selection": {
+          "utility": 0.39384672354049116,
+          "marginal_risk_coverage": 0.456897720389817,
+          "new_nodes": 1,
+          "new_edges": 1,
+          "max_edge_overlap": 0.25
+        },
+        "rank": 3,
+        "node_risks": [
+          72.76251302295131,
+          36.25793332717354,
+          35.6897720389817
+        ],
+        "hop_count": 2,
+        "path_id": "path_b067a422b84ed44e5649ad4f",
+        "evidence_id": "trace_87fa363c32bf78c15235fd5a",
+        "bridge_nodes": [],
+        "reason_codes": [
+          "RISK_GUIDED_PATH"
+        ],
+        "source_references": {
+          "risk_field": "overall_risk_score",
+          "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+          "graph": "original_directed_address_relations"
+        },
+        "amount_evidence": "unavailable",
+        "transaction_time_evidence": "unavailable"
+      }
+    ],
+    "method": "budgeted_relation_tracer_v1",
+    "provenance": {
+      "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+      "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+      "tracing_revision": "121b2e0a23afdefd962aa98f28c87b47b420cf5fd50ba53e6dde74d370851e11",
+      "config_hash": "afe3599106f2b3125574884a3d6b125e8daf67ff4d36f07ac56259de00659511"
+    },
+    "search_budget": {
+      "configured_limit": 2000,
+      "actual_edge_inspections": 11,
+      "stage_edge_inspections": {
+        "search": 10,
+        "index_witness": 1
+      },
+      "elapsed_ms": 0.46274997293949127,
+      "stop_reason": "MAX_DEPTH_REACHED",
+      "adjacency_order": "stored_node_index_order_before_risk_sort",
+      "neighbor_context": "precomputed"
+    },
+    "selection_analysis": {
+      "unique_nodes_excluding_seed": 7,
+      "unique_edges": 7,
+      "edge_occurrences": 9,
+      "strict_prefix_count": 0,
+      "duplicate_edge_fraction": 0.2222222222222222,
+      "mean_pairwise_edge_jaccard": 0.20555555555555557,
+      "risk_weighted_node_coverage": 3.0345823050590948,
+      "prefix_folding": [
+        {
+          "nodes": [
+            "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+            "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd"
+          ],
+          "folded_into_nodes": [
+            "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+            "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+            "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96",
+            "1J4zJzYPKJmBiRJfEFcQNjNtsjfhbnpNnM",
+            "1FHp5TXDu9goiGFzcHTwomedWxkjJyjnLn"
+          ],
+          "path_score": 0.3781108623016025,
+          "reason_code": "STRICT_PREFIX_FOLDED"
+        },
+        {
+          "nodes": [
+            "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+            "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+            "15QVSV49vfyFUxvsXS6ajV9GNStQaJa2Kj"
+          ],
+          "folded_into_nodes": [
+            "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+            "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+            "15QVSV49vfyFUxvsXS6ajV9GNStQaJa2Kj",
+            "15oPbAGPBxWEytCbc9X7e4yPkqLADhenrR"
+          ],
+          "path_score": 0.4754321356520654,
+          "reason_code": "STRICT_PREFIX_FOLDED"
+        },
+        {
+          "nodes": [
+            "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+            "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+            "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96",
+            "1J4zJzYPKJmBiRJfEFcQNjNtsjfhbnpNnM"
+          ],
+          "folded_into_nodes": [
+            "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+            "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+            "14rFnEeajgrkUGN6BAcxQnTL1GENjgXR96",
+            "1J4zJzYPKJmBiRJfEFcQNjNtsjfhbnpNnM",
+            "1FHp5TXDu9goiGFzcHTwomedWxkjJyjnLn"
+          ],
+          "path_score": 0.3668629762627173,
+          "reason_code": "STRICT_PREFIX_FOLDED"
+        }
+      ],
+      "candidate_paths": 6,
+      "displayed_paths": 3
+    },
+    "seed_relevance": {
+      "enabled": false
+    },
+    "reason_summary": {
+      "BEAM_PRUNED": 0,
+      "RISK_BELOW_THRESHOLD": 5,
+      "NO_REACHABLE_ANCHOR_WITHIN_DEPTH": 4,
+      "BRIDGE_WITHOUT_WITNESS": 4,
+      "ANCHOR_INDEX_WITNESS": 1,
+      "BRIDGE_WITNESS_FOUND": 1,
+      "MAX_DEPTH_REACHED": 1
+    },
+    "anchor_reachability": {
+      "enabled": true,
+      "metadata": {
+        "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+        "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+        "threshold": 30,
+        "max_depth": 64,
+        "algorithm": "multi_source_reverse_bfs_v1",
+        "construction_edge_inspections": 508625,
+        "algorithm_sha256": "40d77d1bccaac5599dd071a06766b50599cb269566aee89f027d77cbc34a35a6",
+        "construction_seconds": 0.6255828999856021,
+        "anchor_count": 32535,
+        "reachable_nodes": 239372,
+        "tie_break": "anchor_risk_then_address_then_stored_incoming_order",
+        "array_sha256": {
+          "distance.npy": "424142adbec1e349a5a2ac149a3b7ab97512aebea614d33381504cffa1bd05b8",
+          "next_node.npy": "c4d08bf340a97ec0cb40c00b93d910cdfad2f8276532ce8adc69dcb18fe6f5ef"
+        }
+      }
+    }
+  },
+  "scoring_analysis": {
+    "model_name": "有向邻域对比证据融合",
+    "model_version": "V2.0",
+    "fusion": "joint_feature_fusion",
+    "route_scores": {
+      "behavior": 15.930352722160343,
+      "context": 7.637560710310018,
+      "structure": 32.40417289789604
+    },
+    "route_score_purpose": "独立单类证据模型用于诊断；联合模型输入特征，不平均这些分数",
+    "groups": [
+      {
+        "key": "behavior",
+        "label": "行为画像",
+        "responsibility": "地址自身的交易规模、频次、费用和活跃节奏",
+        "contribution": 1.7667036010519552,
+        "absolute_contribution_share": 0.26009050245942483
+      },
+      {
+        "key": "context",
+        "label": "方向邻域偏离",
+        "responsibility": "与上游、下游地址行为的相对差异，保留被均值掩盖的异常",
+        "contribution": 3.6669353265274944,
+        "absolute_contribution_share": 0.5544245391944173
+      },
+      {
+        "key": "structure",
+        "label": "有向结构角色",
+        "responsibility": "汇入、分出、双向关联和上下游连接模式",
+        "contribution": 1.128055865275693,
+        "absolute_contribution_share": 0.1854849583461578
+      }
+    ],
+    "evidence": {
+      "behavior": [
+        {
+          "feature": "fees_as_share_max",
+          "raw_feature": "fees_as_share_max",
+          "feature_value": 0.0003167999966535717,
+          "model_input_value": 0.33211904764175415,
+          "contribution": 0.718653754326036,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "BTC 交易总量",
+          "raw_feature": "btc_transacted_total",
+          "feature_value": 0.7799999713897705,
+          "model_input_value": 0.6988584399223328,
+          "contribution": 0.2445170875106618,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "手续费最小值",
+          "raw_feature": "fees_min",
+          "feature_value": 0.0003167999966535717,
+          "model_input_value": -0.39381474256515503,
+          "contribution": 0.16952469638672338,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "fees_as_share_total",
+          "raw_feature": "fees_as_share_total",
+          "feature_value": 0.000491365441121161,
+          "model_input_value": 0.2690887749195099,
+          "contribution": 0.15952685299961442,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "transacted_w_address_total",
+          "raw_feature": "transacted_w_address_total",
+          "feature_value": 2.0,
+          "model_input_value": -0.4999110996723175,
+          "contribution": 0.07890072599664198,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        }
+      ],
+      "context": [
+        {
+          "feature": "下游标准化偏离 · fees_as_share_total",
+          "raw_feature": "fees_as_share_total",
+          "feature_value": null,
+          "model_input_value": -3.1424038410186768,
+          "contribution": 0.7435178017359588,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "上游标准化偏离 · 手续费总额",
+          "raw_feature": "fees_total",
+          "feature_value": null,
+          "model_input_value": 0.04406940937042236,
+          "contribution": 0.5489684662846628,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "下游标准化偏离 · BTC 接收总量",
+          "raw_feature": "btc_received_total",
+          "feature_value": null,
+          "model_input_value": -1.853283405303955,
+          "contribution": 0.5336146664644197,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "下游标准化偏离 · BTC 交易量均值",
+          "raw_feature": "btc_transacted_mean",
+          "feature_value": null,
+          "model_input_value": 0.5311985015869141,
+          "contribution": 0.4662124269828355,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "上游标准化偏离 · 手续费最小值",
+          "raw_feature": "fees_min",
+          "feature_value": null,
+          "model_input_value": -0.007497727870941162,
+          "contribution": 0.31049009547499057,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        }
+      ],
+      "structure": [
+        {
+          "feature": "mean_upstream_log_out_degree",
+          "raw_feature": "mean_upstream_log_out_degree",
+          "feature_value": null,
+          "model_input_value": 1.0986123085021973,
+          "contribution": 0.647761289823149,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "出度对数",
+          "raw_feature": "log_out_degree",
+          "feature_value": null,
+          "model_input_value": 0.6931471824645996,
+          "contribution": 0.2874056837224179,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "下游平均连接度对数",
+          "raw_feature": "mean_downstream_log_degree",
+          "feature_value": null,
+          "model_input_value": 2.397895336151123,
+          "contribution": 0.08748259151863293,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "mean_downstream_log_out_degree",
+          "raw_feature": "mean_downstream_log_out_degree",
+          "feature_value": null,
+          "model_input_value": 1.7917594909667969,
+          "contribution": 0.050435068838626695,
+          "direction": "increases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        },
+        {
+          "feature": "log_forward_two_step_walks",
+          "raw_feature": "log_forward_two_step_walks",
+          "feature_value": null,
+          "model_input_value": 1.7917594909667969,
+          "contribution": -0.04900657192926425,
+          "direction": "decreases_joint_margin",
+          "attribution_target": "joint_tree_raw_margin",
+          "additivity_residual": 8.881784197001252e-16
+        }
+      ]
+    },
+    "base_value": -2.8118696892901793,
+    "raw_margin": 3.749825103564963,
+    "corrected_logit": 0.9009694298796003,
+    "temperature": 0.9169176822303733,
+    "additivity_residual": 8.881784197001252e-16,
+    "revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e"
+  },
+  "limitations": [
+    "风险评分是模型输出，不是法律结论，也不代表地址所有者一定参与洗钱。",
+    "当前追踪沿地址关系边扩展，不执行精确金额级资金污染归属。",
+    "数据可能存在未知或不完整标签；在线证据不使用真实标签作为判断依据。",
+    "地址特征可能汇总完整生命周期；时间划分结果不能视为历史时点实时预测效果。",
+    "路径优先级、Seed 关联分和地址风险含义不同；低分桥接不改变中间地址的原始风险。",
+    "追踪受到深度、边访问预算和候选配额限制；未展示不代表不存在关联路径。",
+    "关系路径缺少逐笔金额和时间证据，不能据此认定连续资金流或污染比例。",
+    "综合评分由三类特征联合决策；单类证据模型分数用于诊断，不是综合分的概率平均输入。",
+    "TreeSHAP 可加和地解释联合树模型原始输出；贡献占比用于展示模型归因，不具有因果含义。",
+    "方向邻域偏离是地址与邻居行为的比较；三类证据具有明确职责，但不是完全独立的数据来源。",
+    "综合与单类分数均在已知标签验证集校准，不能保证 unknown 人群的概率校准。"
+  ]
+}

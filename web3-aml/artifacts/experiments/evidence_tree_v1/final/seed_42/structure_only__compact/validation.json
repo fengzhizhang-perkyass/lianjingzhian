@@ -1,0 +1,124 @@
+{
+  "recipe": "structure_only",
+  "parameter": "compact",
+  "seed": 42,
+  "validation_ap": 0.6851911057548072,
+  "positive_weight": 17.268010291595196,
+  "temperature": 1.0218440807771831,
+  "threshold": 0.20342324963581002,
+  "seconds": 0.9219999999913853,
+  "best_iteration": 54,
+  "blocks": [
+    "structure"
+  ],
+  "schema": [
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_in_degree",
+      "name": "structure::log_in_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_out_degree",
+      "name": "structure::log_out_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_neighbor_count",
+      "name": "structure::log_neighbor_count"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "flow_balance",
+      "name": "structure::flow_balance"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "reciprocal_ratio",
+      "name": "structure::reciprocal_ratio"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_downstream_log_degree",
+      "name": "structure::mean_downstream_log_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_upstream_log_degree",
+      "name": "structure::mean_upstream_log_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "is_isolated",
+      "name": "structure::is_isolated"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_downstream_log_in_degree",
+      "name": "structure::mean_downstream_log_in_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_downstream_log_out_degree",
+      "name": "structure::mean_downstream_log_out_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_upstream_log_in_degree",
+      "name": "structure::mean_upstream_log_in_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_upstream_log_out_degree",
+      "name": "structure::mean_upstream_log_out_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_downstream_direction_balance",
+      "name": "structure::mean_downstream_direction_balance"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_upstream_direction_balance",
+      "name": "structure::mean_upstream_direction_balance"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "downstream_sink_fraction",
+      "name": "structure::downstream_sink_fraction"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "upstream_source_fraction",
+      "name": "structure::upstream_source_fraction"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_forward_two_step_walks",
+      "name": "structure::log_forward_two_step_walks"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_backward_two_step_walks",
+      "name": "structure::log_backward_two_step_walks"
+    }
+  ]
+}

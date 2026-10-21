@@ -21,7 +21,12 @@ class SourceIndex:
         for metadata in data['source_files'].values():
             file=(root/metadata['file']).resolve()
             if not file.is_relative_to(root.resolve()): raise ValueError('Raw locator must stay in project')
-            info=file.stat()
+            try:
+                info=file.stat()
+            except FileNotFoundError:
+                # Runtime bundles can omit the multi-GB raw CSVs. Keep frozen
+                # evidence navigation available without claiming raw locations.
+                return None
             if info.st_size!=metadata['size'] or info.st_mtime_ns!=metadata['mtime_ns']:
                 return None
         return cls(data)

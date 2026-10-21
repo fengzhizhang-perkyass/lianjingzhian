@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "tests_passed": 73,
+  "tests_skipped": 2,
+  "skip_reason": "historical investigation overlay revision mismatch",
+  "pip_check": "passed",
+  "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+  "tracing_revision": "121b2e0a23afdefd962aa98f28c87b47b420cf5fd50ba53e6dde74d370851e11",
+  "demo_cases": 9,
+  "online_uses_ground_truth_labels": false,
+  "module_one_retrained": false,
+  "real_llm_api_tested": false,
+  "evaluation_previously_observed_for_implementation_reassessment": true,
+  "document_links_checked": 8,
+  "scientific_figure_visually_checked": true,
+  "idempotent_deployment_with_live_mmap_service": "passed"
+}

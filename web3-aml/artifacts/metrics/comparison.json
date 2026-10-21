@@ -1,0 +1,195 @@
+{
+  "lightgbm": {
+    "precision": 0.3540090771558245,
+    "recall": 0.1836734693877551,
+    "f1": 0.24186046511627907,
+    "pr_auc": 0.2233279353261879,
+    "roc_auc": 0.7640738985760802,
+    "brier_score": 0.04256562824727408,
+    "threshold": 0.07330053568335694,
+    "num_test_nodes": 56436,
+    "review": {
+      "top_100": {
+        "reviewed": 100,
+        "illicit_found": 56,
+        "precision": 0.56,
+        "recall": 0.02197802197802198
+      },
+      "top_500": {
+        "reviewed": 500,
+        "illicit_found": 278,
+        "precision": 0.556,
+        "recall": 0.10910518053375197
+      },
+      "top_0.01_fraction": {
+        "reviewed": 565,
+        "illicit_found": 296,
+        "precision": 0.5238938053097345,
+        "recall": 0.11616954474097331
+      },
+      "top_0.05_fraction": {
+        "reviewed": 2822,
+        "illicit_found": 686,
+        "precision": 0.2430900070871722,
+        "recall": 0.2692307692307692
+      }
+    },
+    "scope": "full",
+    "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+    "split_method": "time",
+    "seed": 42,
+    "experiment_name": "risk_v2",
+    "model_version": "V1.1",
+    "best_val_pr_auc": 0.5149301240450279
+  },
+  "behavior": {
+    "precision": 0.4051020408163265,
+    "recall": 0.15580847723704866,
+    "f1": 0.22505668934240364,
+    "pr_auc": 0.17992838053003146,
+    "roc_auc": 0.7235049453987012,
+    "brier_score": 0.04453804411440338,
+    "threshold": 0.555282577621255,
+    "num_test_nodes": 56436,
+    "logit_ap": 0.17992838053003146,
+    "review": {
+      "top_100": {
+        "reviewed": 100,
+        "illicit_found": 47,
+        "precision": 0.47,
+        "recall": 0.018445839874411302
+      },
+      "top_500": {
+        "reviewed": 500,
+        "illicit_found": 218,
+        "precision": 0.436,
+        "recall": 0.08555729984301413
+      },
+      "top_0.01_fraction": {
+        "reviewed": 565,
+        "illicit_found": 251,
+        "precision": 0.44424778761061945,
+        "recall": 0.09850863422291994
+      },
+      "top_0.05_fraction": {
+        "reviewed": 2822,
+        "illicit_found": 688,
+        "precision": 0.2437987243090007,
+        "recall": 0.27001569858712715
+      }
+    },
+    "model_parameters": 46404,
+    "checkpoint_bytes": 195744,
+    "test_inference_seconds": 0.6559999999881256,
+    "inference_device": "cpu",
+    "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+    "scope": "full",
+    "split_method": "time",
+    "seed": 42,
+    "experiment_name": "risk_v2",
+    "model_version": "V1.1",
+    "best_val_pr_auc": 0.6472499753607709,
+    "epochs_run": 8,
+    "temperature": 0.9412590962895582
+  },
+  "graphsage": {
+    "precision": 0.7003792667509482,
+    "recall": 0.217425431711146,
+    "f1": 0.33183587900569034,
+    "pr_auc": 0.33113534379246745,
+    "roc_auc": 0.7545876956380488,
+    "brier_score": 0.040475376446374736,
+    "threshold": 0.6509386739759749,
+    "num_test_nodes": 56436,
+    "logit_ap": 0.33113534379246745,
+    "review": {
+      "top_100": {
+        "reviewed": 100,
+        "illicit_found": 93,
+        "precision": 0.93,
+        "recall": 0.036499215070643645
+      },
+      "top_500": {
+        "reviewed": 500,
+        "illicit_found": 401,
+        "precision": 0.802,
+        "recall": 0.15737833594976453
+      },
+      "top_0.01_fraction": {
+        "reviewed": 565,
+        "illicit_found": 437,
+        "precision": 0.7734513274336283,
+        "recall": 0.17150706436420723
+      },
+      "top_0.05_fraction": {
+        "reviewed": 2822,
+        "illicit_found": 845,
+        "precision": 0.2994330262225372,
+        "recall": 0.33163265306122447
+      }
+    },
+    "model_parameters": 46404,
+    "checkpoint_bytes": 195744,
+    "test_inference_seconds": 2.5,
+    "inference_device": "cpu",
+    "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+    "scope": "full",
+    "split_method": "time",
+    "seed": 44,
+    "experiment_name": "risk_v2",
+    "model_version": "V1.1",
+    "best_val_pr_auc": 0.7800862674955507,
+    "epochs_run": 15,
+    "temperature": 2.035718161901158
+  },
+  "dual_view": {
+    "precision": 0.7741935483870968,
+    "recall": 0.21664050235478807,
+    "f1": 0.33854645814167433,
+    "pr_auc": 0.32337646959442196,
+    "roc_auc": 0.7087435526781286,
+    "brier_score": 0.04069135369466313,
+    "threshold": 0.7807806572326499,
+    "num_test_nodes": 56436,
+    "logit_ap": 0.32337646959442196,
+    "review": {
+      "top_100": {
+        "reviewed": 100,
+        "illicit_found": 100,
+        "precision": 1.0,
+        "recall": 0.03924646781789639
+      },
+      "top_500": {
+        "reviewed": 500,
+        "illicit_found": 416,
+        "precision": 0.832,
+        "recall": 0.16326530612244897
+      },
+      "top_0.01_fraction": {
+        "reviewed": 565,
+        "illicit_found": 465,
+        "precision": 0.8230088495575221,
+        "recall": 0.1824960753532182
+      },
+      "top_0.05_fraction": {
+        "reviewed": 2822,
+        "illicit_found": 815,
+        "precision": 0.2888022678951099,
+        "recall": 0.3198587127158556
+      }
+    },
+    "model_parameters": 46404,
+    "checkpoint_bytes": 195808,
+    "test_inference_seconds": 3.0930000000080327,
+    "inference_device": "cpu",
+    "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+    "scope": "full",
+    "split_method": "time",
+    "seed": 43,
+    "experiment_name": "risk_v2",
+    "model_version": "V1.1",
+    "best_val_pr_auc": 0.8017570382111175,
+    "epochs_run": 11,
+    "temperature": 1.4797346738509631
+  }
+}

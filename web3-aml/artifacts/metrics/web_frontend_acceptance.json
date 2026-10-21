@@ -1,0 +1,178 @@
+{
+  "status": "passed",
+  "version": "landing_workspace_v2",
+  "checked_at": "2026-10-20T14:03:35.010485+08:00",
+  "brand": "链境智安——基于多维证据融合的链上反洗钱与可解释研判系统",
+  "entrypoint": "python run_web.py",
+  "url": "http://127.0.0.1:8000/",
+  "workspace": "http://127.0.0.1:8000/workspace",
+  "startup_log": "artifacts/web_ui_check/startup.log",
+  "api_regression": {
+    "command": "python -m pytest tests/test_web_api.py -q",
+    "passed": 18,
+    "log": "artifacts/web_ui_check/api-check.log"
+  },
+  "browser_regression": {
+    "command": "node scripts/check_web_ui.cjs",
+    "passed": 37,
+    "page_errors": [],
+    "source": "artifacts/web_ui_check/result.json"
+  },
+  "legacy_regression": {
+    "command": "python scripts/34_check_runtime.py --ui",
+    "status": "passed",
+    "pages": [
+      "系统总览",
+      "调查优先队列",
+      "地址风险分析",
+      "关系链追踪",
+      "AI 分析报告",
+      "模型评估"
+    ],
+    "cases": 9,
+    "longest_demo_hops": 32,
+    "log": "artifacts/web_ui_check/streamlit-check.log"
+  },
+  "original_handoff_integrity": {
+    "files": 174,
+    "changed": []
+  },
+  "browser_audit_bundle": {
+    "files_verified": 6,
+    "hash_mismatches": 0
+  },
+  "external_llm_tested": false,
+  "raw_csv_present": false,
+  "backup": ".runtime-backups/landing-workspace-20261020-125707",
+  "plan_sha256": "1a0aadc3a9e4ff3fc62c5d38fadc5a0f5f6b383180eab11c6b9a3159d8b59edb",
+  "files": [
+    {
+      "path": "README_WEB.md",
+      "sha256": "3dd971d5caebd83660fadbcb7e026905315bf067a461d6da74edf87a325134ea"
+    },
+    {
+      "path": "api/__init__.py",
+      "sha256": "c55c0914808b4b01576c087d7fd3504a7c54977952ebc4305f04ab7653728fd3"
+    },
+    {
+      "path": "api/exporter.py",
+      "sha256": "9dfe01da912c9e5a4c9aef6cd96cfc1f1c0c4697ed61821144cfae2a9a376ce3"
+    },
+    {
+      "path": "api/main.py",
+      "sha256": "2470925d6eb03069fb625c3c963419ed9c5cec0ffef52fce1365c2ee938d80b0"
+    },
+    {
+      "path": "api/presenters.py",
+      "sha256": "4180c02ee67ae893f083edf3a23d78ab705ce897755a10c4d28941abcd714423"
+    },
+    {
+      "path": "api/runtime.py",
+      "sha256": "82bd63538b434155459a958f3b60555015e6e98a70a4fa344866840dc87c2926"
+    },
+    {
+      "path": "api/store.py",
+      "sha256": "e51890c9713d2c8b4a3b4d0ad5c25ca80000071f25e3128c10ae5cc4c7d38ef0"
+    },
+    {
+      "path": "frontend/content/report-preview.json",
+      "sha256": "121fc3df7b3f20cc65ae05bb834ac3c16e1727d1539688a994d2769ee0f1e67a"
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "c653eb9261a2465c2f5e23c66179509fd2362414f15b068ead216476c1e4c815"
+    },
+    {
+      "path": "frontend/js/api.js",
+      "sha256": "0c0685b290c88b96469eb0c757a97e22f5ae4484a3112688fe28cb6acfcaa001"
+    },
+    {
+      "path": "frontend/js/app.js",
+      "sha256": "6bd923f6b615701d90e36a54a9a7902711b25d111f054046e1e00ee650ebe609"
+    },
+    {
+      "path": "frontend/js/background.js",
+      "sha256": "c37fdd74664ec561a14965e6851a191105d905c9f8991ae358f9eb3db961d662"
+    },
+    {
+      "path": "frontend/js/charts.js",
+      "sha256": "d013d709639810a7ce37b50443b5912ee1537e95ff56d24546a72ddf0e7192f5"
+    },
+    {
+      "path": "frontend/js/dom.js",
+      "sha256": "95b3713f6d5b00546ffcc18737b71e2cd517c840da1f98eed127fc8ebb9955f4"
+    },
+    {
+      "path": "frontend/js/landing.js",
+      "sha256": "9c91d10cbf88b059909fbc0153850c57793fcefa9299f0cdbeb11d2471a07fb2"
+    },
+    {
+      "path": "frontend/js/navigation.js",
+      "sha256": "1adf845ed77c2278dbbc40ed00c6c6df09d1e0f50013935c4f3ecff987c81ed6"
+    },
+    {
+      "path": "frontend/js/router.js",
+      "sha256": "84ca378718ea1ad521a2b27b666ab28548131d5ea13aba40155e4dfd01c60a7f"
+    },
+    {
+      "path": "frontend/js/state.js",
+      "sha256": "343b19c2645085032bfaeacd72ce2cd48ea4463811117011f365799277049ef2"
+    },
+    {
+      "path": "frontend/js/views/evidence.js",
+      "sha256": "18397444e452e9ab460805b7cdf7465fef0b3a68850af72f88e9a262ef657d61"
+    },
+    {
+      "path": "frontend/js/views/queue.js",
+      "sha256": "c0688bda9f5c6d7deb50c498da8cf1524a15dcce88b293c0e37a4281aac98e26"
+    },
+    {
+      "path": "frontend/js/views/risk.js",
+      "sha256": "b1c692fc8c8d4f4ef86d76085db96eedb91e83ed87bd1183f5376afd7993630a"
+    },
+    {
+      "path": "frontend/js/views/tracing.js",
+      "sha256": "77b607cad6035fbf5b6b56df742f2599ffb74c0841526bbb36a6a3a55a3e8cb8"
+    },
+    {
+      "path": "frontend/js/workspace.js",
+      "sha256": "2835acdaae4ec37b3904e38b8b945ba222cecc8d889066b88584dd4f6a3fc2ff"
+    },
+    {
+      "path": "frontend/pages.css",
+      "sha256": "6fe562c3fa65a2220ed33592fb7fe9d582812fa642d0293a6438d78d0cdf5967"
+    },
+    {
+      "path": "frontend/reference.css",
+      "sha256": "f52471d3765b93cf1bfba0a68513949d18dc0e505308d3886421c75b5b0d0676"
+    },
+    {
+      "path": "frontend/styles.css",
+      "sha256": "058c6f6781f556e0e87a7b04c30243ed9107a57c1f951c74d9e163f2bd15b7eb"
+    },
+    {
+      "path": "frontend/vendor/plotly.min.js",
+      "sha256": "8ef4c6ab1369f0019611cbcd2d5b8aafef23e5d19ef58c39d4b4249831fe2180"
+    },
+    {
+      "path": "requirements-web.txt",
+      "sha256": "e0d08ba2f421cb7a30025c68f3b9e6cba1632cdb0978f77885577c9aa32bd51a"
+    },
+    {
+      "path": "run_web.py",
+      "sha256": "5a60b347014b08978003252d7782a642abae60d1d63093dc05eb04e94b07f33c"
+    },
+    {
+      "path": "scripts/check_web_ui.cjs",
+      "sha256": "1723fbf097ea69042a155a236ab7ff59cb53727d20bdefa17a0bf44d1f8b6f58"
+    },
+    {
+      "path": "tests/test_web_api.py",
+      "sha256": "d5b15f4ce7cea8e25718027d7f6ba68ba59dcb21952f841bc5e7c881d38156fe"
+    },
+    {
+      "path": "启动新版前端.command",
+      "sha256": "6ea235f65b0211fb06190dfe2ccb01163254135c4596162ce92ff56fc80982eb"
+    }
+  ]
+}

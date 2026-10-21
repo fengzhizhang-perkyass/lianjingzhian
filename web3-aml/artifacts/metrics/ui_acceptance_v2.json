@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "active_model": "V2.0 evidence_tree",
+  "desktop_viewport_width": 1440,
+  "narrow_viewport_width": 375,
+  "narrow_document_widths": {
+    "address": 375,
+    "tracing": 375,
+    "report": 375,
+    "evaluation": 375
+  },
+  "primary_seed": "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+  "primary_risk": 72.76251302295131,
+  "paths": 4,
+  "depth": 3,
+  "tracing_threshold": 30,
+  "report_source": "template",
+  "live_llm_tested": false,
+  "verified": [
+    "three evidence responsibilities",
+    "joint TreeSHAP waterfall",
+    "directed tracing defaults and results",
+    "six section grounded template report",
+    "current AP and ablations",
+    "current PR/ROC and confusion matrix"
+  ],
+  "screenshots": [
+    "docs/screenshots/evidence_scoring.jpg",
+    "docs/screenshots/evidence_tracing.jpg",
+    "docs/screenshots/evidence_report.jpg",
+    "docs/screenshots/evidence_evaluation.jpg"
+  ]
+}

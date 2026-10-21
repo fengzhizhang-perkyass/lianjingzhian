@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "addresses": 822942,
+  "cases": [
+    {
+      "group": "high_risk_known",
+      "address": "13WxaB3pteCUbMQFt6MwZCTzRAFFKaXhFX",
+      "risk": 78.1461746049094,
+      "paths": 1,
+      "statements": 32
+    },
+    {
+      "group": "high_risk_known",
+      "address": "16yQ4fyBcKBHNcAi6gPosD6LhcpxPFAQBP",
+      "risk": 78.01616980752326,
+      "paths": 1,
+      "statements": 32
+    },
+    {
+      "group": "high_risk_known",
+      "address": "1HqybjbhXiox7J9jMsVR7evd43BPVRqKTK",
+      "risk": 78.01616980752326,
+      "paths": 1,
+      "statements": 32
+    },
+    {
+      "group": "low_risk_known",
+      "address": "1EnTtBfCCgxLhPc8vj14g61UcqqnVbV7uL",
+      "risk": 0.03416235390405048,
+      "paths": 1,
+      "statements": 33
+    },
+    {
+      "group": "low_risk_known",
+      "address": "1LiDqPygAFQq2h19Z9JeM8WDWY86h9HCaa",
+      "risk": 0.03416235390405048,
+      "paths": 1,
+      "statements": 33
+    },
+    {
+      "group": "low_risk_known",
+      "address": "12JWWm3mxydqEPo94YjoHpgsLqRWmH1yUd",
+      "risk": 0.03416235390405048,
+      "paths": 1,
+      "statements": 33
+    },
+    {
+      "group": "high_risk_unknown",
+      "address": "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+      "risk": 72.76251302295131,
+      "paths": 3,
+      "statements": 35
+    },
+    {
+      "group": "high_risk_unknown",
+      "address": "1FLk5re5WjjuMzk8xsKTu8a6cyK87tGTT",
+      "risk": 63.42958004477512,
+      "paths": 3,
+      "statements": 35
+    },
+    {
+      "group": "high_risk_unknown",
+      "address": "1FENLYnwL4VGKQ1HKaGrSoYJUYytBLgsqn",
+      "risk": 73.0878589453944,
+      "paths": 1,
+      "statements": 32
+    }
+  ],
+  "longest_demo_hops": 32,
+  "pages_checked": [
+    "系统总览",
+    "调查优先队列",
+    "地址风险分析",
+    "关系链追踪",
+    "AI 分析报告",
+    "模型评估"
+  ],
+  "live_llm_tested": false,
+  "training_stack_required": false,
+  "raw_csv_present": false
+}

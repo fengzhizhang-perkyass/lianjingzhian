@@ -1,0 +1,27 @@
+{
+  "source_report_id": "report_20261019T121253_9a4f1d42f4d1",
+  "evidence_hash": "01963a91c2a46534552067ff3d8bd8611ae81ddd9d7dd35ceddf7b9106f36720",
+  "address_id": "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+  "score": 72.76251302295131,
+  "risk_level": "HIGH",
+  "overview_label": "E01",
+  "feature_label": "E05",
+  "feature": "fees_as_share_max",
+  "feature_value": 0.0003167999966535717,
+  "feature_contribution": 0.718653754326036,
+  "path_label": "E24",
+  "path_nodes": [
+    "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+    "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
+    "15QVSV49vfyFUxvsXS6ajV9GNStQaJa2Kj",
+    "15oPbAGPBxWEytCbc9X7e4yPkqLADhenrR"
+  ],
+  "path_risks": [
+    72.76251302295131,
+    36.25793332717354,
+    62.455620650623345,
+    42.27582417527127
+  ],
+  "hop_count": 3,
+  "feature_display": "最高手续费占比"
+}

@@ -1,0 +1,765 @@
+{
+  "seed_address": "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+  "config": {
+    "max_depth": 32,
+    "beam_width": 20,
+    "risk_threshold": 30,
+    "output_anchor_threshold": 0,
+    "max_neighbors_per_node": 50,
+    "top_paths": 30,
+    "cycle_check": true,
+    "length_decay": 0.03,
+    "high_risk_threshold": 60,
+    "edge_budget": 10000,
+    "max_frontier": 1000,
+    "traversal": "beam",
+    "ppr_enabled": false,
+    "bridge_enabled": true,
+    "anchor_index_enabled": true,
+    "diverse_search": true,
+    "diverse_selection": true,
+    "fold_prefixes": true,
+    "ppr_budget_fraction": 0.15,
+    "bridge_budget_fraction": 0.3,
+    "restart_probability": 0.2,
+    "ppr_tolerance": 0.0001,
+    "max_ppr_pushes": 1000,
+    "max_bridge_candidates": 8,
+    "max_bridge_nodes": 31,
+    "max_event_records": 100,
+    "relevance_weight": 0.15,
+    "coverage_weight": 0.3,
+    "overlap_weight": 0.15,
+    "bridge_penalty": 0.03,
+    "edge_coverage_weight": 0.1,
+    "score_weight": {
+      "risk": 0.75,
+      "neighbor_risk": 0.15,
+      "degree_penalty": 0.1
+    },
+    "method": "budgeted",
+    "profile": "indexed_bridge3",
+    "display_name": "风险锚点约束的预算化证据路径追踪",
+    "anchor_index_path": "artifacts/tracing/anchor_index/risk_6460ec5d_trace_121b2e0a_t30_d64",
+    "long_path_profile": {
+      "max_depth": 32,
+      "max_bridge_nodes": 31,
+      "edge_budget": 2000
+    },
+    "long_path_cases": "artifacts/tracing/long_path_cases.json"
+  },
+  "method": "budgeted_relation_tracer_v1",
+  "provenance": {
+    "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+    "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+    "tracing_revision": "121b2e0a23afdefd962aa98f28c87b47b420cf5fd50ba53e6dde74d370851e11",
+    "config_hash": "2b9756209f26be6cab4f0ac3b99156508f187dcb170667ebc9d5349d4d4c51f2"
+  },
+  "search_budget": {
+    "configured_limit": 10000,
+    "actual_edge_inspections": 10000,
+    "stage_edge_inspections": {
+      "search": 10000
+    },
+    "elapsed_ms": 10.289124911651015,
+    "stop_reason": "BUDGET_EXHAUSTED",
+    "adjacency_order": "stored_node_index_order_before_risk_sort",
+    "neighbor_context": "precomputed"
+  },
+  "statistics": {
+    "visited_nodes": 3,
+    "candidate_nodes": 10000,
+    "high_risk_nodes": 0,
+    "pruned_nodes": 9998,
+    "pruned_expansions": 9958,
+    "max_reached_depth": 1
+  },
+  "top_paths": [
+    {
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1Bae2KyPHWbbzi5Dd7rkJn6AoBHm1a7puy"
+      ],
+      "path_score": 0.3944057882777451,
+      "bridge_witnesses": [],
+      "score_components": {
+        "risk_path_score": 0.3944057882777451,
+        "seed_relevance_score": 0.0,
+        "relevance_weight": 0,
+        "bridge_penalty": 0.0
+      },
+      "selection": {
+        "utility": 0.694405788277745,
+        "marginal_risk_coverage": 0.5302785249822581,
+        "new_nodes": 1,
+        "new_edges": 1,
+        "max_edge_overlap": 0
+      },
+      "rank": 1,
+      "node_risks": [
+        0.05475896839602335,
+        43.02785249822581
+      ],
+      "hop_count": 1,
+      "path_id": "path_104cb8686f2145bc4bca6b2b",
+      "evidence_id": "trace_7328c1c160e0765d2dcfd702",
+      "bridge_nodes": [],
+      "reason_codes": [
+        "RISK_GUIDED_PATH"
+      ],
+      "source_references": {
+        "risk_field": "overall_risk_score",
+        "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+        "graph": "original_directed_address_relations"
+      },
+      "amount_evidence": "unavailable",
+      "transaction_time_evidence": "unavailable"
+    },
+    {
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1Bd8FqoJcd2dsTYSDwVKCfpP6EaQNNDkJc"
+      ],
+      "path_score": 0.3229570295901704,
+      "bridge_witnesses": [],
+      "score_components": {
+        "risk_path_score": 0.3229570295901704,
+        "seed_relevance_score": 0.0,
+        "relevance_weight": 0,
+        "bridge_penalty": 0.0
+      },
+      "selection": {
+        "utility": 0.6203588358360423,
+        "marginal_risk_coverage": 0.5256859704770678,
+        "new_nodes": 1,
+        "new_edges": 1,
+        "max_edge_overlap": 0.0
+      },
+      "rank": 2,
+      "node_risks": [
+        0.05475896839602335,
+        42.568597047706774
+      ],
+      "hop_count": 1,
+      "path_id": "path_ffd07af751953c1232dcb9d8",
+      "evidence_id": "trace_feb09cb4f3227428af932737",
+      "bridge_nodes": [],
+      "reason_codes": [
+        "RISK_GUIDED_PATH"
+      ],
+      "source_references": {
+        "risk_field": "overall_risk_score",
+        "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+        "graph": "original_directed_address_relations"
+      },
+      "amount_evidence": "unavailable",
+      "transaction_time_evidence": "unavailable"
+    }
+  ],
+  "subgraph": {
+    "nodes": [
+      {
+        "address_id": "1Bae2KyPHWbbzi5Dd7rkJn6AoBHm1a7puy",
+        "risk_score": 43.02785249822581,
+        "is_seed": false,
+        "risk_level": "MEDIUM"
+      },
+      {
+        "address_id": "1Bd8FqoJcd2dsTYSDwVKCfpP6EaQNNDkJc",
+        "risk_score": 42.568597047706774,
+        "is_seed": false,
+        "risk_level": "MEDIUM"
+      },
+      {
+        "address_id": "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "risk_score": 0.05475896839602335,
+        "is_seed": true,
+        "risk_level": "LOW"
+      }
+    ],
+    "edges": [
+      {
+        "src": "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "dst": "1Bae2KyPHWbbzi5Dd7rkJn6AoBHm1a7puy",
+        "path_rank": 1,
+        "path_ids": [
+          "path_104cb8686f2145bc4bca6b2b"
+        ]
+      },
+      {
+        "src": "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "dst": "1Bd8FqoJcd2dsTYSDwVKCfpP6EaQNNDkJc",
+        "path_rank": 2,
+        "path_ids": [
+          "path_ffd07af751953c1232dcb9d8"
+        ]
+      }
+    ]
+  },
+  "selection_analysis": {
+    "unique_nodes_excluding_seed": 2,
+    "unique_edges": 2,
+    "edge_occurrences": 2,
+    "strict_prefix_count": 0,
+    "duplicate_edge_fraction": 0.0,
+    "mean_pairwise_edge_jaccard": 0.0,
+    "risk_weighted_node_coverage": 0.8559644954593258,
+    "prefix_folding": [],
+    "candidate_paths": 2,
+    "displayed_paths": 2
+  },
+  "seed_relevance": {
+    "enabled": false
+  },
+  "anchor_reachability": {
+    "enabled": true,
+    "metadata": {
+      "risk_revision": "6460ec5d1ccd1ffd4d2ea54297018b0794008add93fa530c8d2942339b17f14e",
+      "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+      "threshold": 30,
+      "max_depth": 64,
+      "algorithm": "multi_source_reverse_bfs_v1",
+      "construction_edge_inspections": 508625,
+      "algorithm_sha256": "40d77d1bccaac5599dd071a06766b50599cb269566aee89f027d77cbc34a35a6",
+      "construction_seconds": 0.6255828999856021,
+      "anchor_count": 32535,
+      "reachable_nodes": 239372,
+      "tie_break": "anchor_risk_then_address_then_stored_incoming_order",
+      "array_sha256": {
+        "distance.npy": "424142adbec1e349a5a2ac149a3b7ab97512aebea614d33381504cffa1bd05b8",
+        "next_node.npy": "c4d08bf340a97ec0cb40c00b93d910cdfad2f8276532ce8adc69dcb18fe6f5ef"
+      }
+    }
+  },
+  "reason_summary": {
+    "BUDGET_EXHAUSTED": 2,
+    "NEIGHBOR_LIMIT": 9950,
+    "RISK_BELOW_THRESHOLD": 48,
+    "NO_REACHABLE_ANCHOR_WITHIN_DEPTH": 8,
+    "BRIDGE_WITHOUT_WITNESS": 8,
+    "BRIDGE_CANDIDATE_LIMIT": 40,
+    "BEAM_PRUNED": 0
+  },
+  "search_events": [
+    {
+      "reason_code": "BUDGET_EXHAUSTED",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "145V5Xqq8DJBUF4qJMZtp7vnQbRsfsND8y"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "NO_REACHABLE_ANCHOR_WITHIN_DEPTH",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "145V5Xqq8DJBUF4qJMZtp7vnQbRsfsND8y"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "BRIDGE_WITHOUT_WITNESS",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "145V5Xqq8DJBUF4qJMZtp7vnQbRsfsND8y"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "144fuZHP6PvKiPYYNFVVpHuc6o3KxhoEoc"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "NO_REACHABLE_ANCHOR_WITHIN_DEPTH",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "144fuZHP6PvKiPYYNFVVpHuc6o3KxhoEoc"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "BRIDGE_WITHOUT_WITNESS",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "144fuZHP6PvKiPYYNFVVpHuc6o3KxhoEoc"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "17RqnC7dovMWh39x8RnRC58krZRitZ8W2P"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "NO_REACHABLE_ANCHOR_WITHIN_DEPTH",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "17RqnC7dovMWh39x8RnRC58krZRitZ8W2P"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "BRIDGE_WITHOUT_WITNESS",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "17RqnC7dovMWh39x8RnRC58krZRitZ8W2P"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1316X8uxKJiZC5Uwa3eWrD11KSBzNTTgJi"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "NO_REACHABLE_ANCHOR_WITHIN_DEPTH",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1316X8uxKJiZC5Uwa3eWrD11KSBzNTTgJi"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "BRIDGE_WITHOUT_WITNESS",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1316X8uxKJiZC5Uwa3eWrD11KSBzNTTgJi"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "16FhhFRpTgEfZkKxpYp1vEDtR8NmEYp4Bk"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "NO_REACHABLE_ANCHOR_WITHIN_DEPTH",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "16FhhFRpTgEfZkKxpYp1vEDtR8NmEYp4Bk"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "BRIDGE_WITHOUT_WITNESS",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "16FhhFRpTgEfZkKxpYp1vEDtR8NmEYp4Bk"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "172tiGFQyzWUDUGaqYKEciBsJdby4xbFsv"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "NO_REACHABLE_ANCHOR_WITHIN_DEPTH",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "172tiGFQyzWUDUGaqYKEciBsJdby4xbFsv"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "BRIDGE_WITHOUT_WITNESS",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "172tiGFQyzWUDUGaqYKEciBsJdby4xbFsv"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1CNyuBDVjy9EaFrsBEHBLAxpiyW3jeww8D"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "NO_REACHABLE_ANCHOR_WITHIN_DEPTH",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1CNyuBDVjy9EaFrsBEHBLAxpiyW3jeww8D"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "BRIDGE_WITHOUT_WITNESS",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1CNyuBDVjy9EaFrsBEHBLAxpiyW3jeww8D"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1B7EvXL6NFbcooYXKfc38MHYEA83HEQhhk"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "NO_REACHABLE_ANCHOR_WITHIN_DEPTH",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1B7EvXL6NFbcooYXKfc38MHYEA83HEQhhk"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "BRIDGE_WITHOUT_WITNESS",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1B7EvXL6NFbcooYXKfc38MHYEA83HEQhhk"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1BbMQ9TA7ZVmPyekgwBwjr7xPzLePFnEV8"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "12DbH3RsujgdoseBLjmYVr1dSDNPkGSoYc"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "163sqx4iv7oUYJoB95L9XBemAWi5SK45Ci"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "18Ji62L7nwYY7AK3K6G7FxTdBErDkT3wLc"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1CmSiNnd4J8SxCPMcXDSG8ptti9SDr3NQE"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "19BT3Xcofua7BzwKJgmj476QJrnGkGDFfd"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "19QRt2CkDfy91HdWQtuLzxVG6Lo2H2d8cL"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1Ce4P5EMWCSBs9U41tznqPeQtY7x5kjKip"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "14wRHCMSSiJcWGqzMPN1AEiWQG5fGL374X"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "16vXtCL3HpFs5g26SEbp4tCKus4qRWQHTF"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "18ntBtgJfJQo8oYx7ExygbPUQDGV5KuR81"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1CKWG93ShuxhpKLRLR55KermkqitQC74kD"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "17iEAtqJusSpPAuRJqMyJoaqE37TGB2hVz"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1AmC5aH6WuL9g43S37NjFbRnukLswjTCkY"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "12uhGfuvG1G5cMt4C2ig4LuWFtbkMmSH5m"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1Axih1ZWYUf5feiMctR6wWr4WyUUupoBTT"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1BXJ7q7pHcJr7aWYeKg5hZJin5sunr2EjZ"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "19TW2AkJFtFpc2tLxg5WKh8gXcpT5i3A8o"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1255UmbT1jLgtQ8xiuTYYijQbwrPAM4xk2"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1392P66XWeyatGJfvLQRp9d52Tzdbj7nBV"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "16cqpwG7KB1HYvDftcqFideYChdDQvFDXT"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "17FYtvAZXFTZ4TKrG75bL7oApFDy8gZfAg"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "17VAHyuFzvMx2dcv4gW26Kz7SgvHELRGmd"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "17ZW3HhFnUmBkPWGDuTR1XQ1Df9zYdzRpT"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "16nJXqB2h9JJDoJXT2cRQRC6iLFHQB7TcM"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1BCVyZ3HdXVMPg9hHNoD2wk1RfoGNQyoh5"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1BKAJeuvXqAChLnxcEyVTMNT57sDBXC4Ge"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "15ofk2fSsTiW7ueXpMb3FHvyGESaf54G9R"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "12BHUcGPhQDeJqnannNtZowGhwsDNozXxr"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1Bpn2xJRPnAhjUcWwUkR2Xd3Ve3A3SHXYN"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1CgcfDV3UfvTdW8AEGiJbstFAfeXTQET7Q"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "15aYxwiVPmHv6BHWqr2JM72RhAfFV8Lcaf"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "13ZR3KST78DwS2CUouTfL3o5GdFNfRzqqn"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "14WZPHoRZcgZkcaDKk4nzrLBoyC9EqDVmC"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "14gnxWrsiYkx8MdiwdEBtpFUycgkJyjYj9"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "16tgK87NW1Qs1ZEm4RePT1YATuCQPkksgf"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "17nnTTcWmyk6cUoEwPwYDXPZqx5rmbiVVs"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "194qrMdkxAupm2BYk2cZy2QrtXPw9oQFZ7"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1AKJ6iMLLZaPDHq4uQbu29Ju75Q3yqGSun"
+      ],
+      "witness": null
+    },
+    {
+      "reason_code": "RISK_BELOW_THRESHOLD",
+      "nodes": [
+        "1GX28yLjVWux7ws4UQ9FB4MnLH4UKTPK2z",
+        "1BbuN2yFdK7vpm8y6ZyjMu8nzmL3EjpZKM"
+      ],
+      "witness": null
+    }
+  ],
+  "events_truncated": false
+}

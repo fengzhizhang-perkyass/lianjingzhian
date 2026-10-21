@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "restored_files": 3,
+  "original_bytes": 779178419,
+  "compressed_bytes": 303211653,
+  "parts": 19,
+  "all_original_sha256_verified": true,
+  "second_run_reuses_data": true,
+  "elapsed_seconds": 2.32
+}

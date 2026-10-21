@@ -1,0 +1,1045 @@
+{
+  "recipe": "standardized_deviation_fusion",
+  "parameter": "compact",
+  "seed": 42,
+  "validation_ap": 0.8062260766463423,
+  "positive_weight": 17.268010291595196,
+  "temperature": 0.9169176822303733,
+  "threshold": 0.27951156315457387,
+  "seconds": 6.5310000000026776,
+  "best_iteration": 101,
+  "blocks": [
+    "self",
+    "out_zscore",
+    "in_zscore",
+    "structure"
+  ],
+  "schema": [
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "num_txs_as_sender",
+      "name": "self::num_txs_as_sender"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "num_txs_as receiver",
+      "name": "self::num_txs_as receiver"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "lifetime_in_blocks",
+      "name": "self::lifetime_in_blocks"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "total_txs",
+      "name": "self::total_txs"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "num_timesteps_appeared_in",
+      "name": "self::num_timesteps_appeared_in"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_transacted_total",
+      "name": "self::btc_transacted_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_transacted_min",
+      "name": "self::btc_transacted_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_transacted_max",
+      "name": "self::btc_transacted_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_transacted_mean",
+      "name": "self::btc_transacted_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_transacted_median",
+      "name": "self::btc_transacted_median"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_sent_total",
+      "name": "self::btc_sent_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_sent_min",
+      "name": "self::btc_sent_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_sent_max",
+      "name": "self::btc_sent_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_sent_mean",
+      "name": "self::btc_sent_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_sent_median",
+      "name": "self::btc_sent_median"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_received_total",
+      "name": "self::btc_received_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_received_min",
+      "name": "self::btc_received_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_received_max",
+      "name": "self::btc_received_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_received_mean",
+      "name": "self::btc_received_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "btc_received_median",
+      "name": "self::btc_received_median"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_total",
+      "name": "self::fees_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_min",
+      "name": "self::fees_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_max",
+      "name": "self::fees_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_mean",
+      "name": "self::fees_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_median",
+      "name": "self::fees_median"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_as_share_total",
+      "name": "self::fees_as_share_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_as_share_min",
+      "name": "self::fees_as_share_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_as_share_max",
+      "name": "self::fees_as_share_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_as_share_mean",
+      "name": "self::fees_as_share_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "fees_as_share_median",
+      "name": "self::fees_as_share_median"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_txs_total",
+      "name": "self::blocks_btwn_txs_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_txs_min",
+      "name": "self::blocks_btwn_txs_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_txs_max",
+      "name": "self::blocks_btwn_txs_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_txs_mean",
+      "name": "self::blocks_btwn_txs_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_txs_median",
+      "name": "self::blocks_btwn_txs_median"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_input_txs_total",
+      "name": "self::blocks_btwn_input_txs_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_input_txs_min",
+      "name": "self::blocks_btwn_input_txs_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_input_txs_max",
+      "name": "self::blocks_btwn_input_txs_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_input_txs_mean",
+      "name": "self::blocks_btwn_input_txs_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_input_txs_median",
+      "name": "self::blocks_btwn_input_txs_median"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_output_txs_total",
+      "name": "self::blocks_btwn_output_txs_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_output_txs_min",
+      "name": "self::blocks_btwn_output_txs_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_output_txs_max",
+      "name": "self::blocks_btwn_output_txs_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_output_txs_mean",
+      "name": "self::blocks_btwn_output_txs_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "blocks_btwn_output_txs_median",
+      "name": "self::blocks_btwn_output_txs_median"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "num_addr_transacted_multiple",
+      "name": "self::num_addr_transacted_multiple"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "transacted_w_address_total",
+      "name": "self::transacted_w_address_total"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "transacted_w_address_min",
+      "name": "self::transacted_w_address_min"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "transacted_w_address_max",
+      "name": "self::transacted_w_address_max"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "transacted_w_address_mean",
+      "name": "self::transacted_w_address_mean"
+    },
+    {
+      "block": "self",
+      "group": "behavior",
+      "feature": "transacted_w_address_median",
+      "name": "self::transacted_w_address_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "num_txs_as_sender",
+      "name": "out_zscore::num_txs_as_sender"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "num_txs_as receiver",
+      "name": "out_zscore::num_txs_as receiver"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "lifetime_in_blocks",
+      "name": "out_zscore::lifetime_in_blocks"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "total_txs",
+      "name": "out_zscore::total_txs"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "num_timesteps_appeared_in",
+      "name": "out_zscore::num_timesteps_appeared_in"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_transacted_total",
+      "name": "out_zscore::btc_transacted_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_transacted_min",
+      "name": "out_zscore::btc_transacted_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_transacted_max",
+      "name": "out_zscore::btc_transacted_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_transacted_mean",
+      "name": "out_zscore::btc_transacted_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_transacted_median",
+      "name": "out_zscore::btc_transacted_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_sent_total",
+      "name": "out_zscore::btc_sent_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_sent_min",
+      "name": "out_zscore::btc_sent_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_sent_max",
+      "name": "out_zscore::btc_sent_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_sent_mean",
+      "name": "out_zscore::btc_sent_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_sent_median",
+      "name": "out_zscore::btc_sent_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_received_total",
+      "name": "out_zscore::btc_received_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_received_min",
+      "name": "out_zscore::btc_received_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_received_max",
+      "name": "out_zscore::btc_received_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_received_mean",
+      "name": "out_zscore::btc_received_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "btc_received_median",
+      "name": "out_zscore::btc_received_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_total",
+      "name": "out_zscore::fees_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_min",
+      "name": "out_zscore::fees_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_max",
+      "name": "out_zscore::fees_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_mean",
+      "name": "out_zscore::fees_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_median",
+      "name": "out_zscore::fees_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_as_share_total",
+      "name": "out_zscore::fees_as_share_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_as_share_min",
+      "name": "out_zscore::fees_as_share_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_as_share_max",
+      "name": "out_zscore::fees_as_share_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_as_share_mean",
+      "name": "out_zscore::fees_as_share_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "fees_as_share_median",
+      "name": "out_zscore::fees_as_share_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_total",
+      "name": "out_zscore::blocks_btwn_txs_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_min",
+      "name": "out_zscore::blocks_btwn_txs_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_max",
+      "name": "out_zscore::blocks_btwn_txs_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_mean",
+      "name": "out_zscore::blocks_btwn_txs_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_median",
+      "name": "out_zscore::blocks_btwn_txs_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_total",
+      "name": "out_zscore::blocks_btwn_input_txs_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_min",
+      "name": "out_zscore::blocks_btwn_input_txs_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_max",
+      "name": "out_zscore::blocks_btwn_input_txs_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_mean",
+      "name": "out_zscore::blocks_btwn_input_txs_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_median",
+      "name": "out_zscore::blocks_btwn_input_txs_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_total",
+      "name": "out_zscore::blocks_btwn_output_txs_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_min",
+      "name": "out_zscore::blocks_btwn_output_txs_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_max",
+      "name": "out_zscore::blocks_btwn_output_txs_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_mean",
+      "name": "out_zscore::blocks_btwn_output_txs_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_median",
+      "name": "out_zscore::blocks_btwn_output_txs_median"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "num_addr_transacted_multiple",
+      "name": "out_zscore::num_addr_transacted_multiple"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_total",
+      "name": "out_zscore::transacted_w_address_total"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_min",
+      "name": "out_zscore::transacted_w_address_min"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_max",
+      "name": "out_zscore::transacted_w_address_max"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_mean",
+      "name": "out_zscore::transacted_w_address_mean"
+    },
+    {
+      "block": "out_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_median",
+      "name": "out_zscore::transacted_w_address_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "num_txs_as_sender",
+      "name": "in_zscore::num_txs_as_sender"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "num_txs_as receiver",
+      "name": "in_zscore::num_txs_as receiver"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "lifetime_in_blocks",
+      "name": "in_zscore::lifetime_in_blocks"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "total_txs",
+      "name": "in_zscore::total_txs"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "num_timesteps_appeared_in",
+      "name": "in_zscore::num_timesteps_appeared_in"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_transacted_total",
+      "name": "in_zscore::btc_transacted_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_transacted_min",
+      "name": "in_zscore::btc_transacted_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_transacted_max",
+      "name": "in_zscore::btc_transacted_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_transacted_mean",
+      "name": "in_zscore::btc_transacted_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_transacted_median",
+      "name": "in_zscore::btc_transacted_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_sent_total",
+      "name": "in_zscore::btc_sent_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_sent_min",
+      "name": "in_zscore::btc_sent_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_sent_max",
+      "name": "in_zscore::btc_sent_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_sent_mean",
+      "name": "in_zscore::btc_sent_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_sent_median",
+      "name": "in_zscore::btc_sent_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_received_total",
+      "name": "in_zscore::btc_received_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_received_min",
+      "name": "in_zscore::btc_received_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_received_max",
+      "name": "in_zscore::btc_received_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_received_mean",
+      "name": "in_zscore::btc_received_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "btc_received_median",
+      "name": "in_zscore::btc_received_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_total",
+      "name": "in_zscore::fees_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_min",
+      "name": "in_zscore::fees_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_max",
+      "name": "in_zscore::fees_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_mean",
+      "name": "in_zscore::fees_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_median",
+      "name": "in_zscore::fees_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_as_share_total",
+      "name": "in_zscore::fees_as_share_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_as_share_min",
+      "name": "in_zscore::fees_as_share_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_as_share_max",
+      "name": "in_zscore::fees_as_share_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_as_share_mean",
+      "name": "in_zscore::fees_as_share_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "fees_as_share_median",
+      "name": "in_zscore::fees_as_share_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_total",
+      "name": "in_zscore::blocks_btwn_txs_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_min",
+      "name": "in_zscore::blocks_btwn_txs_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_max",
+      "name": "in_zscore::blocks_btwn_txs_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_mean",
+      "name": "in_zscore::blocks_btwn_txs_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_txs_median",
+      "name": "in_zscore::blocks_btwn_txs_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_total",
+      "name": "in_zscore::blocks_btwn_input_txs_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_min",
+      "name": "in_zscore::blocks_btwn_input_txs_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_max",
+      "name": "in_zscore::blocks_btwn_input_txs_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_mean",
+      "name": "in_zscore::blocks_btwn_input_txs_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_input_txs_median",
+      "name": "in_zscore::blocks_btwn_input_txs_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_total",
+      "name": "in_zscore::blocks_btwn_output_txs_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_min",
+      "name": "in_zscore::blocks_btwn_output_txs_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_max",
+      "name": "in_zscore::blocks_btwn_output_txs_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_mean",
+      "name": "in_zscore::blocks_btwn_output_txs_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "blocks_btwn_output_txs_median",
+      "name": "in_zscore::blocks_btwn_output_txs_median"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "num_addr_transacted_multiple",
+      "name": "in_zscore::num_addr_transacted_multiple"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_total",
+      "name": "in_zscore::transacted_w_address_total"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_min",
+      "name": "in_zscore::transacted_w_address_min"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_max",
+      "name": "in_zscore::transacted_w_address_max"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_mean",
+      "name": "in_zscore::transacted_w_address_mean"
+    },
+    {
+      "block": "in_zscore",
+      "group": "context",
+      "feature": "transacted_w_address_median",
+      "name": "in_zscore::transacted_w_address_median"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_in_degree",
+      "name": "structure::log_in_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_out_degree",
+      "name": "structure::log_out_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_neighbor_count",
+      "name": "structure::log_neighbor_count"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "flow_balance",
+      "name": "structure::flow_balance"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "reciprocal_ratio",
+      "name": "structure::reciprocal_ratio"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_downstream_log_degree",
+      "name": "structure::mean_downstream_log_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_upstream_log_degree",
+      "name": "structure::mean_upstream_log_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "is_isolated",
+      "name": "structure::is_isolated"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_downstream_log_in_degree",
+      "name": "structure::mean_downstream_log_in_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_downstream_log_out_degree",
+      "name": "structure::mean_downstream_log_out_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_upstream_log_in_degree",
+      "name": "structure::mean_upstream_log_in_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_upstream_log_out_degree",
+      "name": "structure::mean_upstream_log_out_degree"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_downstream_direction_balance",
+      "name": "structure::mean_downstream_direction_balance"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "mean_upstream_direction_balance",
+      "name": "structure::mean_upstream_direction_balance"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "downstream_sink_fraction",
+      "name": "structure::downstream_sink_fraction"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "upstream_source_fraction",
+      "name": "structure::upstream_source_fraction"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_forward_two_step_walks",
+      "name": "structure::log_forward_two_step_walks"
+    },
+    {
+      "block": "structure",
+      "group": "structure",
+      "feature": "log_backward_two_step_walks",
+      "name": "structure::log_backward_two_step_walks"
+    }
+  ]
+}

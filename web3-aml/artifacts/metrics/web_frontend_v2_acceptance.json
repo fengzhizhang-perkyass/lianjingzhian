@@ -1,0 +1,196 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-20T21:40:31.393499+08:00",
+  "implementation": "background_and_draggable_network",
+  "url": "http://127.0.0.1:8000/",
+  "scope": [
+    "four_landing_anchors",
+    "background_data_and_mainland_policy_cards",
+    "evaluation_ui_removed",
+    "no_public_version_labels",
+    "natural_network_with_drag",
+    "preserved_business_workflows"
+  ],
+  "api_regression": {
+    "passed": 18,
+    "log": "artifacts/web_ui_v2_check/api-check.log"
+  },
+  "browser_regression": {
+    "passed": 42,
+    "page_errors": [],
+    "source": "artifacts/web_ui_v2_check/result.json"
+  },
+  "network_regression": {
+    "passed": 6,
+    "page_errors": [],
+    "source": "artifacts/web_network_check/result.json",
+    "largest_parameter_case": [
+      {
+        "name": "最大保留路径数与长链参数下完整绘图，下载保留原始结果",
+        "status": "passed",
+        "nodes": 3,
+        "edges": 2,
+        "paths": 2
+      }
+    ]
+  },
+  "legacy_regression": {
+    "status": "passed",
+    "pages": [
+      "系统总览",
+      "调查优先队列",
+      "地址风险分析",
+      "关系链追踪",
+      "AI 分析报告",
+      "模型评估"
+    ],
+    "cases": 9,
+    "longest_demo_hops": 32,
+    "log": "artifacts/web_ui_v2_check/runtime-check.log"
+  },
+  "original_handoff_integrity": {
+    "files": 174,
+    "changed": []
+  },
+  "live_llm": {
+    "status": "passed",
+    "source": "llm",
+    "report_id": "report_20261020T132812_8f4cbb90e674",
+    "api_calls": 1,
+    "elapsed_ms": 14956.266291090287,
+    "statements": 52,
+    "required_fact_coverage": 1,
+    "local_fallback_count": 0,
+    "source_record": "artifacts/web_llm_v2_check/result.json"
+  },
+  "audit_bundles": {
+    "template_files_verified": 6,
+    "llm_files_verified": 6,
+    "hash_mismatches": 0
+  },
+  "dependency": "frontend/vendor/cytoscape.source.json",
+  "backup": ".runtime-backups/background-network-20261020-204344",
+  "plan_sha256": "834cdffd94b353666edcb77aae15079ac9568d04b1ef4ba8ad48b7bbefcce593",
+  "files": [
+    {
+      "path": "README_WEB.md",
+      "sha256": "34747f1a3e1bb4b80cb613daf3008a943e5b8ceec957dd7d9ddc48fd3c3f6865"
+    },
+    {
+      "path": "frontend/content/project-background.json",
+      "sha256": "edbff81b46fb2e6d2be772f7713b12b00ef10f66b77b2274672c998ab8d344e7"
+    },
+    {
+      "path": "frontend/content/report-preview.json",
+      "sha256": "121fc3df7b3f20cc65ae05bb834ac3c16e1727d1539688a994d2769ee0f1e67a"
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "afc2553bd1cc70e05005fb4bc650a2c061a74bd3102a50e219c7b505af0f0fbd"
+    },
+    {
+      "path": "frontend/js/api.js",
+      "sha256": "0c0685b290c88b96469eb0c757a97e22f5ae4484a3112688fe28cb6acfcaa001"
+    },
+    {
+      "path": "frontend/js/app.js",
+      "sha256": "6bd923f6b615701d90e36a54a9a7902711b25d111f054046e1e00ee650ebe609"
+    },
+    {
+      "path": "frontend/js/background.js",
+      "sha256": "c37fdd74664ec561a14965e6851a191105d905c9f8991ae358f9eb3db961d662"
+    },
+    {
+      "path": "frontend/js/charts.js",
+      "sha256": "d013d709639810a7ce37b50443b5912ee1537e95ff56d24546a72ddf0e7192f5"
+    },
+    {
+      "path": "frontend/js/display-metadata.js",
+      "sha256": "b90cef4bb3310e0cb32a275b167bc9abd5c64d2fa66fc0a302efb2e0fad1313b"
+    },
+    {
+      "path": "frontend/js/dom.js",
+      "sha256": "ad968754af283a201007f40f0f72f9e121436e541d05d13698791fcc76c907ca"
+    },
+    {
+      "path": "frontend/js/landing.js",
+      "sha256": "9c91d10cbf88b059909fbc0153850c57793fcefa9299f0cdbeb11d2471a07fb2"
+    },
+    {
+      "path": "frontend/js/navigation.js",
+      "sha256": "b36e8fecfd74c784e0a81636df89f5fe83aa0563f57469c31b4b0c1850d2f6c5"
+    },
+    {
+      "path": "frontend/js/relation-network.js",
+      "sha256": "0eca6f1e1e684228e8a5ec49c180306734acc5d20ba46b481f397a0053a644c5"
+    },
+    {
+      "path": "frontend/js/router.js",
+      "sha256": "22612efd07f77baf874d854871a7475cea7ded561205df07fd98bc552460866f"
+    },
+    {
+      "path": "frontend/js/state.js",
+      "sha256": "343b19c2645085032bfaeacd72ce2cd48ea4463811117011f365799277049ef2"
+    },
+    {
+      "path": "frontend/js/views/evidence.js",
+      "sha256": "4c73d5dbe3475453663bd725fd47a6671eaf7efc73b027cc52a886f8f468b38b"
+    },
+    {
+      "path": "frontend/js/views/queue.js",
+      "sha256": "c0688bda9f5c6d7deb50c498da8cf1524a15dcce88b293c0e37a4281aac98e26"
+    },
+    {
+      "path": "frontend/js/views/risk.js",
+      "sha256": "f11f4ac20a6183e569487a5a09cbd73339181d1076605973ff1de68b12866dab"
+    },
+    {
+      "path": "frontend/js/views/tracing.js",
+      "sha256": "af40ab7dcd3fd05c4fcfda97c75e17863cb84c197550a41839fec6d255d756f1"
+    },
+    {
+      "path": "frontend/js/workspace.js",
+      "sha256": "f667a182123f3d1f0447f394049a7d89f0a9519d450e435ca0c14b3b0178cb55"
+    },
+    {
+      "path": "frontend/pages.css",
+      "sha256": "86992ebc3df81864e62d49017c7368fc9bec0b941e5e200c221a46bf2af815f6"
+    },
+    {
+      "path": "frontend/reference.css",
+      "sha256": "f52471d3765b93cf1bfba0a68513949d18dc0e505308d3886421c75b5b0d0676"
+    },
+    {
+      "path": "frontend/styles.css",
+      "sha256": "fd42d14780cebab97e45ca543ffa748ce82320301e2fc2e1fe9f6d5fc4d84796"
+    },
+    {
+      "path": "frontend/vendor/cytoscape.LICENSE",
+      "sha256": "e4b62495bacaefaf330f38f226e20d1d60d658d444998ba7406a191f96a2e701"
+    },
+    {
+      "path": "frontend/vendor/cytoscape.min.js",
+      "sha256": "f55947f3daa3bae53209d4b885c195c157f595c225e508a6b382598d9452d6e2"
+    },
+    {
+      "path": "frontend/vendor/cytoscape.source.json",
+      "sha256": "650f614e5c199b02fd1c636fe581c687bb87d992bbf49d30100c5f1ebb47cd92"
+    },
+    {
+      "path": "frontend/vendor/plotly.min.js",
+      "sha256": "8ef4c6ab1369f0019611cbcd2d5b8aafef23e5d19ef58c39d4b4249831fe2180"
+    },
+    {
+      "path": "scripts/check_network_ui.cjs",
+      "sha256": "6a73c5911256fe4f535564ff20105b4689ea258096710a1e7e621f3751ab5bda"
+    },
+    {
+      "path": "scripts/check_web_ui.cjs",
+      "sha256": "7fe3649278e5bcfc8d7c6796d7d240acb4ff1e47461a0ce01a0d92d3f86041a9"
+    },
+    {
+      "path": "scripts/render_background.py",
+      "sha256": "a4eea8574331da614f563befe2e70f30dd596d6a1af3a9a304e9deebdd6be65e"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "tracing_revision": "121b2e0a23afdefd962aa98f28c87b47b420cf5fd50ba53e6dde74d370851e11",
+  "desktop_viewport_width": 1440,
+  "mobile_viewport_width": 375,
+  "mobile_document_width": 375,
+  "mobile_body_width": 375,
+  "page_horizontal_overflow": false,
+  "template_report_integration": "passed",
+  "bridge_witness_and_unchanged_risk_visible": true,
+  "real_llm_api_tested": false,
+  "viewport_override_reset": true,
+  "screenshots": [
+    "docs/screenshots/tracing_v2_desktop.png",
+    "docs/screenshots/tracing_v2_witness.png",
+    "docs/screenshots/tracing_v2_mobile.png"
+  ]
+}

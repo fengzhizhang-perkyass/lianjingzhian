@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "url": "http://127.0.0.1:8000",
+  "results": [
+    {
+      "name": "新增锚点直达、固定导航偏移与浏览器后退",
+      "status": "passed"
+    },
+    {
+      "name": "关系图加载失败不阻断路径与报告，重试不重复分析",
+      "status": "passed"
+    },
+    {
+      "name": "空白区域拖动画布与滚轮缩放，不改节点坐标或请求业务接口",
+      "status": "passed"
+    },
+    {
+      "name": "最大保留路径数与长链参数下完整绘图，下载保留原始结果",
+      "status": "passed",
+      "nodes": 3,
+      "edges": 2,
+      "paths": 2
+    },
+    {
+      "name": "展开的评分、搜索、证据与核验摘要不显示内部迭代版本",
+      "status": "passed"
+    },
+    {
+      "name": "手机真实触摸拖动、替代按钮与横竖屏布局",
+      "status": "passed"
+    }
+  ],
+  "page_errors": []
+}

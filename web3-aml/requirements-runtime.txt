@@ -1,0 +1,19 @@
+# Current evidence_tree inference and Streamlit UI only. Python 3.11 recommended.
+# Training/legacy neural models use requirements.txt and setup.ps1 instead.
+numpy>=1.26,<3
+pandas>=2.2,<4
+scipy>=1.11,<2
+scikit-learn>=1.4,<2
+lightgbm>=4.3,<5
+pyyaml>=6,<7
+joblib>=1.3,<2
+pyarrow>=16
+streamlit>=1.65,<2
+plotly>=5.24,<7
+networkx>=3.2,<4
+pydantic>=2.7,<3
+openai>=1.50,<3
+python-dotenv>=1,<2
+matplotlib>=3.8,<4
+requests>=2.31,<3
+filelock>=3.13,<4

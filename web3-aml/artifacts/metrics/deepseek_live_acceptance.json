@@ -1,0 +1,71 @@
+{
+  "checked_on": "2026-10-12",
+  "status": "passed",
+  "requested_model": "deepseek-v4-flash",
+  "endpoint_host": "api.deepseek.com",
+  "thinking_mode": "disabled",
+  "unique_real_addresses": 1,
+  "real_report_runs": 2,
+  "total_api_requests": 3,
+  "cli": {
+    "connection_passed": true,
+    "endpoint_host": "api.deepseek.com",
+    "requested_model": "deepseek-v4-flash",
+    "provider": "deepseek",
+    "thinking_mode": "disabled",
+    "probe_usage": {
+      "completion_tokens": 5,
+      "prompt_tokens": 46,
+      "total_tokens": 51,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 46
+    },
+    "live_report_tested": true,
+    "report_id": "report_20261012T083632_9c63389b3e62",
+    "report_source": "llm",
+    "initial_passed": 52,
+    "repaired": 0,
+    "coverage_added": 0,
+    "api_calls": 1,
+    "candidate_errors": 0,
+    "bundle_path": "E:\\网安比赛\\web3-aml\\artifacts\\reports\\report_20261012T083632_9c63389b3e62",
+    "elapsed_ms": 18857.358300010674,
+    "reporting_revision": "0449007b3a99138b3accee6933e99acc96f7616fb45ea75b25daad97fefffa3c",
+    "llm_report_passed": true,
+    "fallback_used": false
+  },
+  "browser": {
+    "report_id": "report_20261012T083821_47b6b6e5ae68",
+    "source": "llm",
+    "final_statements": 52,
+    "candidate_errors": 0,
+    "repaired": 0,
+    "coverage_added": 0,
+    "api_calls": 1,
+    "required_facts": 23,
+    "elapsed_ms": 20500.99989998853,
+    "usage": {
+      "completion_tokens": 6291,
+      "prompt_tokens": 10249,
+      "total_tokens": 16540,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 8960
+      },
+      "prompt_cache_hit_tokens": 8960,
+      "prompt_cache_miss_tokens": 1289
+    },
+    "bridge_pointer": "/trace_analysis/top_paths/1/bridge_witnesses/0",
+    "download_zip_verified": true,
+    "screenshot": "docs/screenshots/deepseek_live_report.png"
+  },
+  "scope": "first live connectivity and constrained report acceptance; not population hallucination or repair rate"
+}

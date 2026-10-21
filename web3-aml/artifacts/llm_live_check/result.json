@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-10-20T07:15:55.940Z",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "report_id": "report_20261020T071555_aebbca711150",
+  "analysis_id": "analysis_2a304e8dd60e4b0fac9dc85592adecd4",
+  "trace_id": "trace_2089fa2272bc46ecaab5bfc965c201ef",
+  "address_id": "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
+  "source": "llm",
+  "fallback_reason": null,
+  "api_calls": 1,
+  "elapsed_ms": 15328.794792061672,
+  "final_statement_count": 52,
+  "initial_passed_count": 52,
+  "repaired_count": 0,
+  "local_fallback_count": 0,
+  "coverage_added_count": 0,
+  "candidate_error_count": 0,
+  "required_fact_coverage": 1,
+  "unresolved_final_claims": 0,
+  "evidence_hash": "baa7db56c4a967fce60d42c5d2f69abb7fe6e9d5e1c7c0471bdb2201f049e45f",
+  "candidates": [
+    {
+      "stage": "initial",
+      "usage": {
+        "completion_tokens": 5732,
+        "prompt_tokens": 10253,
+        "total_tokens": 15985,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": {
+          "audio_tokens": null,
+          "cache_write_tokens": null,
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 10253
+      },
+      "has_response": true
+    }
+  ],
+  "browser_page_errors": [],
+  "browser_verified": true,
+  "evidence_navigation_verified": true,
+  "downloads_verified": [
+    "md",
+    "audit-bundle.zip"
+  ],
+  "status": "passed",
+  "audit_bundle_files_verified": 6,
+  "audit_bundle_hash_mismatches": 0,
+  "secret_absent_from_frontend_and_report_outputs": true,
+  "env_permissions": "600"
+}
