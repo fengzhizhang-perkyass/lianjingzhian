@@ -1,3 +1,9 @@
+# Keep source hashes stable across Windows, macOS and Linux checkouts.
+* text=auto eol=lf
+# Frozen data and model metadata are hashed byte for byte.
+artifacts/** -text
+data/** -text
+
 # Keep the supplied runtime data in Git LFS; source and small metadata stay readable.
 artifacts/evidence_scoring/risk_scores.parquet filter=lfs diff=lfs merge=lfs -text
 artifacts/risk_scores/risk_scores.parquet filter=lfs diff=lfs merge=lfs -text

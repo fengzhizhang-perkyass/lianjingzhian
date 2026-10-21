@@ -1,8 +1,5 @@
 /* Real Chrome regression for the promotional site and four-module workspace. */
-const {
-  chromium
-} = require(process.env.PLAYWRIGHT_MODULE ||
-  '/Users/luyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -14,8 +11,7 @@ fs.mkdirSync(output, {
 
 (async () => {
   const browser = await chromium.launch({
-    executablePath: process.env.CHROME_PATH ||
-      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}),
     headless: true
   });
   const context = await browser.newContext({
@@ -119,10 +115,18 @@ fs.mkdirSync(output, {
     check('四锚点定位、高亮与固定导航偏移');
     const preview = await (await context.request.get(base + '/assets/content/report-preview.json'))
   .json();
-    const frozen = await (await context.request.get(base + '/api/reports/' + preview.source_report_id))
-      .json();
-    assert.equal(preview.score, frozen.report.evidence_snapshot.risk_analysis.overall_score);
-    assert.equal(preview.evidence_hash, frozen.report.audit.evidence_hash);
+    // Validate the static preview against a fresh template report. A clean clone
+    // has no machine-specific historical session files.
+    const previewAnalysis = await (await context.request.get(base + '/api/risk', {
+      params: { address: preview.address_id }
+    })).json();
+    const frozen = await (await context.request.post(base + '/api/reports', {
+      data: { analysis_id: previewAnalysis.analysis_id, mode: 'template' }
+    })).json();
+    const snapshot = frozen.report.evidence_snapshot;
+    assert.equal(preview.score, snapshot.risk_analysis.overall_score);
+    assert.ok(snapshot.trace_analysis.top_paths.some(p =>
+      JSON.stringify(p.nodes) === JSON.stringify(preview.path_nodes)));
     assert.equal(await page.locator('.preview-paper button,.preview-paper a').count(), 0);
     assert.match(await page.locator('.preview-score').innerText(), new RegExp(preview.score.toFixed(2)));
     check('静态报告样张来自真实证据，编号只作展示');

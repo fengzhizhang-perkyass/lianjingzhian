@@ -1,68 +1,86 @@
-# 链境智安：下载与启动
+# 链境智安 · 下载与启动
 
-本次同步包含最新版宣传首页、四模块分析工作台、Python 接口、LLM 报告修复，以及本机已补齐的处理后数据、模型和风险评分表。页面维护说明见 [README_WEB.md](README_WEB.md)。原 README.md 保留原算法与训练流程说明，以便与原运行包校验基线一致。
+源码仓库：**https://github.com/fengzhizhang-perkyass/lianjingzhian**
 
-## 1. 获取完整项目和大文件
+## 获取项目
 
-先安装 [Git LFS](https://git-lfs.com/)，再运行：
+准备 Git、[Git LFS](https://git-lfs.com/) 与 Python 3.11。模型和运行数据随仓库交付，首次克隆后下载 LFS 内容：
 
 ```bash
 git lfs install
-git clone https://github.com/fengzhizhang-perkyass/wangan.git
-cd wangan
+git clone https://github.com/fengzhizhang-perkyass/lianjingzhian.git
+cd lianjingzhian
 git lfs pull
 cd web3-aml
 ```
 
-已经克隆过仓库的队友可以在仓库目录运行 `git pull`，再运行 `git lfs pull`。请先保存自己的未提交修改。大文件下载完成后，`data/processed/` 和 `artifacts/` 中的运行数据应为真实文件；若文件只有几行文字并以 `version https://git-lfs.github.com/spec/v1` 开头，说明尚未下载 LFS 内容。网页“Download ZIP”对 LFS 文件的处理取决于仓库设置，推荐使用上述克隆方式。
+已有仓库可先保存本地修改，再执行 `git pull`、`git lfs pull`。`runtime-data/` 中的 19 个分卷由启动程序自动合并、还原和校验，保留完整文件名即可。已经准备好的数据会直接复用。
 
-三个体积较大的数据文件以 `runtime-data/runtime-*.part` 压缩分卷交付，约 779 MB 原始内容压缩为约 303 MB。`python run_web.py` 首次启动时会自动还原到原来的 `data/processed/` 与 `artifacts/` 路径，并核对每个分卷、压缩包和还原文件的 SHA256。分卷不是需要手工逐一解压的独立 ZIP；不要改名或只下载其中几份。已有完整且匹配的数据时会直接复用。
+## 安装依赖
 
-## 2. 准备 Python 环境
+推荐 16 GB 内存，CPU 即可运行当前评分、追踪与报告。
 
-推荐 Python 3.11。使用已有环境，或创建独立环境：
+Windows PowerShell：
 
-```bash
-conda create -n web3aml python=3.11
-conda activate web3aml
-python -m pip install -r requirements-web.txt
+```powershell
+powershell -ExecutionPolicy Bypass -File .\setup_runtime.ps1
+powershell -ExecutionPolicy Bypass -File .\run_web.ps1
 ```
 
-当前网页推理不需要安装历史神经网络训练环境，也不需要 Node 或 npm。本机原环境仍可直接使用 `/opt/anaconda3/envs/web3aml/bin/python`。macOS 上若 LightGBM 提示缺少 `libomp`，需安装系统 OpenMP 运行库。
-
-## 3. 启动新版网页
-
-在 `web3-aml` 目录运行：
+macOS / Linux：
 
 ```bash
-python run_web.py
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-web.txt
+.venv/bin/python run_web.py
 ```
 
-等待 `Application startup complete` 后打开 <http://127.0.0.1:8000/>。宣传首页点击“开始分析”进入工作台，模块依次为调查优先队列、地址风险分析、关系链追踪、AI 分析报告。端口占用时使用 `python run_web.py --port 8001`。
+已有 Python 环境可直接安装 `requirements-web.txt` 并运行 `python run_web.py`。macOS 若提示缺少 OpenMP，先安装 `libomp`。
 
-## 4. 启用真实 LLM 报告
+## 打开系统
 
-将 `.env.example` 复制为 `.env`，填写自己的 `LLM_API_KEY` 后重启服务。其他示例配置与本次实测一致。密钥不上传仓库；未配置时系统仍可生成结构化证据模板报告。
+等待终端显示 `Application startup complete`，访问 **http://127.0.0.1:8000/**。
 
-新版网页默认允许输出 32768 token，请求超时为 90 秒。点击再次生成后，成功的新报告会清除旧失败提示。单次网络请求不自动重试。修复经过 99 项事实真实报告与浏览器重试验证，详见 `artifacts/llm_recheck/检查说明.md`。
+1. 宣传首页介绍项目背景、技术路径和证据融合。
+2. 点击“开始分析”，进入调查优先队列。
+3. 选择地址，依次进行风险分析、关系追踪和报告生成。
 
-## 5. 核对与测试
+端口占用时运行 `python run_web.py --port 8001`。关闭服务使用 Ctrl+C。详细操作与讲解见 [演示指南](docs/DEMO_GUIDE.md)。
+
+## 大模型报告
+
+复制 `.env.example` 为 `.env`，按实际账号配置：
+
+```dotenv
+LLM_PROVIDER=deepseek
+LLM_BASE_URL=https://api.deepseek.com
+LLM_API_KEY=填写自己的API密钥
+LLM_MODEL=deepseek-flash
+```
+
+重启服务后，在“AI分析报告”保留“自动选择报告来源”，点击“生成分析报告”。报告页面显示本次生成来源、声明核验结果与证据入口。无需外部接口时，选择“结构化证据模板”。
+
+网页默认输出上限 32768 token、请求超时 90 秒。通过环境变量 `LLM_MAX_TOKENS`、`LLM_TIMEOUT_SECONDS` 可调整；API Key 保存在本机服务端的 `.env`。
+
+## 自检
 
 ```bash
 python scripts/prepare_runtime_data.py
 python scripts/34_check_runtime.py
 python -m pip install pytest httpx
-python -m pytest tests/test_web_reporting.py tests/test_audited_reporting.py tests/test_web_api.py -q
+python -m pytest tests/test_web_api.py tests/test_web_reporting.py tests/test_audited_reporting.py tests/test_runtime_data.py -q
 ```
 
-准备运行数据后，`34_check_runtime.py` 核对原运行包的 174 个文件并运行示例，不调用外部 LLM。后一个命令是本轮通过的 48 项回归。历史 Streamlit 入口仍可用 `python -m streamlit run app.py` 启动。
+自检覆盖运行文件、九个演示地址、TreeSHAP 加和、路径真实边、32 跳案例与结构化报告，报告自检使用模板。更多测试入口见 [测试说明](docs/EVALUATION_PROTOCOL.md)。
 
-如果没有先启动过新版网页，运行旧 Streamlit、接口测试或原运行包检查前，先执行一次：
+## 常见启动问题
 
-```bash
-python scripts/prepare_runtime_data.py
-```
+| 提示 | 处理 |
+|---|---|
+| 数据文件只有几行 LFS 描述文字 | 在仓库根目录执行 `git lfs pull` |
+| 缺少分卷或数据校验失败 | 确认 LFS 下载完成，再运行 `python scripts/prepare_runtime_data.py` |
+| 找不到 FastAPI 等模块 | 使用启动服务的同一个 Python 安装 `requirements-web.txt` |
+| 模型或索引版本不一致 | 使用同一版本的源码、数据与模型，重新拉取完整仓库 |
+| 报告接口暂不可用 | 检查服务端配置，或选择结构化证据模板继续演示 |
 
-分卷还原新增 4 项校验测试，运行 `python -m pytest tests/test_runtime_data.py -q`。维护者更换这三个源数据文件后，应先准备匹配的模型与清单，再执行 `python scripts/package_runtime_data.py` 重建压缩分卷；普通使用者不需要执行打包脚本。
-
-本次上传排除了 `.env`、虚拟环境、安装包缓存、运行备份及每次操作产生的报告/会话文件。首次生成时，系统会自动在 `artifacts/reports/`、`artifacts/traces/` 和 `artifacts/web_runs/` 保存结果。原始训练 CSV 本机没有提供，当前演示使用已处理的数据与已训练模型；若需重新训练，请按原 README.md 下载公开原始数据。
+运行后生成的路径、报告与审计记录保存在 `artifacts/traces/`、`artifacts/reports/`、`artifacts/web_runs/`。

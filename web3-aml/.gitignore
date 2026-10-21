@@ -20,3 +20,9 @@ artifacts/web_runs/
 artifacts/reports/
 artifacts/traces/
 logs/*.log
+node_modules/
+package-lock.json
+playwright-report/
+test-results/
+artifacts/llm_*/
+artifacts/web_*check/

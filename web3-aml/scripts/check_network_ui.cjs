@@ -1,5 +1,5 @@
 /* Additional real Chrome checks: recovery, large results, touch and metadata. */
-const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/Users/luyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -8,7 +8,7 @@ const output = process.env.WEB3AML_CHECK_OUTPUT || path.resolve(__dirname, '../a
 fs.mkdirSync(output, { recursive: true });
 
 (async () => {
-  const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
+  const browser = await chromium.launch({ ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}), headless: true });
   const results = [], errors = [];
   const check = (name, data = {}) => { results.push({ name, status: 'passed', ...data }); console.log('PASS', name); };
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true });
