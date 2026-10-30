@@ -1,0 +1,65 @@
+{
+  "dataset_id": "ethereum",
+  "trace_scope": "ethereum_scored_addresses_only",
+  "source_graph_revision": "41676b27b4b3ce94990cce458a333c932c7a8c65fef95b7f8afae25c7ee007ae",
+  "source_risk_revision": "f03858a0be540cc5c28c34f8861415535b991527a6a395e357d66af09bbbdd05",
+  "source_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+  "source_graph_nodes": 497340,
+  "source_graph_edges": 746306,
+  "graph_nodes": 103171,
+  "graph_edges": 3228,
+  "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+  "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+  "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+  "source_hashes": {
+    "outgoing_neighbors.pkl": "431ab67ff3bb14e80d2ec9b1b0ec7a03284579122b118b7ef2e47eda28b259d8",
+    "incoming_neighbors.pkl": "6bb4284138db38eb8d6dda250b83a9ac020e9f7fb93f9c8e2b79a2f08dd56adb",
+    "address_to_idx.json": "ffa13526f960d58fb85c01be3f0ac0868957550d0c57e55788f24bbe40abb253",
+    "idx_to_address.json": "94da4a0e0f98f2f5fc875fa09122fde04c22c8a3af51126bc23714a72e01e1d1",
+    "risk_scores.parquet": "4ee3d6cf1dff25bb4e58f763b628e87ffcfb24d886bf7c6b2b1dab10e4fafe15"
+  },
+  "runtime_assets": {
+    "address_to_idx.json": {
+      "bytes": 5666468,
+      "sha256": "c6e043629be7362c52a09f7471ddcbb605df162ea4e0d4ff06c4339cb0168cce"
+    },
+    "graph_statistics.parquet": {
+      "bytes": 4025827,
+      "sha256": "2f512431a94c665bcefa4e8711318be1902f40e40b5a4163260715745310fe1a"
+    },
+    "idx_to_address.json": {
+      "bytes": 5872810,
+      "sha256": "e916ef611639fd5d461359aec05b117aa9b1bd35c0d1c3654abd41020ae2a700"
+    },
+    "incoming_neighbors.pkl": {
+      "bytes": 32519,
+      "sha256": "6a4cea6fc59e8aeafc520dcac6822315dd36791fcb3c3198299d4c840523870e"
+    },
+    "node_mappings.json": {
+      "bytes": 17618634,
+      "sha256": "29b5690c67c212484b5b8012799b0bcdbd771c3d30abf20197f4406dad51db54"
+    },
+    "outgoing_neighbors.pkl": {
+      "bytes": 32810,
+      "sha256": "75d9f985b388788f9edc2be7d7d4cdce0ceba45c875c2351f3f334532267cdb5"
+    },
+    "anchor_index/distance.npy": {
+      "bytes": 206470,
+      "sha256": "029f0004291052fa6bf1fdba2d588e2cd8745f43b7c75fbdc7b1e2667f9b173c"
+    },
+    "anchor_index/metadata.json": {
+      "bytes": 1027,
+      "sha256": "ae7a5d2e66e2e1edea0c5d000e78c594f036219de068c0093819ed1a298a5650"
+    },
+    "anchor_index/next_node.npy": {
+      "bytes": 825496,
+      "sha256": "b6d6ceab443389c5ecf25aede0e2295c000b29c80c4ab4c3b2e7e4a2bb79a1f0"
+    }
+  },
+  "preparation_seconds": 1.0441516670398414,
+  "prepared_utc": "2026-10-30T11:29:24.478388+00:00",
+  "construction": "Induced directed subgraph over exactly the frozen scored-address cohort; no path contraction",
+  "labels_loaded": false,
+  "models_trained": false,
+  "source_assets_modified": false
+}

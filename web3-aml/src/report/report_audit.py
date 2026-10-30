@@ -10,6 +10,8 @@ def reporting_revision():
     folder = Path(__file__).parent
     names = ('fact_catalog.py','claim_schema.py','claim_validator.py','claim_renderer.py',
              'audited_reporter.py','report_audit.py','source_locator.py')
+    if (folder/'dataset_reporting.py').exists():
+        names += ('dataset_reporting.py',)
     return digest({name:file_sha256(folder/name) for name in names})
 
 

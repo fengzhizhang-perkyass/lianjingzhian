@@ -1,27 +1,86 @@
 {
-  "source_report_id": "report_20261019T121253_9a4f1d42f4d1",
-  "evidence_hash": "01963a91c2a46534552067ff3d8bd8611ae81ddd9d7dd35ceddf7b9106f36720",
-  "address_id": "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
-  "score": 72.76251302295131,
-  "risk_level": "HIGH",
+  "source_report_id": "report_20261030T120349_4d8d68946b5a",
+  "dataset_id": "ethereum",
+  "source": "llm",
+  "source_report_file": "artifacts/v31_llm_live_ethereum/report.json",
+  "source_markdown_file": "artifacts/v31_llm_live_ethereum/report.md",
+  "source_report_sha256": "7acfd92cd9e2468c0e64a10e01c9c57b8b548a55e4ea2d6c647aa66f98b155b5",
+  "source_markdown_sha256": "7af00a1f05706b01cd962d205f01bf368dcfe024863bcb0183e9b3a022ab8fb5",
+  "evidence_hash": "46fec7e40e2e5b12a50fa418c86c4ef84f80933da02fa6f0562b350be238d48c",
+  "address_id": "0xd635cb5d0fc7688ab4cde7b71276b6f0cb40f2af",
+  "score": 99.96861520928381,
+  "risk_level": "CRITICAL",
+  "model_display_name": "SA-DCF · 结构–属性双视图协同融合模型",
   "overview_label": "E01",
-  "feature_label": "E05",
-  "feature": "fees_as_share_max",
-  "feature_value": 0.0003167999966535717,
-  "feature_contribution": 0.718653754326036,
-  "path_label": "E24",
+  "score_label": "E02",
+  "feature_label": "E06",
+  "feature": "in_unique_peers",
+  "feature_value": 80.0,
+  "feature_contribution": 2.84921984535093,
+  "feature_attribution_target": "attribute_tree_raw_margin",
+  "feature_display": "转入交易独立交易对手数",
+  "path_label": "E29",
   "path_nodes": [
-    "1EVmeeBuxj5jzUitfAjAiSYZwM6A6owyFS",
-    "15C4iGjiERw2ZwaTrhsRmsgSFBydKjPoQd",
-    "15QVSV49vfyFUxvsXS6ajV9GNStQaJa2Kj",
-    "15oPbAGPBxWEytCbc9X7e4yPkqLADhenrR"
+    "0xd635cb5d0fc7688ab4cde7b71276b6f0cb40f2af",
+    "0x848b73f8cb6778203edbe4aa18f293b238fd3712",
+    "0xfbd5bb5c11bc44ef9ba8717c5a6a9c7633f859da",
+    "0xb7686c343be859d7875f8d6bb7c228858e229b8d",
+    "0x9f0f3f5c23ba4749e6bfdbe0795389e36159f008",
+    "0xc43c8d134a61c71e1b603b875a0396533dfd9a2d"
   ],
   "path_risks": [
-    72.76251302295131,
-    36.25793332717354,
-    62.455620650623345,
-    42.27582417527127
+    99.96861520928381,
+    99.93349184560452,
+    95.08732827196818,
+    99.82490210382711,
+    99.5753058680804,
+    99.74496355604794
   ],
-  "hop_count": 3,
-  "feature_display": "最高手续费占比"
+  "hop_count": 5,
+  "path_id": "path_b6480228e2532453859912a6",
+  "trace_id": "trace_9c0aa139fe5043859920b1de7f340d8b",
+  "trace_scope": "ethereum_scored_addresses_only",
+  "calibration": {
+    "dataset_id": "ethereum",
+    "mode": "identity",
+    "status": "needs_data",
+    "parameters": {},
+    "revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+    "model_signature": "352a58170aea3aa2d6efb54a2b871673ea0382227c5c48872fe3053e95b652bf",
+    "raw_probability": 0.9996861520928381,
+    "calibrated_probability": 0.9996861520928381
+  },
+  "fact_ids": {
+    "E01": [
+      "E_000029056b07bcd0"
+    ],
+    "E02": [
+      "E_d81cb54bfe3c9f6b"
+    ],
+    "E06": [
+      "E_ea63886eacb776a0"
+    ],
+    "E29": [
+      "E_84cbc25481598d25"
+    ]
+  },
+  "display_locators": {
+    "E01": {
+      "view": "dataset"
+    },
+    "E02": {
+      "view": "address_risk"
+    },
+    "E06": {
+      "view": "feature",
+      "group": "attribute",
+      "row": 0,
+      "branch": "attribute"
+    },
+    "E29": {
+      "view": "path",
+      "path_index": 0,
+      "path_id": "path_b6480228e2532453859912a6"
+    }
+  }
 }

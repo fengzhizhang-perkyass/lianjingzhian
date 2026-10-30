@@ -1,0 +1,19 @@
+{
+  "recipe": "ethereum_frozen_sadcf_runtime_v1",
+  "source_hashes": {
+    "data/external/ethereum/processed/dataset.npz": "5223336cffd96bc8f457cb0b0636c9cf2a7b67499848ccc2e0ce429065010afc",
+    "model_upgrade/ethereum/artifacts/selection.json": "6e586f9dcb8a950579221a32b05416300411d5368e497f34992082f4c9d29396",
+    "model_upgrade/ethereum/artifacts/lightgbm_regularized_predictions.npz": "6014dbd2f080caa06c470c2f5a167cd2ea44516b490b4d0d0750c17468393507",
+    "model_upgrade/ethereum/artifacts/igt4eth_light_behavior_and_embedding_tree_predictions.npz": "ad118e24ed30ecb69b21da2d455e3f1f0019d02b6f6bf3f5e98b4d9257b6320d",
+    "model_upgrade/ethereum/artifacts/igt4eth_light_predictions.npz": "c7fd562d14f0d80cf3178a2775d5f5df70f5800df3bfde4e25fa6e7c7d945210",
+    "model_upgrade/ethereum/artifacts/final_predictions.npz": "8147bbb126bed8fefe92139f51491b0f37bb1f4b93749e1d5e73f6b146723fd4",
+    "model_upgrade/ethereum/artifacts/lightgbm_regularized.joblib": "a1efda70d8e33c0f2ac692b022ede439e40a3694b403ba2670c136c704c5e17e",
+    "model_upgrade/ethereum/artifacts/igt4eth_light_behavior_and_embedding_tree.joblib": "c6d2b71f53043f15d0d4ebeaf42ef0bc081b30a6ed83b4e98e6661e7303ed06a",
+    "model_upgrade/ethereum/artifacts/igt4eth_light.pt": "52638603173f373a4c1aae7c170d50a81a6999aa55cfa23eca70d4a3d583158e"
+  },
+  "model_paths": {
+    "attribute": "model_upgrade/ethereum/artifacts/lightgbm_regularized.joblib",
+    "joint": "model_upgrade/ethereum/artifacts/igt4eth_light_behavior_and_embedding_tree.joblib",
+    "encoder": "model_upgrade/ethereum/artifacts/igt4eth_light.pt"
+  }
+}

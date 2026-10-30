@@ -1,0 +1,47 @@
+{
+  "dataset_id": "bitcoin",
+  "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+  "risk_revision": "f9cad9c5b63a586728100d3f245839b5204c6009ffdcf415890e88849d1c36fb",
+  "graph_revision": "cb93f7280254d900bed754b1185c4bb1c2a149d6b7a4a1eca16505294908b9d1",
+  "trace_scope": "bitcoin_scored_addresses_only",
+  "calibration_revision": "4cb8701e25f7299629c1dda5b9970799529c5b8cb24e66c99cad620235b342d3",
+  "provenance": {
+    "dataset_id": "bitcoin",
+    "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+    "risk_revision": "f9cad9c5b63a586728100d3f245839b5204c6009ffdcf415890e88849d1c36fb",
+    "graph_revision": "cb93f7280254d900bed754b1185c4bb1c2a149d6b7a4a1eca16505294908b9d1",
+    "trace_scope": "bitcoin_scored_addresses_only",
+    "calibration_revision": "4cb8701e25f7299629c1dda5b9970799529c5b8cb24e66c99cad620235b342d3"
+  },
+  "algorithm": "risk_anchor_bipartite_peeling_v1",
+  "algorithm_sha256": "25d59e842d59150bf66bec9bfdcc23609e14c1675010afc5788c39a0213fe2db",
+  "mode": "topology_only",
+  "amount_evidence": "unavailable",
+  "transaction_time_evidence": "unavailable",
+  "build_config": {
+    "anchor_threshold": 30,
+    "max_anchors": 500,
+    "radius": 2,
+    "max_nodes_per_anchor": 2000,
+    "min_group_nodes": 3,
+    "min_group_edges": 4,
+    "min_density": 0.2,
+    "max_groups": 500,
+    "overlap_threshold": 0.8,
+    "score_weight": {
+      "density": 0.55,
+      "mean_risk": 0.3,
+      "anchor_fraction": 0.15
+    }
+  },
+  "anchor_candidates": 500,
+  "group_count": 59,
+  "member_address_count": 4077,
+  "construction_edge_inspections": 169825,
+  "construction_seconds": 1.4133141660131514,
+  "revision": "7811310ef38ad344a25acc381ea960fac36aef217ad6a8b580688c72b7028eff",
+  "file_sha256": {
+    "groups.json": "368ca24d36a6984401eec3ff68261c8763104ef4ca588c6a62eb80a65f66706c",
+    "memberships.json": "6a5d757f09071a6986faf0ff15f4f09ac64edfb7d4ba8d3dc227d9590dc0e5e6"
+  }
+}

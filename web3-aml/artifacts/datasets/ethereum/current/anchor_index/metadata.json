@@ -1,0 +1,19 @@
+{
+  "dataset_id": "ethereum",
+  "dataset_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+  "risk_revision": "f03858a0be540cc5c28c34f8861415535b991527a6a395e357d66af09bbbdd05",
+  "graph_revision": "41676b27b4b3ce94990cce458a333c932c7a8c65fef95b7f8afae25c7ee007ae",
+  "threshold": 30,
+  "max_depth": 64,
+  "algorithm": "multi_source_reverse_bfs_v1",
+  "construction_edge_inspections": 213376,
+  "algorithm_sha256": "40d77d1bccaac5599dd071a06766b50599cb269566aee89f027d77cbc34a35a6",
+  "construction_seconds": 0.04926212504506111,
+  "anchor_count": 5069,
+  "reachable_nodes": 166932,
+  "tie_break": "anchor_risk_then_address_then_stored_incoming_order",
+  "array_sha256": {
+    "distance.npy": "83863063856985ecc87a5294b24b393aed4f99e2f45fc303ef2b41390915f9ec",
+    "next_node.npy": "06d57bc5bb0eac83012c04bce487d6bccd97a7d5cc5d8699e05e3f8a3609078a"
+  }
+}

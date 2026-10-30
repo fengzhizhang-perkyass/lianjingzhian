@@ -1,9 +1,13 @@
-import { displaySummary } from '../display-metadata.js';
+import { displaySummary, publicText } from '../display-metadata.js';
+import { downloadPath } from '../api.js';
 import {
   $,
   $$,
   escape,
   number,
+  riskScoreHTML,
+  riskLevelsHTML,
+  levelName,
   table,
   json,
   metric
@@ -26,7 +30,10 @@ const kinds = {
   bridge_reason: '低分连接理由',
   search_boundary: '搜索范围',
   review_recommendation: '复核建议',
-  limitation: '能力边界'
+  limitation: '能力边界',
+  dataset_summary: '数据集说明', group_attribution: '证据组归因',
+  branch_prediction: '分支判断', fusion_calculation: '融合计算',
+  path_coverage: '路径覆盖', transaction_observation: '真实交易观察', dense_group: '关联群组证据', dense_group_coverage: '群组证据覆盖'
 };
 const units = {
   score_0_100: '风险分（0–100）',
@@ -36,7 +43,8 @@ const units = {
   ratio_0_1: '比例（0–1）',
   directed_relations: '有向地址关系',
   search_checks: '关系检查次数',
-  policy: '系统复核规则'
+  policy: '系统复核规则', description: '说明',
+  weighted_probability: '模型融合依据', transaction_record: '原始交易记录', structural_group: '有向关系结构'
 };
 const statuses = {
   passed: '已通过',
@@ -49,13 +57,14 @@ let currentRecord = null,
   selectedLabel = null;
 
 function statementText(text) {
-  return escape(text.replace(/\\([\\`*_{}\[\]()#+!|])/g, '$1').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  return escape(publicText(text).replace(/\\([\\`*_{}\[\]()#+!|])/g, '$1').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/&amp;/g, '&'));
 }
 export function resetReport() {
   currentRecord = null;
   clearPlots('#evidence-content');
   $('#report-results').hidden = true;
+  $('#report-risk-summary').replaceChildren();
   $('#report-empty').hidden = false;
   $('#report-error').textContent = '';
   $('#report-status').textContent = '';
@@ -66,12 +75,15 @@ export function resetReport() {
 export function renderReport(record) {
   currentRecord = record;
   const report = record.report;
+  report.statements ||= report.rendered_claims || [];
   $('#report-empty').hidden = true;
   $('#report-results').hidden = false;
-  $('#report-source').textContent = report.source === 'llm' ? 'LLM 组织声明 · 协议事实已核验' : '结构化证据模板 · 协议事实已核验';
+  $('#report-source').textContent = String(report.source).startsWith('llm') ? 'AI 组织声明 · 协议事实已核验' : '结构化证据模板 · 协议事实已核验';
   $('#report-id').textContent = record.report_id;
   $('#report-fallback').hidden = !report.fallback_reason;
   $('#report-fallback').textContent = report.fallback_reason || '';
+  const reportRisk=report.evidence_snapshot?.risk_analysis;
+  $('#report-risk-summary').innerHTML=reportRisk?`<span>本次综合风险 ${riskScoreHTML(reportRisk.overall_score)} / 100</span><span class="risk-badge ${escape(reportRisk.risk_level)}">${escape(levelName(reportRisk.risk_level))}</span>${riskLevelsHTML()}`:'';
   const audit = report.audit;
   $('#audit-metrics').innerHTML = [
     ['输出声明', audit.final_statement_count],
@@ -97,19 +109,19 @@ export function renderReport(record) {
       });
     }
   }));
-  const base = '/api/reports/' + record.report_id;
+  const base = '/reports/' + record.report_id;
   $('#report-downloads').innerHTML = [
     ['下载 Markdown', base + '/export?format=md'],
     ['下载 TXT', base + '/export?format=txt'],
     ['Evidence JSON', base + '/export?format=evidence'],
     ['完整审计包', base + '/bundle']
   ].map(([name, url]) =>
-    `<a class="secondary" href="${url}" download>${name} <span aria-hidden="true">↓</span></a>`).join('');
+    `<a class="secondary" href="${downloadPath(url,record.dataset_id)}" download>${name} <span aria-hidden="true">↓</span></a>`).join('');
   json('#audit-json', report.audit);
   json('#evidence-json', report.evidence_snapshot);
   json('#claims-json', report.claims_document);
   $('#fault-result').replaceChildren();
-  const unavailable = !report.evidence_snapshot.trace_analysis.top_paths.length;
+  const unavailable = !report.evidence_snapshot.trace_analysis?.top_paths?.length;
   $('#fault-kind option[value="path_score_as_risk"]').disabled = unavailable;
   if (unavailable && $('#fault-kind').value === 'path_score_as_risk') $('#fault-kind').value =
     'invented_amount';
@@ -122,7 +134,7 @@ export function selectEvidence(label) {
     statement = report.statements.find(s => s.citation_label === label);
   if (!statement) return;
   const fact = report.fact_catalog.facts[statement.claim.fact_ids[0]],
-    locator = fact.display_locator;
+    locator = fact.display_locator || {};
   $('#evidence-select').value = label;
   $$('[data-evidence]').forEach(button => {
     const active = button.dataset.evidence === label;
@@ -132,8 +144,28 @@ export function selectEvidence(label) {
   const container = $('#evidence-content');
   $$('.plot', container).forEach(clearPlot);
   container.innerHTML =
-    `<p class="fact-label">${escape(label)} · ${escape(statuses[statement.status]||statement.status)}</p><h4>${escape(fact.label)}</h4><p class="muted">${escape(kinds[fact.fact_type])} · ${escape(units[fact.unit])}</p><pre>${escape(JSON.stringify(fact.subject,null,2))}</pre><div id="fact-data"></div><div class="source-pointers">${fact.source_pointers.map(p=>`<code class="source-pointer">${escape(p)}</code>`).join('')||'<p class="muted">系统复核/能力边界规则，不是链上事实。</p>'}</div><details><summary>源值与派生依据</summary><pre>${escape(JSON.stringify(displaySummary({source_values:fact.source_values,derivation:fact.derivation,fact_id:fact.fact_id}),null,2))}</pre></details><details><summary>原始 CSV 记录定位</summary>${fact.raw_source_locations?.length?`<pre>${escape(JSON.stringify(fact.raw_source_locations,null,2))}</pre><p class="muted">记录序号与物理行范围实际测量；关系记录不等于独立逐笔交易。</p>`:'<p class="muted">当前没有可用的直接原始 CSV 记录定位；仍可核对上方固定 Evidence 字段、特征与关系路径。</p>'}</details>`;
-  if (locator.view === 'path' || locator.view === 'bridge') {
+    `<p class="fact-label">${escape(label)} · ${escape(statuses[statement.status]||statement.status)}</p><h4>${escape(publicText(fact.label))}</h4><p class="muted">${escape(kinds[fact.fact_type]||fact.fact_type)} · ${escape(units[fact.unit]||fact.unit)}</p><pre>${escape(JSON.stringify(displaySummary(fact.subject),null,2))}</pre><div id="fact-data"></div><div class="source-pointers">${(fact.source_pointers||[]).map(p=>`<code class="source-pointer">${escape(publicText(p))}</code>`).join('')||'<p class="muted">系统复核规则，无单独链上记录。</p>'}</div><details><summary>源值与派生依据</summary><pre>${escape(JSON.stringify(displaySummary({source_values:fact.source_values,derivation:fact.derivation,fact_id:fact.fact_id}),null,2))}</pre></details><details><summary>原始记录定位</summary>${fact.raw_source_locations?.length?`<pre>${escape(JSON.stringify(displaySummary(fact.raw_source_locations),null,2))}</pre><p class="muted">对应当前数据集中的原始观察记录。</p>`:'<p class="muted">可核对上方固定证据字段、特征与关系路径。</p>'}</details>`;
+  if (locator.view === 'dense_group') {
+    const full = report.evidence_snapshot.dense_group_analysis?.groups?.[locator.group_index];
+    const group = full?.group || full?.summary || fact.value;
+    const members = full?.members || [];
+    const internalEdges = group.internal_edges || [];
+    $('#fact-data').innerHTML = `<div class="group-report-summary"><p>群组结构分 <strong>${number(group.group_score, 2)}</strong> · 拓扑密度 <strong>${number(group.topology_density * 100, 1)}%</strong></p><p>${escape(group.member_count)} 个成员 · ${escape(group.edge_count)} 条内部真实关系</p><code>${escape(group.group_id || locator.group_id)}</code><p class="muted">结构分用于关系核查参考，不替代成员的地址风险分。</p></div><div id="fact-group-paths" class="table-scroll"></div><details id="fact-group-members"><summary>查看完整成员及冻结风险分（${members.length}个）</summary><div id="fact-group-member-table" class="table-scroll"></div></details><details id="fact-group-edges"><summary>查看内部有向关系（${internalEdges.length}条）</summary><div id="fact-group-edge-table" class="table-scroll"></div></details>`;
+    const relevant = full?.relevance?.path_members || [];
+    if (relevant.length) table('#fact-group-paths', [{ label: '关联路径', render: row => escape(`路径 ${row.path_index + 1}`) }, { label: '涉及成员', render: row => escape(row.members_on_path.join(' → ')) }], relevant);
+    $('#fact-group-members').addEventListener('toggle', event => {
+      if (!event.target.open || event.target.dataset.ready) return;
+      event.target.dataset.ready = 'true';
+      table('#fact-group-member-table', [{ label: '成员地址', key: 'address_id', mono: true }, { label: '综合风险', render: row => riskScoreHTML(row.risk_score) }, { label: '风险等级', render: row => escape(levelName(row.risk_level)) }], members);
+    });
+    $('#fact-group-edges').addEventListener('toggle', event => {
+      if (!event.target.open || event.target.dataset.ready) return;
+      event.target.dataset.ready = 'true';
+      table('#fact-group-edge-table', [{ label: '转出地址', key: 'src', mono: true }, { label: '转入地址', key: 'dst', mono: true }], internalEdges.map(edge => Array.isArray(edge) ? { src: edge[0], dst: edge[1] } : edge));
+    });
+  } else if (fact.fact_type === 'dense_group_coverage') {
+    $('#fact-data').innerHTML = `<p>本次追踪关联 ${escape(fact.value.available_groups)} 个群组，正文呈现 ${escape(fact.value.reported_groups)} 个群组的核验事实；完整来源保留在报告证据中。</p>`;
+  } else if (locator.view === 'path' || locator.view === 'bridge') {
     const path = report.evidence_snapshot.trace_analysis.top_paths[locator.path_index];
     let edges = null,
       nodes = [];
@@ -158,8 +190,8 @@ export function selectEvidence(label) {
       key: 'address',
       mono: true
     }, {
-      label: '原始风险',
-      render: r => number(r.risk)
+      label: '综合风险',
+      render: r => riskScoreHTML(r.risk)
     }, {
       label: '当前定位',
       render: r => r.selected ? '← 当前证据' : ''
@@ -172,7 +204,7 @@ export function selectEvidence(label) {
     $('#fact-path-id').textContent = `路径 ${path.path_id||'—'} · 证据 ${path.evidence_id||'—'}`;
   } else if (locator.view === 'feature') {
     $('#fact-data').innerHTML = '<div id="fact-feature" class="table-scroll"></div>';
-    table('#fact-feature', Object.keys(fact.value).map(key => ({
+    table('#fact-feature', Object.keys(fact.value || {}).map(key => ({
       label: key,
       key,
       render: r => escape(typeof r[key] === 'number' ? number(r[key], 5) : r[key])
@@ -180,7 +212,7 @@ export function selectEvidence(label) {
   } else {
     $('#fact-data').innerHTML = typeof fact.value === 'number' ?
       `<div class="fact-value"><strong>${number(fact.value,4)}</strong><div>${escape(units[fact.unit])}</div></div>` :
-      `<pre>${escape(typeof fact.value==='string'?fact.value:JSON.stringify(fact.value,null,2))}</pre>`;
+      `<pre>${escape(typeof fact.value==='string'?publicText(fact.value):JSON.stringify(displaySummary(fact.value),null,2))}</pre>`;
   }
 }
 export function returnToStatement() {

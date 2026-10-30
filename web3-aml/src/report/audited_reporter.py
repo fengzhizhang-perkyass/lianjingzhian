@@ -80,11 +80,22 @@ class AuditedReportGenerator:
         if len(prompt)>self.reporting['max_prompt_chars']: raise ValueError('Evidence prompt exceeds configured length')
         return [{'role':'system','content':SYSTEM_PROMPT},{'role':'user','content':prompt}]
 
-    def generate(self,evidence,graph=None,risk_scores=None):
-        started=time.perf_counter()
+    def _catalog(self,evidence,graph,risk_scores):
+        """Dataset adapters can register facts without changing legacy reports."""
         from src.report.source_locator import SourceIndex
         source_index=SourceIndex.load(self.root,self.reporting['source_index_path'],evidence.get('meta',{}).get('dataset_fingerprint'))
-        catalog=FactCatalog(evidence,self.reporting,graph,risk_scores,source_index)
+        return FactCatalog(evidence,self.reporting,graph,risk_scores,source_index)
+
+    def _render(self,records,catalog):
+        return render_report(records,catalog,self.reporting)
+
+    def _validation_started(self):
+        """Hook for an actual background-task validation stage."""
+
+    def generate(self,evidence,graph=None,risk_scores=None):
+        started=time.perf_counter()
+        catalog=self._catalog(evidence,graph,risk_scores)
+        source_index=catalog.source_index
         candidates,errors,records=[],[],[]
         calls=0; fallback_reason=None; source='template'
         initial_passed=[]; repaired_count=0
@@ -100,6 +111,7 @@ class AuditedReportGenerator:
                 raw,usage=self._request(messages)
                 candidates.append({'stage':'initial','raw_response':raw,'usage':usage})
                 document=parse_json(raw,self.reporting['max_candidate_chars'])
+                self._validation_started()
                 first=validate_document(document,catalog,self.reporting)
                 records=copy.deepcopy(first['valid']); initial_passed=copy.deepcopy(records)
                 errors=copy.deepcopy(first['errors'])
@@ -185,9 +197,10 @@ class AuditedReportGenerator:
         final=empty_document()
         for section in final['sections']:
             section['claims']=[r['claim'] for r in records if r['section']==section['section']]
+        self._validation_started()
         checked=validate_document(final,catalog,self.reporting)
         if checked['structural_error'] or checked['errors']: raise ValueError('Final report failed revalidation')
-        markdown,statements=render_report(records,catalog,self.reporting)
+        markdown,statements=self._render(records,catalog)
         preserved=sum(any(r['claim']==p['claim'] and r['section']==p['section'] for r in records) for p in initial_passed)
         required_ids={f['fact_id'] for f in catalog.facts.values() if f['required']}
         output_ids={r['claim']['fact_ids'][0] for r in records}

@@ -1,0 +1,119 @@
+{
+  "dataset_id": "ethereum",
+  "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+  "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+  "tracing_revision": "72a453ea110f015ba1db67bb8ec5ce0063094bf407b99d2d26ecf06a853e30dc",
+  "trace_scope": "ethereum_scored_addresses_only",
+  "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+  "cases": [
+    {
+      "address_id": "0xd635cb5d0fc7688ab4cde7b71276b6f0cb40f2af",
+      "hops": 5,
+      "nodes": [
+        "0xd635cb5d0fc7688ab4cde7b71276b6f0cb40f2af",
+        "0x848b73f8cb6778203edbe4aa18f293b238fd3712",
+        "0xfbd5bb5c11bc44ef9ba8717c5a6a9c7633f859da",
+        "0xb7686c343be859d7875f8d6bb7c228858e229b8d",
+        "0x9f0f3f5c23ba4749e6bfdbe0795389e36159f008",
+        "0xc43c8d134a61c71e1b603b875a0396533dfd9a2d"
+      ],
+      "method": "actual existing graph and frozen model scores; no label selection",
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      },
+      "trace_scope": "ethereum_scored_addresses_only",
+      "versions": {
+        "dataset_id": "ethereum",
+        "dataset_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+        "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+        "feature_revision": "bdc0bf59d6a31bf88bd3b2456aad08bcf974cd309cbe3d57a4e62e18c81e2d76",
+        "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+        "trace_scope": "ethereum_scored_addresses_only",
+        "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+        "tracing_revision": "72a453ea110f015ba1db67bb8ec5ce0063094bf407b99d2d26ecf06a853e30dc",
+        "dense_group_revision": "8edfac0874bcfa29425ce7889557fbb754b96d45d2d15a4ffcfa7fa4f6242ba0",
+        "reporting_revision": "4dc0d6e6f83eb2b3382ecaa7ab9f3f1aaa95e3f9677392e84bb8694e8c7cbeed"
+      }
+    },
+    {
+      "address_id": "0x848b73f8cb6778203edbe4aa18f293b238fd3712",
+      "hops": 4,
+      "nodes": [
+        "0x848b73f8cb6778203edbe4aa18f293b238fd3712",
+        "0xfbd5bb5c11bc44ef9ba8717c5a6a9c7633f859da",
+        "0xb7686c343be859d7875f8d6bb7c228858e229b8d",
+        "0x9f0f3f5c23ba4749e6bfdbe0795389e36159f008",
+        "0xc43c8d134a61c71e1b603b875a0396533dfd9a2d"
+      ],
+      "method": "actual existing graph and frozen model scores; no label selection",
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      },
+      "trace_scope": "ethereum_scored_addresses_only",
+      "versions": {
+        "dataset_id": "ethereum",
+        "dataset_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+        "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+        "feature_revision": "bdc0bf59d6a31bf88bd3b2456aad08bcf974cd309cbe3d57a4e62e18c81e2d76",
+        "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+        "trace_scope": "ethereum_scored_addresses_only",
+        "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+        "tracing_revision": "72a453ea110f015ba1db67bb8ec5ce0063094bf407b99d2d26ecf06a853e30dc",
+        "dense_group_revision": "8edfac0874bcfa29425ce7889557fbb754b96d45d2d15a4ffcfa7fa4f6242ba0",
+        "reporting_revision": "4dc0d6e6f83eb2b3382ecaa7ab9f3f1aaa95e3f9677392e84bb8694e8c7cbeed"
+      }
+    },
+    {
+      "address_id": "0xab7ec7596fc05bc55afc07008cc06c1193ed6f9a",
+      "hops": 4,
+      "nodes": [
+        "0xab7ec7596fc05bc55afc07008cc06c1193ed6f9a",
+        "0x40949225c4a1745a9946f6aaf763241c082cb9ac",
+        "0x336a3f0c4d40b1e39cee72e2e59330daf484848c",
+        "0x5208d7f63a089906889a5a9caed81e9c889e64f8",
+        "0x3681828da105fc3c44e212f6c3dc51a0a5a6f5c6"
+      ],
+      "method": "actual existing graph and frozen model scores; no label selection",
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      },
+      "trace_scope": "ethereum_scored_addresses_only",
+      "versions": {
+        "dataset_id": "ethereum",
+        "dataset_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+        "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+        "feature_revision": "bdc0bf59d6a31bf88bd3b2456aad08bcf974cd309cbe3d57a4e62e18c81e2d76",
+        "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+        "trace_scope": "ethereum_scored_addresses_only",
+        "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+        "tracing_revision": "72a453ea110f015ba1db67bb8ec5ce0063094bf407b99d2d26ecf06a853e30dc",
+        "dense_group_revision": "8edfac0874bcfa29425ce7889557fbb754b96d45d2d15a4ffcfa7fa4f6242ba0",
+        "reporting_revision": "4dc0d6e6f83eb2b3382ecaa7ab9f3f1aaa95e3f9677392e84bb8694e8c7cbeed"
+      }
+    }
+  ],
+  "selection": "Frozen predicted-risk order and actual directed paths; no risk labels opened",
+  "candidates_traced": 70,
+  "versions": {
+    "dataset_id": "ethereum",
+    "dataset_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+    "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+    "feature_revision": "bdc0bf59d6a31bf88bd3b2456aad08bcf974cd309cbe3d57a4e62e18c81e2d76",
+    "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+    "trace_scope": "ethereum_scored_addresses_only",
+    "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+    "tracing_revision": "72a453ea110f015ba1db67bb8ec5ce0063094bf407b99d2d26ecf06a853e30dc",
+    "dense_group_revision": "8edfac0874bcfa29425ce7889557fbb754b96d45d2d15a4ffcfa7fa4f6242ba0",
+    "reporting_revision": "4dc0d6e6f83eb2b3382ecaa7ab9f3f1aaa95e3f9677392e84bb8694e8c7cbeed"
+  },
+  "status": "prepared"
+}

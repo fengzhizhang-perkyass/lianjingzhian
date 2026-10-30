@@ -42,3 +42,22 @@ long_path_profile:
   max_bridge_nodes: 31
   edge_budget: 2000
 long_path_cases: artifacts/tracing/long_path_cases.json
+# Optional topology-only prior. Frozen module-one scores are never rewritten.
+dense_group_enabled: true
+dense_group_weight: 0.15
+dense_group_entry_weight: 0.5
+dense_group_evidence_limit: 5
+dense_group_build:
+  anchor_threshold: 30
+  max_anchors: 500
+  radius: 2
+  max_nodes_per_anchor: 2000
+  min_group_nodes: 3
+  min_group_edges: 4
+  min_density: 0.2
+  max_groups: 500
+  overlap_threshold: 0.8
+  score_weight:
+    density: 0.55
+    mean_risk: 0.30
+    anchor_fraction: 0.15

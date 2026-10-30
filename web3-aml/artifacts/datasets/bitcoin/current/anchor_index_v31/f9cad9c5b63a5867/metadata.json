@@ -1,0 +1,21 @@
+{
+  "dataset_id": "bitcoin",
+  "dataset_fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+  "risk_revision": "f9cad9c5b63a586728100d3f245839b5204c6009ffdcf415890e88849d1c36fb",
+  "graph_revision": "cb93f7280254d900bed754b1185c4bb1c2a149d6b7a4a1eca16505294908b9d1",
+  "trace_scope": "bitcoin_scored_addresses_only",
+  "calibration_revision": "4cb8701e25f7299629c1dda5b9970799529c5b8cb24e66c99cad620235b342d3",
+  "threshold": 30,
+  "max_depth": 64,
+  "algorithm": "multi_source_reverse_bfs_v1",
+  "construction_edge_inspections": 584664,
+  "algorithm_sha256": "40d77d1bccaac5599dd071a06766b50599cb269566aee89f027d77cbc34a35a6",
+  "construction_seconds": 0.22114433394744992,
+  "anchor_count": 54071,
+  "reachable_nodes": 263004,
+  "tie_break": "anchor_risk_then_address_then_stored_incoming_order",
+  "array_sha256": {
+    "distance.npy": "e312d0814934be4b582f953df14de4bd89e4721512e65225086f987dd7914b2e",
+    "next_node.npy": "0279c657ecfee43bd4cc8ce292e0fa658981211a49a5da2f94eebadcf199db12"
+  }
+}

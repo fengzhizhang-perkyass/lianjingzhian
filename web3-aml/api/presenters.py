@@ -4,7 +4,7 @@ import networkx as nx
 import plotly.graph_objects as go
 
 BLUE, RED = '#4E65F5', '#B91C1C'
-COLORS = {'LOW': '#657794', 'MEDIUM': '#B45309', 'HIGH': '#C2410C', 'CRITICAL': '#B91C1C'}
+COLORS = {'LOW': '#2DD4BF', 'MEDIUM': '#B45309', 'HIGH': '#C2410C', 'CRITICAL': '#B91C1C', 'UNSCORED': '#94A3B8'}
 
 
 def figure_json(fig, height=320, dark=False):
@@ -19,11 +19,17 @@ def scoring_charts(scoring):
     groups = scoring['groups']
     bars = go.Figure(go.Bar(x=[g['contribution'] for g in groups], y=[g['label'] for g in groups], orientation='h',
                            marker_color=[RED if g['contribution'] >= 0 else BLUE for g in groups]))
-    bars.update_layout(yaxis=dict(autorange='reversed'), xaxis_title='TreeSHAP 对联合模型原始输出的贡献')
-    correction = scoring['corrected_logit'] - scoring['raw_margin']
-    values = [scoring['base_value'], *[g['contribution'] for g in groups], correction, 0]
-    waterfall = go.Figure(go.Waterfall(x=['模型基准', *[g['label'] for g in groups], '类别权重校正', '校准前 logit'],
-        y=values, measure=['absolute', 'relative', 'relative', 'relative', 'relative', 'total'],
+    target = '联合分支原始输出' if scoring.get('kind') == 'dual_view' else '模型原始输出'
+    bars.update_layout(yaxis=dict(autorange='reversed'), xaxis_title='TreeSHAP 对'+target+'的贡献')
+    labels = ['模型基准', *[g['label'] for g in groups]]
+    values = [scoring['base_value'], *[g['contribution'] for g in groups]]
+    if scoring.get('kind') not in ('grouped_tree', 'dual_view'):
+        labels.append('类别权重校正')
+        values.append(scoring['corrected_logit'] - scoring['raw_margin'])
+    labels.append(target+'（logit）')
+    values.append(0)
+    waterfall = go.Figure(go.Waterfall(x=labels,
+        y=values, measure=['absolute', *['relative']*(len(values)-2), 'total'],
         increasing=dict(marker=dict(color=RED)), decreasing=dict(marker=dict(color=BLUE)), connector=dict(line=dict(color='#94A3B8'))))
     return {'contribution': figure_json(bars, 260), 'waterfall': figure_json(waterfall, 340)}
 
@@ -54,11 +60,12 @@ def relation_chart(trace):
         nodes = [a for a in graph if graph.nodes[a].get('risk_level') == level and a != trace['seed_address']]
         if nodes:
             figure.add_trace(go.Scatter(x=[float(positions[a][0]) for a in nodes], y=[float(positions[a][1]) for a in nodes],
-                mode='markers+text', name={'LOW':'低风险', 'MEDIUM':'中风险', 'HIGH':'高风险', 'CRITICAL':'极高风险'}[level],
+                mode='markers+text', name={'LOW':'低风险', 'MEDIUM':'中风险', 'HIGH':'高风险', 'CRITICAL':'极高风险','UNSCORED':'未评分'}[level],
                 text=[str(best.index(a))+'跳' if a in best and len(best)>8 else a[:6]+'…' for a in nodes], textposition='top center',
                 customdata=[[a, graph.nodes[a]['risk_score']] for a in nodes],
-                hovertemplate='%{customdata[0]}<br>原始风险 %{customdata[1]:.2f}<extra></extra>',
-                marker=dict(size=[14+graph.nodes[a]['risk_score']*.14 for a in nodes], color=color, line=dict(color='#AAB4CA', width=1.5))))
+                hovertemplate=('%{customdata[0]}<br>未评分<extra></extra>' if level == 'UNSCORED' else '%{customdata[0]}<br>原始风险 %{customdata[1]:.2f}<extra></extra>'),
+                marker=dict(size=[14+(graph.nodes[a]['risk_score'] or 0)*.14 for a in nodes], color=color,
+                            symbol='circle-open' if level == 'UNSCORED' else 'circle', line=dict(color='#AAB4CA', width=1.5))))
     seed = trace['seed_address']
     if seed in positions:
         figure.add_trace(go.Scatter(x=[float(positions[seed][0])], y=[float(positions[seed][1])], mode='markers+text',

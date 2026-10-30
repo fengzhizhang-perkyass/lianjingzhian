@@ -1,28 +1,59 @@
+# Python 虚拟环境与缓存
 .venv/
+.venv-*/
 venv/
 env/
+.cache/
 __pycache__/
+*.py[cod]
+*.egg-info/
 .pytest_cache/
-*.pyc
+
+# IDE
+.idea/
+.vscode/
+
+# 操作系统
+Thumbs.db
+.DS_Store
+
+# 密钥
 .env
 .env.*
 !.env.example
-.DS_Store
+
+# 运行备份与缓存
 .runtime-backups/
 .runtime-cache/
+
+# 大型压缩包与原始训练数据（不随仓库分发）
+*.zip
+data/external/
+data/raw/*.csv
+
+# 冻结运行包之外的生成/派生文件
 artifacts/evidence_scoring/features.npy
 artifacts/risk_scores/graph_statistics.parquet
-data/processed/raw_features.npy
-processed.zip
-Web3_AML_前端运行补充包.zip
-data/raw/*.csv
+
+# 研究实验代码与第三方模型库（仅保留冻结运行时所需文件，见 .gitattributes）
+model_upgrade/
+third_party/
+
+# 生成/验收/前端检查产物
 artifacts/web_runs/
+artifacts/web_jobs/
 artifacts/reports/
 artifacts/traces/
+artifacts/llm_*/
+artifacts/web_*check/
+artifacts/v3_*/
+artifacts/v31_*/
+artifacts/v4_*/
+artifacts/queue_pagination_check/
 logs/*.log
+
+# 前端构建
 node_modules/
 package-lock.json
 playwright-report/
 test-results/
-artifacts/llm_*/
-artifacts/web_*check/

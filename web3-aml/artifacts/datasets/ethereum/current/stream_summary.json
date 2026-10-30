@@ -1,0 +1,22 @@
+{
+  "normal_eoa_transaction_in_slice_1000K.csv": {
+    "scanned": 3159707,
+    "selected_rows": 508254,
+    "invalid_rows": 0
+  },
+  "normal_eoa_transaction_out_slice_1000K.csv": {
+    "scanned": 8190933,
+    "selected_rows": 1151449,
+    "invalid_rows": 0
+  },
+  "phisher_transaction_in.csv": {
+    "scanned": 182356,
+    "selected_rows": 109723,
+    "invalid_rows": 0
+  },
+  "phisher_transaction_out.csv": {
+    "scanned": 145905,
+    "selected_rows": 83617,
+    "invalid_rows": 530
+  }
+}

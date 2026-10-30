@@ -1,0 +1,84 @@
+{
+  "dataset_id": "ethereum",
+  "graph_revision": "41676b27b4b3ce94990cce458a333c932c7a8c65fef95b7f8afae25c7ee007ae",
+  "risk_revision": "f03858a0be540cc5c28c34f8861415535b991527a6a395e357d66af09bbbdd05",
+  "tracing_revision": "92f8033fdb3ff11266a8d7ddf3ae3fbf046151fa2dc78b28aafcf8ff244c3549",
+  "cases": [
+    {
+      "address_id": "0xd635cb5d0fc7688ab4cde7b71276b6f0cb40f2af",
+      "hops": 10,
+      "nodes": [
+        "0xd635cb5d0fc7688ab4cde7b71276b6f0cb40f2af",
+        "0x848b73f8cb6778203edbe4aa18f293b238fd3712",
+        "0x0eb51a3e936306b7f6856e4e155a10f99ab43f83",
+        "0xfbd5bb5c11bc44ef9ba8717c5a6a9c7633f859da",
+        "0xb7686c343be859d7875f8d6bb7c228858e229b8d",
+        "0x9f0f3f5c23ba4749e6bfdbe0795389e36159f008",
+        "0xc75dd862e11253b3c945220fbfa3c52e78dc0b73",
+        "0x45b7194074be6d1e0e544e5091053703c0cc7060",
+        "0xba8390ac823bc06186ebac3fcfe9bd984c1dd594",
+        "0x04b37690d14cd96460caabb4ac99eabda0af4e3b",
+        "0xf94ced943cb595007526b40b0addc28772696b07"
+      ],
+      "unscored_connection_nodes": [
+        "0x0eb51a3e936306b7f6856e4e155a10f99ab43f83",
+        "0x45b7194074be6d1e0e544e5091053703c0cc7060",
+        "0x04b37690d14cd96460caabb4ac99eabda0af4e3b"
+      ],
+      "method": "actual existing graph and frozen model scores; no label selection",
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      }
+    },
+    {
+      "address_id": "0x0a9f58ee19a7131ed031ea66a032c05c7efe965a",
+      "hops": 5,
+      "nodes": [
+        "0x0a9f58ee19a7131ed031ea66a032c05c7efe965a",
+        "0xb9a0b122efd47f72ce204fe65fbd8027eb73a88d",
+        "0x303345349da72a28d12d5515f145dd77cb84bacc",
+        "0x77f6f497e8101b70540187ee42846cc1df54e8e0",
+        "0x876eabf441b2ee5b5b0554fd502a8e0600950cfa",
+        "0xceebb2d0cdc85e9774a232bab74c45fc883c15e4"
+      ],
+      "unscored_connection_nodes": [
+        "0xb9a0b122efd47f72ce204fe65fbd8027eb73a88d",
+        "0x876eabf441b2ee5b5b0554fd502a8e0600950cfa"
+      ],
+      "method": "actual existing graph and frozen model scores; no label selection",
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      }
+    },
+    {
+      "address_id": "0xaa60f2b7e7cd32cc31620c3a5d10a79e6f2f5cf6",
+      "hops": 4,
+      "nodes": [
+        "0xaa60f2b7e7cd32cc31620c3a5d10a79e6f2f5cf6",
+        "0x7c40d8d00a89ce3550410c6bc5c2935b4ab5e078",
+        "0x1d9009879f6724d69b2313bb65ba90c5ec2b023a",
+        "0x3f5ce5fbfe3e9af3971dd833d26ba9b5c936f0be",
+        "0xba8a5cf96d605b630025e3e2c8bd177391e32122"
+      ],
+      "unscored_connection_nodes": [
+        "0x7c40d8d00a89ce3550410c6bc5c2935b4ab5e078",
+        "0x3f5ce5fbfe3e9af3971dd833d26ba9b5c936f0be"
+      ],
+      "method": "actual existing graph and frozen model scores; no label selection",
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      }
+    }
+  ],
+  "selection": "Frozen predicted-risk order and actual directed paths; no risk labels opened",
+  "candidates_traced": 21
+}

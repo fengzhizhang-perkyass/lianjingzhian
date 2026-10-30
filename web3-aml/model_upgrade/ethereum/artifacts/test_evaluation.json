@@ -1,0 +1,433 @@
+{
+  "task": "Ethereum phishing address classification",
+  "selected_name": "blend_lightgbm_regularized_0.6_igt4eth_light_behavior_and_embedding_tree",
+  "selected_recipe": [
+    {
+      "name": "lightgbm_regularized",
+      "weight": 0.6
+    },
+    {
+      "name": "igt4eth_light_behavior_and_embedding_tree",
+      "weight": 0.4
+    }
+  ],
+  "selection_file_sha256": "6e586f9dcb8a950579221a32b05416300411d5368e497f34992082f4c9d29396",
+  "test_labels_used_for_selection": false,
+  "threshold_source": "frozen_validation_max_f1",
+  "validation": {
+    "samples": 15476,
+    "positives": 483,
+    "prevalence": 0.031209614887567846,
+    "threshold": 0.5776478277617538,
+    "average_precision": 0.8545955519948212,
+    "roc_auc": 0.984043623394161,
+    "precision": 0.7936842105263158,
+    "recall": 0.7805383022774327,
+    "f1": 0.7870563674321504,
+    "brier": 0.013953356385622473,
+    "confusion_matrix": [
+      [
+        14895,
+        98
+      ],
+      [
+        106,
+        377
+      ]
+    ],
+    "top_100": {
+      "n": 100,
+      "hits": 100,
+      "precision": 1.0,
+      "recall": 0.2070393374741201
+    },
+    "top_500": {
+      "n": 500,
+      "hits": 386,
+      "precision": 0.772,
+      "recall": 0.7991718426501035
+    }
+  },
+  "test": {
+    "samples": 15476,
+    "positives": 483,
+    "prevalence": 0.031209614887567846,
+    "threshold": 0.5776478277617538,
+    "average_precision": 0.8224754920981406,
+    "roc_auc": 0.9745199243428853,
+    "precision": 0.7622950819672131,
+    "recall": 0.7701863354037267,
+    "f1": 0.7662203913491246,
+    "brier": 0.014683476102235528,
+    "confusion_matrix": [
+      [
+        14877,
+        116
+      ],
+      [
+        111,
+        372
+      ]
+    ],
+    "top_100": {
+      "n": 100,
+      "hits": 99,
+      "precision": 0.99,
+      "recall": 0.20496894409937888
+    },
+    "top_500": {
+      "n": 500,
+      "hits": 375,
+      "precision": 0.75,
+      "recall": 0.7763975155279503
+    }
+  },
+  "standalone_model_comparison": {
+    "logistic_behavior": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.9079289436340332,
+      "average_precision": 0.6580029374321184,
+      "roc_auc": 0.9489088006425083,
+      "precision": 0.6572668112798264,
+      "recall": 0.6273291925465838,
+      "f1": 0.6419491525423728,
+      "brier": 0.07641025632619858,
+      "confusion_matrix": [
+        [
+          14835,
+          158
+        ],
+        [
+          180,
+          303
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 93,
+        "precision": 0.93,
+        "recall": 0.19254658385093168
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 311,
+        "precision": 0.622,
+        "recall": 0.6438923395445134
+      }
+    },
+    "lightgbm_baseline": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.904625660670465,
+      "average_precision": 0.790888880735826,
+      "roc_auc": 0.9694743675412916,
+      "precision": 0.801452784503632,
+      "recall": 0.6853002070393375,
+      "f1": 0.7388392857142857,
+      "brier": 0.03800619736633614,
+      "confusion_matrix": [
+        [
+          14911,
+          82
+        ],
+        [
+          152,
+          331
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 99,
+        "precision": 0.99,
+        "recall": 0.20496894409937888
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 354,
+        "precision": 0.708,
+        "recall": 0.7329192546583851
+      }
+    },
+    "lightgbm_regularized": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.842162568732546,
+      "average_precision": 0.8163092907820819,
+      "roc_auc": 0.9712644368614255,
+      "precision": 0.8065268065268065,
+      "recall": 0.7163561076604554,
+      "f1": 0.7587719298245614,
+      "brier": 0.01852662216630567,
+      "confusion_matrix": [
+        [
+          14910,
+          83
+        ],
+        [
+          137,
+          346
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 100,
+        "precision": 1.0,
+        "recall": 0.2070393374741201
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 372,
+        "precision": 0.744,
+        "recall": 0.7701863354037267
+      }
+    },
+    "lightgbm_unweighted": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.3338020993690234,
+      "average_precision": 0.824409560724432,
+      "roc_auc": 0.972669233219809,
+      "precision": 0.829736211031175,
+      "recall": 0.7163561076604554,
+      "f1": 0.7688888888888888,
+      "brier": 0.010840284855673565,
+      "confusion_matrix": [
+        [
+          14922,
+          71
+        ],
+        [
+          137,
+          346
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 100,
+        "precision": 1.0,
+        "recall": 0.2070393374741201
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 375,
+        "precision": 0.75,
+        "recall": 0.7763975155279503
+      }
+    },
+    "igt4eth_light": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.9894924163818359,
+      "average_precision": 0.5711139291545384,
+      "roc_auc": 0.9368005276168216,
+      "precision": 0.5541666666666667,
+      "recall": 0.5507246376811594,
+      "f1": 0.5524402907580478,
+      "brier": 0.07515693455934525,
+      "confusion_matrix": [
+        [
+          14779,
+          214
+        ],
+        [
+          217,
+          266
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 90,
+        "precision": 0.9,
+        "recall": 0.18633540372670807
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 272,
+        "precision": 0.544,
+        "recall": 0.5631469979296067
+      }
+    },
+    "igt4eth_light_embedding_tree": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.9117119134929387,
+      "average_precision": 0.5794267453625678,
+      "roc_auc": 0.9347032756072916,
+      "precision": 0.5607287449392713,
+      "recall": 0.5734989648033126,
+      "f1": 0.5670419651995906,
+      "brier": 0.051599546392572256,
+      "confusion_matrix": [
+        [
+          14776,
+          217
+        ],
+        [
+          206,
+          277
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 91,
+        "precision": 0.91,
+        "recall": 0.18840579710144928
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 278,
+        "precision": 0.556,
+        "recall": 0.5755693581780539
+      }
+    },
+    "igt4eth_light_behavior_and_embedding_tree": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.8277564927872268,
+      "average_precision": 0.7293811323275794,
+      "roc_auc": 0.9541805499571299,
+      "precision": 0.7342995169082126,
+      "recall": 0.629399585921325,
+      "f1": 0.6778149386845039,
+      "brier": 0.01936836492885751,
+      "confusion_matrix": [
+        [
+          14883,
+          110
+        ],
+        [
+          179,
+          304
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 99,
+        "precision": 0.99,
+        "recall": 0.20496894409937888
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 330,
+        "precision": 0.66,
+        "recall": 0.6832298136645962
+      }
+    },
+    "igt4eth_light_cn_0.1_logistic": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.9678636253877116,
+      "average_precision": 0.5606528048293834,
+      "roc_auc": 0.9274261736222246,
+      "precision": 0.5676855895196506,
+      "recall": 0.5383022774327122,
+      "f1": 0.5526036131774708,
+      "brier": 0.05786041061619652,
+      "confusion_matrix": [
+        [
+          14795,
+          198
+        ],
+        [
+          223,
+          260
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 86,
+        "precision": 0.86,
+        "recall": 0.17805383022774326
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 269,
+        "precision": 0.538,
+        "recall": 0.556935817805383
+      }
+    },
+    "igt4eth_light_cn_1.0_logistic": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.9761278349285962,
+      "average_precision": 0.5626070844448693,
+      "roc_auc": 0.9234011068519347,
+      "precision": 0.5560538116591929,
+      "recall": 0.5134575569358178,
+      "f1": 0.5339074273412271,
+      "brier": 0.05839737230054044,
+      "confusion_matrix": [
+        [
+          14795,
+          198
+        ],
+        [
+          235,
+          248
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 87,
+        "precision": 0.87,
+        "recall": 0.18012422360248448
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 266,
+        "precision": 0.532,
+        "recall": 0.5507246376811594
+      }
+    },
+    "igt4eth_light_cn_10.0_logistic": {
+      "samples": 15476,
+      "positives": 483,
+      "prevalence": 0.031209614887567846,
+      "threshold": 0.9720951412339148,
+      "average_precision": 0.559985534247485,
+      "roc_auc": 0.9181865270735728,
+      "precision": 0.5407098121085595,
+      "recall": 0.5362318840579711,
+      "f1": 0.5384615384615384,
+      "brier": 0.058251341595787876,
+      "confusion_matrix": [
+        [
+          14773,
+          220
+        ],
+        [
+          224,
+          259
+        ]
+      ],
+      "top_100": {
+        "n": 100,
+        "hits": 88,
+        "precision": 0.88,
+        "recall": 0.18219461697722567
+      },
+      "top_500": {
+        "n": 500,
+        "hits": 264,
+        "precision": 0.528,
+        "recall": 0.546583850931677
+      }
+    }
+  },
+  "limitations": [
+    "Author-collected normal/background negatives may contain undiscovered phishing accounts",
+    "Address-disjoint random split on provided observed histories, not a forward-time deployment evaluation; supplied files need not cover an account's complete on-chain lifetime",
+    "Lightweight IGT4ETH engineering adaptation, not exact full-scale paper reproduction",
+    "No claim of Bitcoin-to-Ethereum transfer benefit"
+  ]
+}

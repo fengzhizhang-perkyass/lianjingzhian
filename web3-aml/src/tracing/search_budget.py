@@ -8,6 +8,7 @@ class SearchBudget:
         self.counts = Counter()
         self.total = 0
         self.denied = False
+        self.observed_edges = []
 
     def consume(self, stage, stage_limit=None):
         if self.total >= self.limit:
@@ -26,4 +27,6 @@ class SearchBudget:
         for _ in range(degree):
             if not self.consume(stage, stage_limit):
                 break
-            yield next(edges)
+            neighbor = next(edges)
+            self.observed_edges.append((address, neighbor))
+            yield neighbor

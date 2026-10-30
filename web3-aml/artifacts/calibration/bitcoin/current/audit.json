@@ -1,0 +1,112 @@
+{
+  "training_mask_equals_original_train_union_validation": true,
+  "fitted_rows": 208918,
+  "fitted_time_range": [
+    1,
+    41
+  ],
+  "roles": [
+    {
+      "name": "original_train",
+      "rows": 170404,
+      "positives_from_metadata": 9328,
+      "base_training": true,
+      "calibration_fit_eligible": false,
+      "independent_check_eligible": false
+    },
+    {
+      "name": "original_validation",
+      "rows": 38514,
+      "positives_from_metadata": 2390,
+      "base_training": true,
+      "calibration_fit_eligible": false,
+      "independent_check_eligible": false
+    },
+    {
+      "name": "original_test",
+      "rows": 56436,
+      "role": "fixed_final_evaluation_only",
+      "calibration_fit_eligible": false,
+      "independent_selection_eligible": false
+    }
+  ],
+  "remaining_rows": {
+    "count": 557588,
+    "role": "Outside original known-label development/test masks; not assumed benign or independently labeled"
+  },
+  "shortage": [
+    "No verified non-training labeled fitting cohort outside the fixed test in the supplied release",
+    "No separately qualified independent calibration-check cohort"
+  ],
+  "evidence_files": [
+    "model_upgrade/remote_records/entity_refit/model_upgrade/all_pretest_refit/runs/fixed_s42/manifest.json",
+    "model_upgrade/remote_records/entity_refit/model_upgrade/all_pretest_refit/runs/fixed_s42/all_pretest_mask.npy",
+    "data/processed/train_mask.npy",
+    "data/processed/val_mask.npy",
+    "data/processed/test_mask.npy",
+    "data/processed/metadata.json"
+  ],
+  "dataset_id": "bitcoin",
+  "status": "needs_data",
+  "label_arrays_opened": false,
+  "labels_used_for_fit": false,
+  "test_labels_loaded": false,
+  "base_models_trained": false,
+  "original_splits_modified": false,
+  "calibration_fit_performed": false,
+  "reliability_conclusion": "not_established_without_qualified_independent_data",
+  "score_distribution": {
+    "label_blind": true,
+    "rows": 822942,
+    "maximum_score": 99.99934414491265,
+    "minimum_score": 5.091044964164385e-05,
+    "exact_100_count": 0,
+    "rounded_100_but_not_exact": 4402,
+    "bins": [
+      {
+        "lower": 0,
+        "upper": 30,
+        "count": 768871
+      },
+      {
+        "lower": 30,
+        "upper": 60,
+        "count": 9441
+      },
+      {
+        "lower": 60,
+        "upper": 80,
+        "count": 5295
+      },
+      {
+        "lower": 80,
+        "upper": 90,
+        "count": 2815
+      },
+      {
+        "lower": 90,
+        "upper": 99,
+        "count": 9249
+      },
+      {
+        "lower": 99,
+        "upper": 99.995,
+        "count": 22869
+      },
+      {
+        "lower": 99.995,
+        "upper": 100,
+        "count": 4402
+      }
+    ],
+    "interpretation": "Score distribution only; does not establish probability calibration"
+  },
+  "source_sha256": {
+    "model_upgrade/remote_records/entity_refit/model_upgrade/all_pretest_refit/runs/fixed_s42/manifest.json": "2f97acdab87203fbc2abfcd4b695c63cf05503e5e44686fa2fedeec636897271",
+    "model_upgrade/remote_records/entity_refit/model_upgrade/all_pretest_refit/runs/fixed_s42/all_pretest_mask.npy": "6cdf8547bb4fefd302fcaecabbe41a0b90ea7304665b51ebe76dfb3cfd66d010",
+    "data/processed/train_mask.npy": "3bad7669a1c8f992acde47d2569ae5e2bdc399794abd7528cbefd712c4a0bab4",
+    "data/processed/val_mask.npy": "18f852da2b5c6dd97ba2d7e157f60e8b849442a140a0d0715dfb9cafea79f578",
+    "data/processed/test_mask.npy": "a0ee276c073ed6d4d105ef99664474fe362ff0fb8d969799ccfba1966ba7a9a2",
+    "data/processed/metadata.json": "ccebd1a3bce7a34f4ab1e038126bba0cf2ddc2b50e9e38622b5c85e7b40d25b0"
+  }
+}

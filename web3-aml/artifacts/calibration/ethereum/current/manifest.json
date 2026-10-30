@@ -1,0 +1,8 @@
+{
+  "dataset_id": "ethereum",
+  "model_signature": "352a58170aea3aa2d6efb54a2b871673ea0382227c5c48872fe3053e95b652bf",
+  "mode": "identity",
+  "status": "needs_data",
+  "parameters": {},
+  "audit_sha256": "591e159a53ecd485f80120a82099ee9985f38d395e8bf0415d95fba1b7e0a456"
+}

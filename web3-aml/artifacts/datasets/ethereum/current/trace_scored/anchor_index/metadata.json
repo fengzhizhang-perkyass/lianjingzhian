@@ -1,0 +1,21 @@
+{
+  "dataset_id": "ethereum",
+  "dataset_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+  "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+  "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+  "trace_scope": "ethereum_scored_addresses_only",
+  "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+  "threshold": 30,
+  "max_depth": 64,
+  "algorithm": "multi_source_reverse_bfs_v1",
+  "construction_edge_inspections": 938,
+  "algorithm_sha256": "40d77d1bccaac5599dd071a06766b50599cb269566aee89f027d77cbc34a35a6",
+  "construction_seconds": 0.006880749948322773,
+  "anchor_count": 5069,
+  "reachable_nodes": 5175,
+  "tie_break": "anchor_risk_then_address_then_stored_incoming_order",
+  "array_sha256": {
+    "distance.npy": "029f0004291052fa6bf1fdba2d588e2cd8745f43b7c75fbdc7b1e2667f9b173c",
+    "next_node.npy": "b6d6ceab443389c5ecf25aede0e2295c000b29c80c4ab4c3b2e7e4a2bb79a1f0"
+  }
+}

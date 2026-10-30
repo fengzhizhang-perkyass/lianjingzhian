@@ -1,0 +1,17 @@
+{
+  "dataset_id": "bitcoin",
+  "passed": true,
+  "full_frozen_feature_sha256": "a2ed1c8b29d1fd6a55725b2746bf9f61ab09dec766767e51aac35fed324fb232",
+  "frozen_feature_rows": 64,
+  "fixture_probability_max_error": 0.0,
+  "treeshap_max_residual": 6.270539643082884e-13,
+  "feature_groups": {
+    "behavior": 51,
+    "context": 230,
+    "structure": 1502
+  },
+  "scored_addresses": 822942,
+  "graph_edges": 2784344,
+  "training_performed": false,
+  "labels_used_for_selection": false
+}

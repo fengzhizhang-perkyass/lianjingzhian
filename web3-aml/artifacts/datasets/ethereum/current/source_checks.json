@@ -1,0 +1,56 @@
+{
+  "data/external/ethereum/normal_trans.zip": {
+    "sha256": "4dfdcb16d33c1869598f4a49b3c1cbec6cb86d156951285876be25e393fb8801",
+    "identity": {
+      "bytes": 1698807358,
+      "mtime_ns": 1793176050107781307
+    }
+  },
+  "data/external/ethereum/phish_trans.zip": {
+    "sha256": "383bbf12ccbbb7318c7b816a9912f9467e167af9e9646d22d16c5b7acd42df96",
+    "identity": {
+      "bytes": 50516752,
+      "mtime_ns": 1793175024983536515
+    }
+  },
+  "data/external/ethereum/raw/normal_eoa_transaction_in_slice_1000K.csv": {
+    "sha256": "527cbabecd93b0a32dfd269e043900d1219f22f8943f718be1b3a3f81cd2c5a7",
+    "crc32": 3419176447,
+    "identity": {
+      "bytes": 929593262,
+      "mtime_ns": 1793176052567515124
+    },
+    "archive": "data/external/ethereum/normal_trans.zip",
+    "central_column": "to_address"
+  },
+  "data/external/ethereum/raw/normal_eoa_transaction_out_slice_1000K.csv": {
+    "sha256": "28e11cf3b1a3ec3e055ae9269308142d6c2b9de3c354202518d60059301e7514",
+    "crc32": 3666832955,
+    "identity": {
+      "bytes": 5029720783,
+      "mtime_ns": 1793176061899102260
+    },
+    "archive": "data/external/ethereum/normal_trans.zip",
+    "central_column": "from_address"
+  },
+  "data/external/ethereum/raw/phisher_transaction_in.csv": {
+    "sha256": "19e6850365fc6e9104b9003a4737824ce010808754edf1122a6c21939f67800b",
+    "crc32": 753760013,
+    "identity": {
+      "bytes": 83038963,
+      "mtime_ns": 1793175025344570613
+    },
+    "archive": "data/external/ethereum/phish_trans.zip",
+    "central_column": "to_address"
+  },
+  "data/external/ethereum/raw/phisher_transaction_out.csv": {
+    "sha256": "c98dd5d2b78da247aeda81abf6c8d3c3a8223f3fdb25c8c963ec27efb22b29f0",
+    "crc32": 2435619007,
+    "identity": {
+      "bytes": 68389496,
+      "mtime_ns": 1793175025145785444
+    },
+    "archive": "data/external/ethereum/phish_trans.zip",
+    "central_column": "from_address"
+  }
+}

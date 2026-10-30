@@ -13,3 +13,15 @@ data/processed/edge_index_directed.pt filter=lfs diff=lfs merge=lfs -text
 data/processed/features.npy filter=lfs diff=lfs merge=lfs -text
 data/processed/idx_to_address.json filter=lfs diff=lfs merge=lfs -text
 runtime-data/*.part filter=lfs diff=lfs merge=lfs -text
+
+# v4 冻结运行包：比特币 B3 特征矩阵（以 gzip 压缩包分发，首次运行自动解压）与原始特征
+model_upgrade/transaction_evidence/cache_v3_frozen/features.npy.gz filter=lfs diff=lfs merge=lfs -text
+data/processed/raw_features.npy filter=lfs diff=lfs merge=lfs -text
+
+# v4 以太坊/比特币数据集运行资产
+artifacts/datasets/**/*.parquet filter=lfs diff=lfs merge=lfs -text
+artifacts/datasets/**/*.npy filter=lfs diff=lfs merge=lfs -text
+artifacts/datasets/**/*.pkl filter=lfs diff=lfs merge=lfs -text
+artifacts/datasets/**/*.sqlite filter=lfs diff=lfs merge=lfs -text
+artifacts/datasets/**/address_to_idx.json filter=lfs diff=lfs merge=lfs -text
+artifacts/datasets/**/idx_to_address.json filter=lfs diff=lfs merge=lfs -text

@@ -23,22 +23,39 @@ def stable_hash(value):
 
 
 class BudgetedRelationTracer:
-    def __init__(self, graph, risk_scores, config, graph_statistics=None, provenance=None, anchor_index=None):
+    def __init__(self, graph, risk_scores, config, graph_statistics=None, provenance=None,
+                 anchor_index=None, group_index=None, group_status=None):
         self.graph, self.risks, self.config = graph, risk_scores, dict(config)
         self.graph_statistics = graph_statistics or {}
         self.provenance = dict(provenance or {})
         self.anchor_index = anchor_index
+        self.group_index = group_index
+        self.group_status = group_status or ('ready' if group_index is not None else 'unavailable')
+        self.config['dense_group_enabled'] = bool(self.config.get('dense_group_enabled', True)
+                                                 and group_index is not None)
+        self.config.setdefault('dense_group_weight', 0.15)
+        self.config.setdefault('dense_group_entry_weight', 0.5)
+        self.config.setdefault('dense_group_evidence_limit', 5)
         fingerprint = graph.metadata.get('fingerprint')
         if fingerprint and self.provenance.get('dataset_fingerprint') != fingerprint:
             raise ValueError('Tracing graph and risk table dataset fingerprints do not match')
-        if set(risk_scores) != set(graph.address_to_idx):
+        if (not set(risk_scores).issubset(graph.address_to_idx)
+                or (not self.config.get('allow_unscored_nodes', False)
+                    and set(risk_scores) != set(graph.address_to_idx))):
             raise ValueError('Risk table and graph must contain the same addresses')
         if any(not math.isfinite(float(v)) or not 0 <= v <= 100 for v in risk_scores.values()):
             raise ValueError('Address risks must be finite and within [0,100]')
         self.degree_p99 = float(np.percentile([sum(graph.degrees(a)) for a in risk_scores],99)) if risk_scores else 0
         folder = Path(__file__).parent
         self.revision = stable_hash({name: file_sha256(folder/name) for name in (
-            'budgeted_tracer.py','search_budget.py','local_relevance.py','path_selection.py','path_scorer.py','graph_loader.py','anchor_index.py')})
+            'budgeted_tracer.py','search_budget.py','local_relevance.py','path_selection.py','path_scorer.py','graph_loader.py','anchor_index.py','dense_group_index.py')})
+
+    def _risk_order(self, address):
+        # Missing means unscored, not a numerical zero-risk prediction.
+        return (-self.risks[address], address) if address in self.risks else (1., address)
+
+    def _is_anchor(self, address, threshold):
+        return address in self.risks and self.risks[address] >= threshold
 
     @staticmethod
     def validate(config):
@@ -48,14 +65,14 @@ class BudgetedRelationTracer:
         for key in ('risk_threshold','high_risk_threshold','output_anchor_threshold'):
             if not math.isfinite(config[key]) or not 0 <= config[key] <= 100:
                 raise ValueError(f'{key} must be within [0,100]')
-        for key in ('ppr_budget_fraction','bridge_budget_fraction','relevance_weight','coverage_weight','overlap_weight','bridge_penalty','edge_coverage_weight'):
+        for key in ('ppr_budget_fraction','bridge_budget_fraction','relevance_weight','coverage_weight','overlap_weight','bridge_penalty','edge_coverage_weight','dense_group_weight','dense_group_entry_weight'):
             if not math.isfinite(config[key]) or not 0 <= config[key] <= 1:
                 raise ValueError(f'{key} must be within [0,1]')
         if not 0 < config['restart_probability'] < 1 or not 0 < config['ppr_tolerance'] < 1:
             raise ValueError('Invalid PPR restart or tolerance')
         if not config['cycle_check']:
             raise ValueError('Budgeted tracing requires cycle_check')
-        for key in ('ppr_enabled','bridge_enabled','diverse_search','diverse_selection','fold_prefixes','cycle_check','anchor_index_enabled'):
+        for key in ('ppr_enabled','bridge_enabled','diverse_search','diverse_selection','fold_prefixes','cycle_check','anchor_index_enabled','dense_group_enabled'):
             if type(config[key]) is not bool:
                 raise ValueError(f'{key} must be a boolean')
         weights = config['score_weight']
@@ -72,6 +89,8 @@ class BudgetedRelationTracer:
             raise KeyError(f'Unknown seed: {seed}')
         config = {**self.config, **(overrides or {})}
         self.validate(config)
+        if config['dense_group_enabled'] and self.group_index is None:
+            raise ValueError('Dense group index is required when guidance is enabled')
         if config['anchor_index_enabled']:
             if self.anchor_index is None:
                 raise ValueError('Anchor index is required for this method')
@@ -85,6 +104,7 @@ class BudgetedRelationTracer:
         reasons, events = Counter(), []
         considered, retained = set(), {seed}
         expansion_cache = {}
+        base_expansion_cache, group_affinity_cache = {}, {}
         bridge_limit = int(config['edge_budget']*config['bridge_budget_fraction'])
         event_count = 0
 
@@ -101,9 +121,23 @@ class BudgetedRelationTracer:
                 # All methods receive identical cached context. Missing cache is explicit,
                 # not a hidden graph traversal that could bypass the inspection budget.
                 stats = self.graph_statistics.get(address)
-                neighbor_risk = float(stats['one_hop_avg_risk']) if stats is not None else 0.0
-                expansion_cache[address] = expand_score(self.risks[address], neighbor_risk,
-                    sum(self.graph.degrees(address)), self.degree_p99, config['score_weight'])
+                value = stats.get('one_hop_avg_risk') if stats is not None else None
+                neighbor_risk = float(value) if value is not None and math.isfinite(float(value)) else 0.0
+                if address in self.risks:
+                    expansion_cache[address] = expand_score(self.risks[address], neighbor_risk,
+                        sum(self.graph.degrees(address)), self.degree_p99, config['score_weight'])
+                else:
+                    # A ranking utility can use topology/observed neighbour context;
+                    # it is never published as this intermediate node's risk.
+                    weights = {**config['score_weight'], 'risk': 0.0}
+                    expansion_cache[address] = expand_score(0., neighbor_risk,
+                        sum(self.graph.degrees(address)), self.degree_p99, weights)
+                base_expansion_cache[address] = expansion_cache[address]
+                affinity = (self.group_index.affinity(seed, address, config['dense_group_entry_weight'])[0]
+                            if config['dense_group_enabled'] else 0.0)
+                group_affinity_cache[address] = affinity
+                weight = config['dense_group_weight'] if config['dense_group_enabled'] else 0.0
+                expansion_cache[address] = (1-weight)*expansion_cache[address] + weight*affinity/100
             return expansion_cache[address]
 
         ppr, relevance = {}, {'enabled':False}
@@ -115,11 +149,14 @@ class BudgetedRelationTracer:
 
         def make_path(nodes, bridges):
             base = path_score([expansion(a) for a in nodes[1:]],config['length_decay'])
+            risk_base = path_score([base_expansion_cache[a] for a in nodes[1:]],config['length_decay'])
             related = sum(ppr.get(a,0) for a in nodes[1:])/(len(nodes)-1)
             weight = config['relevance_weight'] if config['ppr_enabled'] else 0
             penalty = config['bridge_penalty']*sum(len(w['bridge_nodes']) for w in bridges)/(len(nodes)-1)
             return {'nodes':nodes, 'path_score': max(0.0,(1-weight)*base+weight*related-penalty),
-                    'bridge_witnesses':bridges, 'score_components':{'risk_path_score':base,
+                    'bridge_witnesses':bridges, 'score_components':{'risk_path_score':risk_base,
+                    'guided_path_score':base, 'dense_group_weight':config['dense_group_weight'] if config['dense_group_enabled'] else 0.0,
+                    'dense_group_affinity':sum(group_affinity_cache[a] for a in nodes[1:])/(len(nodes)-1),
                     'seed_relevance_score':related, 'relevance_weight':weight,'bridge_penalty':penalty}}
 
         def bridge_connections(nodes, neighbor):
@@ -142,12 +179,12 @@ class BudgetedRelationTracer:
                 connector = frontier.pop(0)
                 witnesses = list(budget.scan(self.graph,connector[-1],'bridge',bridge_limit))
                 considered.update(witnesses)
-                witnesses.sort(key=lambda a:(-self.risks[a],a))
+                witnesses.sort(key=self._risk_order)
                 for anchor in witnesses[:config['max_neighbors_per_node']]:
                     if anchor in nodes or anchor in connector:
                         reason('CYCLE_BLOCKED',nodes+connector+[anchor])
                         continue
-                    if self.risks[anchor] >= config['risk_threshold']:
+                    if self._is_anchor(anchor, config['risk_threshold']):
                         connections.append((connector,anchor))
                     elif len(connector) < config['max_bridge_nodes'] and len(nodes)+len(connector)+1 <= config['max_depth']:
                         if len(frontier) < config['max_frontier']:
@@ -170,25 +207,31 @@ class BudgetedRelationTracer:
                 considered.update(neighbors)
                 if len(neighbors) < self.graph.degrees(nodes[-1])[0]:
                     reason('BUDGET_EXHAUSTED',nodes)
-                neighbors.sort(key=lambda a:(-self.risks[a],a))
+                neighbors.sort(key=(lambda a: (-expansion(a), self._risk_order(a)))
+                               if config['dense_group_enabled'] else self._risk_order)
                 if len(neighbors) > config['max_neighbors_per_node']:
                     reasons['NEIGHBOR_LIMIT'] += len(neighbors)-config['max_neighbors_per_node']
                 # Bridge quota supplements the normal top-risk neighbor list. The union
                 # remains bounded; scanning all candidates has already been charged.
                 selected_neighbors = neighbors[:config['max_neighbors_per_node']]
                 if config['bridge_enabled']:
-                    extras = [a for a in neighbors if self.risks[a] < config['risk_threshold']][:config['max_bridge_candidates']]
+                    extras = [a for a in neighbors if not self._is_anchor(a, config['risk_threshold'])]
+                    if self.anchor_index is not None and config['anchor_index_enabled']:
+                        extras.sort(key=lambda a: (
+                            int(self.anchor_index.distance[self.graph.address_to_idx[a]]) < 1,
+                            int(self.anchor_index.distance[self.graph.address_to_idx[a]]), self._risk_order(a)))
+                    extras = extras[:config['max_bridge_candidates']]
                     selected_neighbors = list(dict.fromkeys(selected_neighbors+extras))
                 bridge_attempts = 0
                 for neighbor in selected_neighbors:
                     if neighbor in nodes:
                         reason('CYCLE_BLOCKED',nodes+[neighbor])
                         continue
-                    if self.risks[neighbor] >= config['risk_threshold']:
+                    if self._is_anchor(neighbor, config['risk_threshold']):
                         item = make_path(nodes+[neighbor],path['bridge_witnesses'])
                         candidates[tuple(item['nodes'])] = item
                         continue
-                    reason('RISK_BELOW_THRESHOLD',nodes+[neighbor])
+                    reason('UNSCORED_CONNECTION' if neighbor not in self.risks else 'RISK_BELOW_THRESHOLD',nodes+[neighbor])
                     if not config['bridge_enabled'] or len(nodes)+1 > config['max_depth']:
                         continue
                     if bridge_attempts >= config['max_bridge_candidates']:
@@ -229,16 +272,26 @@ class BudgetedRelationTracer:
         paths = select_paths(candidates,config['top_paths'],self.risks,seed,
             config['coverage_weight'],config['overlap_weight'],config['diverse_selection'],config['edge_coverage_weight'])
         provenance = {**self.provenance,'tracing_revision':self.revision,'config_hash':stable_hash(config)}
+        group_revision = (self.group_index.metadata['revision'] if self.group_index is not None
+                          else self.provenance.get('dense_group_revision', self.group_status))
+        provenance['dense_group_revision'] = group_revision
         for rank,path in enumerate(paths,1):
             path['rank'] = rank
-            path['node_risks'] = [float(self.risks[a]) for a in path['nodes']]
+            path['node_risks'] = [float(self.risks[a]) if a in self.risks else None for a in path['nodes']]
             path['hop_count'] = len(path['nodes'])-1
             path['path_id'] = 'path_'+stable_hash([self.provenance,path['nodes']])[:24]
             path['evidence_id'] = 'trace_'+stable_hash([provenance,path['nodes']])[:24]
             path['bridge_nodes'] = [a for w in path['bridge_witnesses'] for a in w['bridge_nodes']]
             path['reason_codes'] = ['RISK_GUIDED_PATH']+(['BRIDGE_WITNESS_FOUND'] if path['bridge_nodes'] else [])
+            path['dense_group_evidence'] = (self.group_index.path_evidence(seed, path['nodes'])
+                                           if self.group_index is not None else [])
+            if path['dense_group_evidence']:
+                path['reason_codes'].append('DENSE_GROUP_EVIDENCE')
+            if config['dense_group_enabled']:
+                path['reason_codes'].append('DENSE_GROUP_PRIOR_ENABLED')
             path['source_references'] = {'risk_field':'overall_risk_score',
-                'risk_revision':self.provenance.get('risk_revision'),'graph':'original_directed_address_relations'}
+                'risk_revision':self.provenance.get('risk_revision'),'graph':'original_directed_address_relations',
+                'dense_group_revision':group_revision,'dense_group_role':'search_prior_only_no_risk_rewrite'}
             path['amount_evidence'] = 'unavailable'
             path['transaction_time_evidence'] = 'unavailable'
         view_nodes = {seed} | {a for p in paths for a in p['nodes']}
@@ -247,12 +300,31 @@ class BudgetedRelationTracer:
             for src,dst in zip(path['nodes'],path['nodes'][1:]):
                 edge = view_edges.setdefault((src,dst),{'src':src,'dst':dst,'path_rank':path['rank'],'path_ids':[]})
                 edge['path_ids'].append(path['path_id'])
+        # New workbench datasets can show true observed context even when no
+        # eligible anchor path exists. These edges already consumed the budget.
+        if config.get('show_observed_context', False):
+            for src, dst in dict.fromkeys(budget.observed_edges):
+                if len(view_nodes | {src, dst}) > max(80, len(view_nodes)):
+                    continue
+                view_nodes.update((src, dst))
+                view_edges.setdefault((src,dst), {'src':src, 'dst':dst,
+                    'path_ids':[], 'context_only':True})
         depth = max((len(p['nodes'])-1 for p in completed.values()),default=0)
         stop = ('BUDGET_EXHAUSTED' if budget.total >= budget.limit else
                 'MAX_DEPTH_REACHED' if depth >= config['max_depth'] else 'NO_ELIGIBLE_EXPANSIONS')
         reasons[stop] += 1
         selection = {**coverage_statistics(paths,self.risks,seed), 'prefix_folding':folded,
                      'candidate_paths':len(completed),'displayed_paths':len(paths)}
+        group_evidence = {}
+        if self.group_index is not None:
+            for group in self.group_index.seed_context(seed):
+                group_evidence[group['group_id']] = group
+            for path in paths:
+                for group in path['dense_group_evidence']:
+                    prior = group_evidence.get(group['group_id'])
+                    if prior is None or len(group['members_on_path']) > len(prior['members_on_path']):
+                        group_evidence[group['group_id']] = group
+        suspicious_groups = sorted(group_evidence.values(), key=lambda g: (-g['group_score'], g['group_id']))
         return {'seed_address':seed,'config':config,'method':'budgeted_relation_tracer_v1',
             'provenance':provenance,'search_budget':{'configured_limit':budget.limit,
                 'actual_edge_inspections':budget.total,'stage_edge_inspections':dict(budget.counts),
@@ -260,15 +332,23 @@ class BudgetedRelationTracer:
                 'adjacency_order':'stored_node_index_order_before_risk_sort',
                 'neighbor_context':'precomputed' if self.graph_statistics else 'unavailable_zero_context'},
             'statistics':{'visited_nodes':len(retained),'candidate_nodes':len(considered-{seed}),
-                'high_risk_nodes':sum(self.risks[a] >= config['high_risk_threshold'] for a in retained-{seed}),
+                'high_risk_nodes':sum(self._is_anchor(a, config['high_risk_threshold']) for a in retained-{seed}),
+                'unscored_nodes':sum(a not in self.risks for a in retained-{seed}),
                 'pruned_nodes':len(considered-retained),'pruned_expansions':sum(reasons[code] for code in (
                     'CYCLE_BLOCKED','BEAM_PRUNED','NEIGHBOR_LIMIT','FRONTIER_LIMIT','BRIDGE_WITHOUT_WITNESS')),
                 'max_reached_depth':depth}, 'top_paths':paths,
-            'subgraph':{'nodes':[{'address_id':a,'risk_score':float(self.risks[a]),'is_seed':a==seed}
+            'subgraph':{'nodes':[{'address_id':a,'risk_score':float(self.risks[a]) if a in self.risks else None,
+                                  'is_scored':a in self.risks,'is_seed':a==seed}
                                   for a in sorted(view_nodes)],'edges':list(view_edges.values())},
             'selection_analysis':selection,'seed_relevance':relevance,
             'anchor_reachability':{'enabled':config['anchor_index_enabled'],
                 'metadata':self.anchor_index.metadata if config['anchor_index_enabled'] else None},
+            'dense_group_guidance':{'enabled':config['dense_group_enabled'],
+                'status':self.group_status,'revision':group_revision,
+                'metadata':self.group_index.metadata if self.group_index is not None else None,
+                'weight':config['dense_group_weight'],'entry_weight':config['dense_group_entry_weight'],
+                'semantics':'search_prior_only_no_risk_rewrite'},
+            'suspicious_groups':suspicious_groups,
             'reason_summary':dict(reasons),'search_events':events,'events_truncated':event_count>len(events)}
 
     def save(self,result,root:Path=ROOT):

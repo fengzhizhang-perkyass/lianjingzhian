@@ -1,0 +1,109 @@
+{
+  "address_disjoint_original_split": true,
+  "split_protocol": "70/15/15 stratified address-disjoint random split, fixed before training; full available account history used as input; this is not historical real-time forecasting",
+  "roles": [
+    {
+      "name": "original_train",
+      "rows": 72219,
+      "positives_from_metadata": 2253,
+      "base_training": true,
+      "calibration_fit_eligible": false,
+      "independent_check_eligible": false
+    },
+    {
+      "name": "original_validation",
+      "rows": 15476,
+      "positives_from_metadata": 483,
+      "used_for": [
+        "tree_early_stopping",
+        "encoder_checkpoint_selection",
+        "fusion_model_selection",
+        "threshold_selection"
+      ],
+      "gradient_training_cohort": false,
+      "calibration_fit_candidate_requires_new_protocol": true,
+      "independent_check_eligible": false
+    },
+    {
+      "name": "original_test",
+      "rows": 15476,
+      "role": "fixed_final_evaluation_only",
+      "calibration_fit_eligible": false,
+      "independent_selection_eligible": false
+    }
+  ],
+  "label_scope": "Provided phishing/malicious centers versus background-negative addresses; not a full-chain AML prevalence estimate",
+  "shortage": [
+    "Validation was already used for early stopping and selection; cannot certify same-cohort fitting and checking as independent",
+    "No separately qualified independent calibration-check cohort in the supplied release"
+  ],
+  "evidence_files": [
+    "data/external/ethereum/processed/metadata.json",
+    "model_upgrade/ethereum/train_baselines.py",
+    "model_upgrade/ethereum/train_igt4eth.py",
+    "model_upgrade/ethereum/select_and_evaluate.py",
+    "model_upgrade/ethereum/artifacts/selection.json"
+  ],
+  "dataset_id": "ethereum",
+  "status": "needs_data",
+  "label_arrays_opened": false,
+  "labels_used_for_fit": false,
+  "test_labels_loaded": false,
+  "base_models_trained": false,
+  "original_splits_modified": false,
+  "calibration_fit_performed": false,
+  "reliability_conclusion": "not_established_without_qualified_independent_data",
+  "score_distribution": {
+    "label_blind": true,
+    "rows": 103171,
+    "maximum_score": 99.9869507660999,
+    "minimum_score": 0.0009642053135896875,
+    "exact_100_count": 0,
+    "rounded_100_but_not_exact": 0,
+    "bins": [
+      {
+        "lower": 0,
+        "upper": 30,
+        "count": 98102
+      },
+      {
+        "lower": 30,
+        "upper": 60,
+        "count": 1882
+      },
+      {
+        "lower": 60,
+        "upper": 80,
+        "count": 225
+      },
+      {
+        "lower": 80,
+        "upper": 90,
+        "count": 127
+      },
+      {
+        "lower": 90,
+        "upper": 99,
+        "count": 1393
+      },
+      {
+        "lower": 99,
+        "upper": 99.995,
+        "count": 1442
+      },
+      {
+        "lower": 99.995,
+        "upper": 100,
+        "count": 0
+      }
+    ],
+    "interpretation": "Score distribution only; does not establish probability calibration"
+  },
+  "source_sha256": {
+    "data/external/ethereum/processed/metadata.json": "135ab3933f72c3e6cb4783e60135a4ca3ad23b13fe13ff0bd8875342081c3be3",
+    "model_upgrade/ethereum/train_baselines.py": "2b9cf5e76548c0739102f8b1957fe5efdee7ecdb5c909bbe53755c1d255f33a5",
+    "model_upgrade/ethereum/train_igt4eth.py": "08f1c99b32adcc5fe3dca0ffb83e4ad7327e331c6aa0ff685bf1f972467aabfa",
+    "model_upgrade/ethereum/select_and_evaluate.py": "8aa4e87dca469edbd457b36a8629b4b0982c08be481d475c368b77407afa7e00",
+    "model_upgrade/ethereum/artifacts/selection.json": "6e586f9dcb8a950579221a32b05416300411d5368e497f34992082f4c9d29396"
+  }
+}

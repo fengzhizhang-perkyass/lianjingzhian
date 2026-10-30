@@ -1,3 +1,4 @@
+import { riskScore, preciseRiskScore } from './dom.js';
 const pending = new Map(),
   rendered = new Set();
 let queue = [];
@@ -117,6 +118,7 @@ export function pathFigure(path, threshold) {
   const fig = basicFigure([{
     x: path.nodes.map((_, i) => i),
     y: path.node_risks,
+    connectgaps: false,
     type: 'scatter',
     mode: 'lines+markers',
     line: {
@@ -126,8 +128,8 @@ export function pathFigure(path, threshold) {
     marker: {
       size: 8
     },
-    customdata: path.nodes,
-    hovertemplate: '第 %{x} 跳<br>%{customdata}<br>原始风险 %{y:.2f}<extra></extra>'
+    customdata: path.nodes.map((address,i)=>[address,riskScore(path.node_risks[i]),preciseRiskScore(path.node_risks[i])]),
+    hovertemplate: '第 %{x} 跳<br>%{customdata[0]}<br>综合风险 %{customdata[1]}<br>精确分数 %{customdata[2]}<extra></extra>'
   }]);
   fig.layout.xaxis = {
     title: {
@@ -138,7 +140,7 @@ export function pathFigure(path, threshold) {
   fig.layout.yaxis = {
     range: [0, 100],
     title: {
-      text: '原始地址风险'
+      text: '地址综合风险'
     }
   };
   fig.layout.shapes = [{
@@ -222,12 +224,12 @@ export function evidencePathFigure(path, edges = null, nodes = []) {
     text: path.nodes.map((_, i) => i + '跳'),
     textposition: 'top center',
     showlegend: false,
-    customdata: path.nodes.map((a, i) => [a, path.node_risks[i]]),
-    hovertemplate: '%{customdata[0]}<br>风险 %{customdata[1]:.2f}<extra></extra>',
+    customdata: path.nodes.map((a, i) => [a, riskScore(path.node_risks[i]), preciseRiskScore(path.node_risks[i])]),
+    hovertemplate: '%{customdata[0]}<br>综合风险 %{customdata[1]}<br>精确分数 %{customdata[2]}<extra></extra>',
     marker: {
       size: path.nodes.map(a => nodes.includes(a) ? 22 : 16),
-      color: path.node_risks.map(v => v >= 80 ? '#B91C1C' : v >= 60 ? '#C2410C' : v >= 30 ? '#B45309' :
-        '#657794'),
+      color: path.node_risks.map(v => v == null ? '#94A3B8' : v >= 80 ? '#B91C1C' : v >= 60 ? '#C2410C' : v >= 30 ? '#B45309' : '#2DD4BF'),
+      symbol: path.node_risks.map(v => v == null ? 'circle-open' : 'circle'),
       line: {
         color: path.nodes.map(a => nodes.includes(a) ? '#61D8FF' : '#fff'),
         width: 3

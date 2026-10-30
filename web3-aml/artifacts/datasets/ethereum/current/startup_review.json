@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "address_id": "0xd635cb5d0fc7688ab4cde7b71276b6f0cb40f2af",
+      "listed_hops": 10,
+      "returned_longest_hops": 10,
+      "default_top_paths": 10,
+      "matches_saved_path": true,
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      }
+    },
+    {
+      "address_id": "0x0a9f58ee19a7131ed031ea66a032c05c7efe965a",
+      "listed_hops": 5,
+      "returned_longest_hops": 5,
+      "default_top_paths": 10,
+      "matches_saved_path": true,
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      }
+    },
+    {
+      "address_id": "0xaa60f2b7e7cd32cc31620c3a5d10a79e6f2f5cf6",
+      "listed_hops": 4,
+      "returned_longest_hops": 4,
+      "default_top_paths": 10,
+      "matches_saved_path": true,
+      "trace_config": {
+        "max_depth": 32,
+        "max_bridge_nodes": 31,
+        "edge_budget": 2000,
+        "top_paths": 10
+      }
+    }
+  ],
+  "statistics_rows": 497340,
+  "null_neighbor_means": 102067,
+  "runtime_asset_schema": "Ethereum subclass validates runtime_assets(bytes,sha256) before shared Base; Base runtime_hashes absent is intentional compatibility",
+  "frontend_load_case_applies_trace_config": true
+}

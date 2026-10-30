@@ -23,7 +23,7 @@ def fold_prefixes(paths):
 def select_paths(paths, count, risks, seed, coverage_weight, overlap_weight, diverse=True, edge_weight=.1):
     remaining = sorted(paths, key=lambda p: (-p['path_score'], tuple(p['nodes'])))
     selected, seen_nodes, seen_edges = [], set(), set()
-    scale = max((sum(risks[a]/100 for a in sorted(set(p['nodes'])-{seed})) + edge_weight*len(edges(p))
+    scale = max((sum(risks[a]/100 for a in sorted(set(p['nodes'])-{seed}) if a in risks) + edge_weight*len(edges(p))
                  for p in remaining), default=1) or 1
     while remaining and len(selected) < count:
         choices = []
@@ -33,7 +33,7 @@ def select_paths(paths, count, risks, seed, coverage_weight, overlap_weight, div
         for path in (remaining if diverse else remaining[:1]):
             node_set, edge_set = set(path['nodes'])-{seed}, edges(path)
             added_nodes, added_edges = node_set-seen_nodes, edge_set-seen_edges
-            gain = sum(risks[a]/100 for a in sorted(added_nodes)) + edge_weight*len(added_edges)
+            gain = sum(risks[a]/100 for a in sorted(added_nodes) if a in risks) + edge_weight*len(added_edges)
             overlap = max((len(edge_set & edges(other))/len(edge_set | edges(other))
                            for other in selected), default=0)
             utility = path['path_score'] + (coverage_weight*gain/scale-overlap_weight*overlap if diverse else 0)
@@ -60,4 +60,6 @@ def coverage_statistics(paths, risks, seed):
             'edge_occurrences': len(occurrences), 'strict_prefix_count': prefixes,
             'duplicate_edge_fraction': 1-len(set(occurrences))/len(occurrences) if occurrences else 0,
             'mean_pairwise_edge_jaccard': sum(len(a & b)/len(a | b) for a,b in pairs)/len(pairs) if pairs else 0,
-            'risk_weighted_node_coverage': sum(risks[a]/100 for a in sorted(node_set))}
+            'risk_weighted_node_coverage': sum(risks[a]/100 for a in sorted(node_set) if a in risks),
+            'scored_nodes_excluding_seed': sum(a in risks for a in node_set),
+            'unscored_nodes_excluding_seed': sum(a not in risks for a in node_set)}

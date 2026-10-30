@@ -1,0 +1,8 @@
+{
+  "dataset_id": "bitcoin",
+  "model_signature": "3464dae680fe19b312343238b4b410763255e8dc7af7b04ac67342cfa927acc4",
+  "mode": "identity",
+  "status": "needs_data",
+  "parameters": {},
+  "audit_sha256": "528d9557b1ebe1338318383144f80630e0d459af115b8e881eb2505ee7f8f579"
+}

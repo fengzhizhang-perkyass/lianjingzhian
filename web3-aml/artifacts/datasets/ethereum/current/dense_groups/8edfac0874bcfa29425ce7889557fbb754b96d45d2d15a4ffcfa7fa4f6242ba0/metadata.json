@@ -1,0 +1,47 @@
+{
+  "dataset_id": "ethereum",
+  "dataset_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+  "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+  "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+  "trace_scope": "ethereum_scored_addresses_only",
+  "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0",
+  "provenance": {
+    "dataset_id": "ethereum",
+    "dataset_fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+    "risk_revision": "0169b9ad371968f3bb140b1ce8caa0da99ef86a8c14384b0c48e62776b01bae4",
+    "graph_revision": "96c9f6457e4aeaa4ddf96fa57c476ca2f9a3ba13f193a638ef9be9b27024d88b",
+    "trace_scope": "ethereum_scored_addresses_only",
+    "calibration_revision": "cbe897ff69c762fd5f8c5fcde9d9c2670ff3e858b9f038ba43bf1d0000bd76e0"
+  },
+  "algorithm": "risk_anchor_bipartite_peeling_v1",
+  "algorithm_sha256": "25d59e842d59150bf66bec9bfdcc23609e14c1675010afc5788c39a0213fe2db",
+  "mode": "topology_only",
+  "amount_evidence": "unavailable",
+  "transaction_time_evidence": "unavailable",
+  "build_config": {
+    "anchor_threshold": 30,
+    "max_anchors": 500,
+    "radius": 2,
+    "max_nodes_per_anchor": 2000,
+    "min_group_nodes": 3,
+    "min_group_edges": 4,
+    "min_density": 0.2,
+    "max_groups": 500,
+    "overlap_threshold": 0.8,
+    "score_weight": {
+      "density": 0.55,
+      "mean_risk": 0.3,
+      "anchor_fraction": 0.15
+    }
+  },
+  "anchor_candidates": 500,
+  "group_count": 6,
+  "member_address_count": 40,
+  "construction_edge_inspections": 230,
+  "construction_seconds": 0.003862665966153145,
+  "revision": "8edfac0874bcfa29425ce7889557fbb754b96d45d2d15a4ffcfa7fa4f6242ba0",
+  "file_sha256": {
+    "groups.json": "fbde132f0c3807ea94f122838057f22406e5446a6ef1ffedb488471c06336502",
+    "memberships.json": "2fda04b9d895e85a0fdb56cb8ea811c8e566497079ffddb17a6cbfc8c867aea0"
+  }
+}

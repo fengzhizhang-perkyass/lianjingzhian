@@ -1,0 +1,86 @@
+{
+  "verified_utc": "2026-10-30T07:01:06.468280+00:00",
+  "dataset_id": "ethereum",
+  "frozen_risk_revision": "f03858a0be540cc5c28c34f8861415535b991527a6a395e357d66af09bbbdd05",
+  "graph_revision": "41676b27b4b3ce94990cce458a333c932c7a8c65fef95b7f8afae25c7ee007ae",
+  "native_probability_and_shap_checks": {
+    "attribute": {
+      "all_address_probability_max_error": 0.0,
+      "128_row_shap_margin_max_residual": 3.730349362740526e-14
+    },
+    "joint": {
+      "all_address_probability_max_error": 0.0,
+      "128_row_shap_margin_max_residual": 3.907985046680551e-14
+    }
+  },
+  "native_checks_scope": "All103171 probabilities per branch vs frozen arrays; 128 native SHAP rows per branch",
+  "real_trace_cases": [
+    {
+      "address_id": "0xd635cb5d0fc7688ab4cde7b71276b6f0cb40f2af",
+      "path_hops": 10,
+      "unscored_on_path": 3,
+      "returned_paths": 6,
+      "graph_nodes": 80,
+      "edge_witnesses_checked": 10,
+      "search_budget": {
+        "configured_limit": 2000,
+        "actual_edge_inspections": 602,
+        "stage_edge_inspections": {
+          "search": 582,
+          "index_witness": 12,
+          "bridge": 8
+        },
+        "elapsed_ms": 2.4023749865591526,
+        "stop_reason": "NO_ELIGIBLE_EXPANSIONS",
+        "adjacency_order": "stored_node_index_order_before_risk_sort",
+        "neighbor_context": "precomputed"
+      }
+    },
+    {
+      "address_id": "0x0a9f58ee19a7131ed031ea66a032c05c7efe965a",
+      "path_hops": 5,
+      "unscored_on_path": 2,
+      "returned_paths": 4,
+      "graph_nodes": 80,
+      "edge_witnesses_checked": 5,
+      "search_budget": {
+        "configured_limit": 2000,
+        "actual_edge_inspections": 1110,
+        "stage_edge_inspections": {
+          "search": 1100,
+          "index_witness": 6,
+          "bridge": 4
+        },
+        "elapsed_ms": 2.3066659923642874,
+        "stop_reason": "NO_ELIGIBLE_EXPANSIONS",
+        "adjacency_order": "stored_node_index_order_before_risk_sort",
+        "neighbor_context": "precomputed"
+      }
+    },
+    {
+      "address_id": "0xaa60f2b7e7cd32cc31620c3a5d10a79e6f2f5cf6",
+      "path_hops": 4,
+      "unscored_on_path": 2,
+      "returned_paths": 2,
+      "graph_nodes": 14,
+      "edge_witnesses_checked": 4,
+      "search_budget": {
+        "configured_limit": 2000,
+        "actual_edge_inspections": 14,
+        "stage_edge_inspections": {
+          "search": 10,
+          "index_witness": 4
+        },
+        "elapsed_ms": 0.17091701738536358,
+        "stop_reason": "NO_ELIGIBLE_EXPANSIONS",
+        "adjacency_order": "stored_node_index_order_before_risk_sort",
+        "neighbor_context": "precomputed"
+      }
+    }
+  ],
+  "source_csvs_verified_against_author_archive_crc": true,
+  "account_transaction_observations_match_frozen_metadata": true,
+  "labels_opened": false,
+  "models_trained": false,
+  "benchmark_reevaluated": false
+}

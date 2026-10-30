@@ -15,10 +15,11 @@ def main():
         import fastapi
     except ImportError:
         raise SystemExit('请先在 web3aml 环境执行：python -m pip install -r requirements-web.txt')
-    from api.runtime_data import ensure_runtime_data
+    from scripts.prepare_v3_runtime import verify_release, ReleaseVerificationError
     try:
-        ensure_runtime_data()
-    except (OSError, RuntimeError, ValueError) as exc:
+        for dataset_id in ('bitcoin', 'ethereum'):
+            verify_release(Path.cwd(), dataset_id, check_pipeline=True)
+    except (OSError, ReleaseVerificationError, ValueError) as exc:
         raise SystemExit(str(exc)) from None
     print(f'链境智安首页：http://127.0.0.1:{args.port}/\n分析工作台：http://127.0.0.1:{args.port}/workspace\n保留的旧入口：streamlit run app.py', flush=True)
     uvicorn.run('api.main:app', host='127.0.0.1', port=args.port, workers=1)

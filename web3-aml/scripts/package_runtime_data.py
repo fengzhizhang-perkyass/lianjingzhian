@@ -10,15 +10,38 @@ import zipfile
 from api.runtime_data import digest
 
 
+def runtime_file_names(root):
+    """Keep original assets and include the active model's large feature input."""
+    root = Path(root).resolve()
+    names = ['artifacts/evidence_scoring/features.npy',
+             'artifacts/risk_scores/graph_statistics.parquet',
+             'data/processed/raw_features.npy']
+    active_path = root / 'artifacts/risk_scores/metadata.json'
+    if active_path.exists():
+        active = json.loads(active_path.read_text(encoding='utf-8'))
+        value = active.get('features_path')
+        if value is not None:
+            if not isinstance(value, str) or not value or Path(value).is_absolute():
+                raise ValueError('Active feature path must be a project-relative file')
+            path = (root / value).resolve()
+            if not path.is_relative_to(root) or path == root:
+                raise ValueError('Active feature path escapes the project')
+            names.append(path.relative_to(root).as_posix())
+    names = list(dict.fromkeys(names))
+    for name in names:
+        path = (root / name).resolve()
+        if not path.is_relative_to(root) or not path.is_file():
+            raise ValueError('Missing or unsafe runtime package input: ' + name)
+    return names
+
+
 def main():
     root = Path(__file__).resolve().parents[1]
     folder = root / 'runtime-data'
     folder.mkdir(exist_ok=True)
     cache = root / '.runtime-cache'
     cache.mkdir(exist_ok=True)
-    names = ['artifacts/evidence_scoring/features.npy',
-             'artifacts/risk_scores/graph_statistics.parquet',
-             'data/processed/raw_features.npy']
+    names = runtime_file_names(root)
     manifest = {'format': 'verified_zip_parts_v1', 'files': [], 'parts': []}
     with tempfile.TemporaryFile(dir=cache) as archive:
         with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as package:

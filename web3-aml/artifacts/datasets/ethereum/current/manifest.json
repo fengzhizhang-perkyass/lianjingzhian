@@ -1,0 +1,137 @@
+{
+  "recipe": "ethereum_frozen_sadcf_runtime_v1",
+  "dataset_id": "ethereum",
+  "dataset": "Ethereum phishing address dataset",
+  "label": "以太坊",
+  "description": "真实以太坊钓鱼与背景地址数据快照",
+  "fingerprint": "6a0c25ac5ad01e1a726a9e68e1ea607a9a0a1b37c374a21476766e0cde341214",
+  "risk_revision": "f03858a0be540cc5c28c34f8861415535b991527a6a395e357d66af09bbbdd05",
+  "feature_revision": "bdc0bf59d6a31bf88bd3b2456aad08bcf974cd309cbe3d57a4e62e18c81e2d76",
+  "graph_revision": "41676b27b4b3ce94990cce458a333c932c7a8c65fef95b7f8afae25c7ee007ae",
+  "model_display_name": "结构–属性双视图协同融合模型（SA-DCF）",
+  "model_threshold": 0.5776478277617538,
+  "feature_count": 56,
+  "joint_feature_count": 88,
+  "embedding_dimensions": 32,
+  "weights": {
+    "attribute": 0.6,
+    "joint": 0.4
+  },
+  "scored_addresses": 103171,
+  "model_paths": {
+    "attribute": "model_upgrade/ethereum/artifacts/lightgbm_regularized.joblib",
+    "joint": "model_upgrade/ethereum/artifacts/igt4eth_light_behavior_and_embedding_tree.joblib",
+    "encoder": "model_upgrade/ethereum/artifacts/igt4eth_light.pt"
+  },
+  "source_hashes": {
+    "data/external/ethereum/processed/dataset.npz": "5223336cffd96bc8f457cb0b0636c9cf2a7b67499848ccc2e0ce429065010afc",
+    "model_upgrade/ethereum/artifacts/selection.json": "6e586f9dcb8a950579221a32b05416300411d5368e497f34992082f4c9d29396",
+    "model_upgrade/ethereum/artifacts/lightgbm_regularized_predictions.npz": "6014dbd2f080caa06c470c2f5a167cd2ea44516b490b4d0d0750c17468393507",
+    "model_upgrade/ethereum/artifacts/igt4eth_light_behavior_and_embedding_tree_predictions.npz": "ad118e24ed30ecb69b21da2d455e3f1f0019d02b6f6bf3f5e98b4d9257b6320d",
+    "model_upgrade/ethereum/artifacts/igt4eth_light_predictions.npz": "c7fd562d14f0d80cf3178a2775d5f5df70f5800df3bfde4e25fa6e7c7d945210",
+    "model_upgrade/ethereum/artifacts/final_predictions.npz": "8147bbb126bed8fefe92139f51491b0f37bb1f4b93749e1d5e73f6b146723fd4",
+    "model_upgrade/ethereum/artifacts/lightgbm_regularized.joblib": "a1efda70d8e33c0f2ac692b022ede439e40a3694b403ba2670c136c704c5e17e",
+    "model_upgrade/ethereum/artifacts/igt4eth_light_behavior_and_embedding_tree.joblib": "c6d2b71f53043f15d0d4ebeaf42ef0bc081b30a6ed83b4e98e6661e7303ed06a",
+    "model_upgrade/ethereum/artifacts/igt4eth_light.pt": "52638603173f373a4c1aae7c170d50a81a6999aa55cfa23eca70d4a3d583158e",
+    "data/external/ethereum/normal_trans.zip": "4dfdcb16d33c1869598f4a49b3c1cbec6cb86d156951285876be25e393fb8801",
+    "data/external/ethereum/phish_trans.zip": "383bbf12ccbbb7318c7b816a9912f9467e167af9e9646d22d16c5b7acd42df96",
+    "data/external/ethereum/raw/normal_eoa_transaction_in_slice_1000K.csv": "527cbabecd93b0a32dfd269e043900d1219f22f8943f718be1b3a3f81cd2c5a7",
+    "data/external/ethereum/raw/normal_eoa_transaction_out_slice_1000K.csv": "28e11cf3b1a3ec3e055ae9269308142d6c2b9de3c354202518d60059301e7514",
+    "data/external/ethereum/raw/phisher_transaction_in.csv": "19e6850365fc6e9104b9003a4737824ce010808754edf1122a6c21939f67800b",
+    "data/external/ethereum/raw/phisher_transaction_out.csv": "c98dd5d2b78da247aeda81abf6c8d3c3a8223f3fdb25c8c963ec27efb22b29f0"
+  },
+  "runtime_assets": {
+    "address_to_idx.json": {
+      "bytes": 27739933,
+      "sha256": "ffa13526f960d58fb85c01be3f0ac0868957550d0c57e55788f24bbe40abb253"
+    },
+    "addresses.npy": {
+      "bytes": 17332856,
+      "sha256": "e32626aec82254d20aa2a10e86dc1c01164933482085b87ee97bb11facf16865"
+    },
+    "edge_evidence.sqlite": {
+      "bytes": 1524781056,
+      "sha256": "b5f0fbbf97e76920e0621cec7e3945539e7c9039756355e7dc1f707121de6117"
+    },
+    "embeddings.npy": {
+      "bytes": 13206016,
+      "sha256": "5122c6a1c47c280faef45f056e2a44bd8bb7a16f0e96a083ae32d32986623b48"
+    },
+    "feature_names.json": {
+      "bytes": 1101,
+      "sha256": "0227bc7b9b77908bb797d14566c93c3d40dd29b2091f94a8738fd4e239356cc6"
+    },
+    "features.npy": {
+      "bytes": 23110432,
+      "sha256": "052db7f7708f0611323fc4417670c0e9242b0c85250263317c8f56f7f09c7447"
+    },
+    "graph_statistics.parquet": {
+      "bytes": 21636692,
+      "sha256": "4e4d4c1c56967b03a645bb2b8e842279864596a1940998cc6c865a1651a2b08c"
+    },
+    "idx_to_address.json": {
+      "bytes": 28734613,
+      "sha256": "94da4a0e0f98f2f5fc875fa09122fde04c22c8a3af51126bc23714a72e01e1d1"
+    },
+    "incoming_neighbors.pkl": {
+      "bytes": 5570116,
+      "sha256": "6bb4284138db38eb8d6dda250b83a9ac020e9f7fb93f9c8e2b79a2f08dd56adb"
+    },
+    "input_snapshot.json": {
+      "bytes": 1586,
+      "sha256": "526cfe40e4c28ca987b9bd9e523e0e1236f538366c149f597cab3790bebbd330"
+    },
+    "outgoing_neighbors.pkl": {
+      "bytes": 5775162,
+      "sha256": "431ab67ff3bb14e80d2ec9b1b0ec7a03284579122b118b7ef2e47eda28b259d8"
+    },
+    "risk_scores.parquet": {
+      "bytes": 8350082,
+      "sha256": "4ee3d6cf1dff25bb4e58f763b628e87ffcfb24d886bf7c6b2b1dab10e4fafe15"
+    },
+    "source_checks.json": {
+      "bytes": 1898,
+      "sha256": "7d01b58abc3357ced6094c3e1d8ac0216d4b0aa84db2b8559fed245a9b3b673d"
+    },
+    "stream_summary.json": {
+      "bytes": 491,
+      "sha256": "db36b3f06dbb8f0c7d6de26fc958d50008f4ead741195a02aa0eea13ceb2d598"
+    }
+  },
+  "native_verification": {
+    "attribute": {
+      "all_address_probability_max_error": 0.0,
+      "128_row_shap_margin_max_residual": 3.730349362740526e-14
+    },
+    "joint": {
+      "all_address_probability_max_error": 0.0,
+      "128_row_shap_margin_max_residual": 3.907985046680551e-14
+    }
+  },
+  "graph_evidence_scope": "Observed transactions incident to the scored centers; not complete chain history",
+  "scope": "observed_snapshot",
+  "task": "Ethereum phishing address detection",
+  "split": {
+    "train": {
+      "n": 72219,
+      "positive": 2253
+    },
+    "validation": {
+      "n": 15476,
+      "positive": 483
+    },
+    "test": {
+      "n": 15476,
+      "positive": 483
+    }
+  },
+  "labels_opened": false,
+  "training_performed": false,
+  "test_evaluation_performed": false,
+  "prepared_seconds": 112.37991066696122,
+  "graph_nodes": 497340,
+  "graph_edges": 746306,
+  "unscored_graph_nodes": 394169,
+  "unique_transactions": 1843085,
+  "account_transaction_observations": 1844436
+}

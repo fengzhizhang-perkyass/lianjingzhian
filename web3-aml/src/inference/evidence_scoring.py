@@ -11,27 +11,72 @@ ROLES = {
 }
 
 
+def evidence_roles(schema, metadata):
+    """Resolve the three existing groups without silently losing attribution."""
+    if not isinstance(schema, list) or not schema:
+        raise ValueError('Evidence schema must be a nonempty list')
+    present = set()
+    for item in schema:
+        group = item.get('group') if isinstance(item, dict) else None
+        if not isinstance(group, str) or group not in ROLES:
+            raise ValueError(f'Unknown evidence schema group: {group!r}')
+        present.add(group)
+    missing = set(ROLES)-present
+    if missing:
+        raise ValueError(f'Evidence schema is missing groups: {sorted(missing)}')
+    overrides = metadata.get('evidence_groups')
+    if overrides is None:
+        overrides = {}
+    if not isinstance(overrides, dict) or any(group not in ROLES for group in overrides):
+        raise ValueError('Evidence group metadata must contain only the three existing groups')
+    roles = {}
+    for group, defaults in ROLES.items():
+        settings = overrides.get(group)
+        if settings is None:
+            settings = {}
+        if not isinstance(settings, dict):
+            raise ValueError(f'Invalid evidence group metadata: {group}')
+        resolved = []
+        for field, default in zip(('label', 'responsibility'), defaults):
+            value = settings.get(field)
+            if value is None or (isinstance(value, str) and not value.strip()):
+                value = default
+            elif not isinstance(value, str):
+                raise ValueError(f'Evidence group {group}.{field} must be text')
+            resolved.append(value)
+        roles[group] = tuple(resolved)
+    return roles
+
+
 class EvidenceScoringExplainer:
     def __init__(self, root, metadata):
         self.root, self.metadata = root, metadata
         self.model = joblib.load(root / metadata['model_path'])
         self.info = read_json(root / metadata['validation_path'])
         self.x = np.load(root / metadata['features_path'], mmap_mode='r')
+        evidence_roles(self.info.get('schema'), metadata)
+        if self.x.ndim != 2 or len(self.info['schema']) != self.x.shape[1]:
+            raise ValueError('Evidence schema width differs from model inputs')
         self.raw = np.load(root / 'data/processed/raw_features.npy', mmap_mode='r')
         self.raw_names = read_json(root / 'data/processed/feature_names.json')
         from src.utils.io import load_config
         self.names = load_config('feature_names.yaml', root)['feature_names'] or {}
 
     def explain(self, node_idx, route_scores, top_k=5):
+        roles = evidence_roles(self.info.get('schema'), self.metadata)
         x = np.array(self.x[node_idx:node_idx+1], copy=True)
+        if x.ndim != 2 or len(self.info['schema']) != x.shape[1]:
+            raise ValueError('Evidence schema width differs from model inputs')
         attribution = self.model.booster_.predict(x, pred_contrib=True)[0]
+        if len(attribution) != len(self.info['schema'])+1:
+            raise RuntimeError('TreeSHAP width differs from the complete evidence schema')
         margin = float(self.model.booster_.predict(x, raw_score=True)[0])
         residual = float(attribution.sum()-margin)
         if abs(residual) > 1e-5:
             raise RuntimeError('TreeSHAP did not reconstruct the joint model output')
         groups, evidence = [], {}
         total_abs = float(np.abs(attribution[:-1]).sum())
-        for group, (label, responsibility) in ROLES.items():
+        for group, (label, responsibility) in roles.items():
             ids = [i for i, item in enumerate(self.info['schema']) if item['group'] == group]
             groups.append({'key': group, 'label': label, 'responsibility': responsibility,
                            'contribution': float(attribution[ids].sum()),
@@ -41,10 +86,12 @@ class EvidenceScoringExplainer:
             for i in chosen:
                 schema = self.info['schema'][i]
                 feature = schema['feature']
-                label_feature = self.names.get(feature, DISPLAY_NAMES.get(feature, feature))
-                if schema['block'] != 'self' and schema['block'] != 'structure':
-                    prefix = '下游' if schema['block'].startswith('out') else '上游'
-                    label_feature = prefix+'标准化偏离 · '+label_feature
+                label_feature = schema.get('display_name')
+                if not isinstance(label_feature, str) or not label_feature.strip():
+                    label_feature = self.names.get(feature, DISPLAY_NAMES.get(feature, feature))
+                    if schema['block'] != 'self' and schema['block'] != 'structure':
+                        prefix = '下游' if schema['block'].startswith('out') else '上游'
+                        label_feature = prefix+'标准化偏离 · '+label_feature
                 raw_value = self.raw[node_idx, self.raw_names.index(feature)] if schema['block'] == 'self' else None
                 items.append({'feature': label_feature, 'raw_feature': feature,
                               'feature_value': float(raw_value) if raw_value is not None and np.isfinite(raw_value) else None,

@@ -1,0 +1,38 @@
+/* Real queue pagination only; no model changes or LLM calls. */
+const {chromium}=require('/Users/luyu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const base=process.env.WEB3AML_URL||'http://127.0.0.1:8000',out=path.resolve(__dirname,'../artifacts/queue_pagination_check');
+fs.mkdirSync(out,{recursive:true});
+(async()=>{
+ const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
+ const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage();
+ const errors=[],checks=[],requests=[];page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(30000);
+ page.on('request',r=>{if(new URL(r.url()).pathname==='/api/queue')requests.push(r.url());});
+ const pass=(name,details={})=>{checks.push({name,...details});console.log('PASS',name);};
+ const ready=async()=>{await page.locator('#queue-page-input').waitFor({state:'visible'});await page.waitForFunction(()=>!document.querySelector('#queue-page-input').disabled&&document.querySelectorAll('[data-queue-index]').length>0);};
+ const rank=()=>page.locator('#queue-table tbody tr').first().locator('td').first().innerText();
+ const go=async(number,firstRank)=>{await page.locator('#queue-page-input').fill(String(number));await page.locator('#queue-page-input').press('Enter');await page.waitForFunction(expected=>document.querySelector('#queue-table tbody tr td')?.textContent===String(expected),firstRank);await ready();};
+ try{
+  await page.goto(base+'/workspace/queue?dataset=bitcoin');await ready();
+  const btc=await(await context.request.get(base+'/api/queue?dataset_id=bitcoin&limit=100&offset=0')).json();
+  let total=Math.ceil(btc.total/100);assert.equal(await page.locator('#queue-page-input').inputValue(),'1');assert.equal(await page.locator('#queue-total-pages').innerText(),`共${total.toLocaleString('zh-CN')}页`);assert.equal(await page.locator('#queue-prev').isDisabled(),true);pass('真实比特币总页数及首页状态',{total,rows:btc.total});
+  await go(3,201);await page.locator('#queue-prev').click();await page.waitForFunction(()=>document.querySelector('#queue-page-input').value==='2'&&!document.querySelector('#queue-page-input').disabled);assert.equal(await rank(),'101');await page.locator('#queue-next').click();await page.waitForFunction(()=>document.querySelector('#queue-page-input').value==='3'&&!document.querySelector('#queue-page-input').disabled);assert.equal(await rank(),'201');pass('回车跳转与上一页／下一页对应真实队列排名');
+  for(const invalid of ['0',String(total+1),'1.5','']){
+   const before=requests.length;await page.locator('#queue-page-input').fill(invalid);await page.locator('#queue-page-input').press('Enter');await page.locator('#queue-page-error').waitFor({state:'visible'});assert.equal(await rank(),'201');assert.equal(requests.length,before);
+  }pass('零、超出页数、小数、空页码均不发出错误跳转请求');
+  await go(total,(total-1)*100+1);assert.equal(await page.locator('#queue-next').isDisabled(),true);assert.equal(await page.locator('#queue-table tbody tr').count(),btc.total-(total-1)*100);pass('真实末页行数及下一页禁用');
+  await page.locator('#queue-limit').selectOption('10');await page.waitForFunction(()=>document.querySelector('#queue-page-input').value==='1'&&!document.querySelector('#queue-page-input').disabled);total=Math.ceil(btc.total/10);assert.equal(await page.locator('#queue-total-pages').innerText(),`共${total.toLocaleString('zh-CN')}页`);await go(total,(total-1)*10+1);assert.equal(await page.locator('#queue-table tbody tr').count(),2);pass('切换每页条数重置首页并重算页数，10条模式末页正确',{pages:total});
+  await page.locator('#dataset-select').selectOption('ethereum');await page.waitForFunction(()=>location.search.includes('ethereum')&&!document.querySelector('#queue-page-input').disabled&&document.querySelector('#queue-limit').value==='100');await ready();
+  const eth=await(await context.request.get(base+'/api/queue?dataset_id=ethereum&limit=100&offset=400')).json();await go(5,401);assert.equal(await page.locator('#queue-table tbody tr').first().locator('td').nth(1).innerText(),eth.rows[0].address_id);assert.equal(await page.locator('#queue-total-pages').innerText(),`共${Math.ceil(eth.total/100).toLocaleString('zh-CN')}页`);
+  await page.locator('#dataset-select').selectOption('bitcoin');await page.waitForFunction(()=>location.search.includes('bitcoin')&&document.querySelector('#queue-limit').value==='10');await ready();assert.equal(await page.locator('#queue-page-input').inputValue(),String(total));assert.equal(await page.locator('#queue-table tbody tr').count(),2);await page.locator('#dataset-select').selectOption('ethereum');await page.waitForFunction(()=>location.search.includes('ethereum')&&document.querySelector('#queue-limit').value==='100');await ready();assert.equal(await page.locator('#queue-page-input').inputValue(),'5');pass('真实以太坊跳转，双数据集分别恢复页码与每页条数');
+  await page.locator('#queue-page-input').fill('2');await page.locator('#queue-title').click();await page.waitForFunction(()=>document.querySelector('#queue-table tbody tr td')?.textContent==='101');await ready();pass('输入后移开焦点也能跳转');
+  for(const width of [375,768,1440]){
+   await page.setViewportSize({width,height:1000});await page.locator('.pagination').scrollIntoViewIfNeeded();await page.waitForTimeout(60);
+   const dims=await page.evaluate(()=>({screen:innerWidth,page:document.documentElement.scrollWidth}));assert.ok(dims.page<=width+1,JSON.stringify(dims));
+   const previous=await page.locator('#queue-prev').boundingBox(),input=await page.locator('#queue-page-input').boundingBox(),next=await page.locator('#queue-next').boundingBox();assert.ok(previous.x+previous.width<=input.x&&input.x+input.width<=next.x);await page.screenshot({path:path.join(out,`pagination-${width}.png`)});
+  }pass('375／768／1440宽度下分页顺序和布局正确，无整体横向溢出');
+  const empty=await context.newPage();await empty.route('**/api/queue?**',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({total:0,rows:[],offset:0,limit:100})}));await empty.goto(base+'/workspace/queue?dataset=bitcoin');await empty.locator('#queue-table').filter({hasText:'没有'}).waitFor();assert.equal(await empty.locator('#queue-page-input').isDisabled(),true);assert.equal(await empty.locator('#queue-prev').isDisabled(),true);assert.equal(await empty.locator('#queue-next').isDisabled(),true);assert.equal(await empty.locator('#queue-total-pages').innerText(),'共0页');pass('空队列控件禁用（仅此项使用独立界面模拟）');await empty.close();
+  const unavailable=await context.newPage();await unavailable.route('**/api/queue?**',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({detail:'队列接口暂时不可用'})}));await unavailable.goto(base+'/workspace/queue?dataset=bitcoin');await unavailable.locator('#queue-table').filter({hasText:'队列接口暂时不可用'}).waitFor();assert.equal(await unavailable.locator('#queue-page-input').isDisabled(),true);assert.equal(await unavailable.locator('#queue-next').isDisabled(),true);pass('接口失败保留实际错误提示并禁用分页（独立界面模拟）');await unavailable.close();
+  assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({scope:'Real local BTC/ETH queue API; only empty/error-state scenarios use UI fixtures',checks,errors,requests},null,2));
+ }catch(error){await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.json'),JSON.stringify({message:error.message,checks,errors,requests},null,2));throw error;}finally{await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});

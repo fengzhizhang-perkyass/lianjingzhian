@@ -7,21 +7,24 @@ import {
 } from './state.js';
 
 export const modules = [
-  ['queue', '调查优先队列'],
-  ['risk', '地址风险分析'],
-  ['trace', '关系链追踪'],
-  ['report', 'AI分析报告']
+  ['queue', '优先序列调查'],
+  ['risk', '地址风险识别'],
+  ['trace', '多跳关联追踪'],
+  ['report', '可信研判生成']
 ];
 let initializeWorkspace;
 let workspacePromise;
 let transition = 0;
+let datasetHandler;
+export function setDatasetHandler(handler) { datasetHandler = handler; }
 
 function routeFromUrl() {
   if (location.pathname.startsWith('/workspace')) {
     const module = location.pathname.split('/')[2];
     return {
       page: 'workspace',
-      module: modules.some(([key]) => key === module) ? module : state.lastModule
+      module: modules.some(([key]) => key === module) ? module : (state.lastModule || 'queue'),
+      datasetId: new URLSearchParams(location.search).get('dataset') || state.datasetId
     };
   }
   return {
@@ -39,6 +42,10 @@ function headerHeight() {
 async function display(route, historyMode = 'push', focus = true) {
   const token = ++transition;
   const workspace = route.page === 'workspace';
+  if (workspace && datasetHandler && route.datasetId && route.datasetId !== state.datasetId) {
+    await datasetHandler(route.datasetId, false);
+    if (token !== transition) return;
+  }
   state.page = route.page;
   if (workspace) {
     state.module = route.module;
@@ -54,16 +61,17 @@ async function display(route, historyMode = 'push', focus = true) {
   const index = modules.findIndex(([key]) => key === state.module);
   $$('[data-module-panel]').forEach(panel => panel.hidden = panel.dataset.modulePanel !== state.module);
   $$('.module-link').forEach(link => {
+    link.href = '/workspace/' + link.dataset.module + '?dataset=' + state.datasetId;
     if (link.dataset.module === state.module) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
   $('#module-position').style.width = (index + 1) * 25 + '%';
   $('#module-position-text').textContent = `当前模块 ${index+1}/4：${modules[index][1]}`;
-  document.title = workspace ? modules[index][1] + ' · 链境智安' : '链境智安——基于多维证据融合的链上反洗钱与可解释研判系统';
+  document.title = workspace ? modules[index][1] + ' · 链境智安' : '链境智安——面向虚拟资产洗钱风险的智能识别与可信研判系统';
   $('.skip-link').href = workspace ? '/workspace/' + state.module : '/#path';
   $('.skip-link').textContent = workspace ? '跳到当前分析模块' : '跳到主要内容';
-  const url = workspace ? '/workspace/' + state.module : '/' + route.hash;
-  if (historyMode !== 'none' && location.pathname + location.hash !== url) {
+  const url = workspace ? '/workspace/' + state.module + '?dataset=' + state.datasetId : '/' + route.hash;
+  if (historyMode !== 'none' && location.pathname + location.search + location.hash !== url) {
     history[historyMode === 'replace' ? 'replaceState' : 'pushState'](null, '', url);
   }
   headerHeight();
@@ -99,7 +107,7 @@ async function display(route, historyMode = 'push', focus = true) {
       $('#service-state').textContent = '工作台加载失败';
       $('#reconnect').hidden = false;
       $('#reconnect').onclick = () => display(route, 'none');
-      $('#workspace-model').textContent = error.message;
+      $('#address-error').textContent = error.message;
       return;
     }
   }
@@ -112,11 +120,12 @@ async function display(route, historyMode = 'push', focus = true) {
   }));
 }
 
-export function goWorkspace(module) {
-  const key = module || (state.hasWorkspace ? state.lastModule : 'queue');
+export function goWorkspace(module, datasetId = state.datasetId) {
+  const key = module || (state.hasWorkspace ? state.lastModule : 'queue') || 'queue';
   return display({
     page: 'workspace',
-    module: modules.some(([name]) => name === key) ? key : 'queue'
+    module: modules.some(([name]) => name === key) ? key : 'queue',
+    datasetId
   });
 }
 export function goLanding(hash = '#home') {
@@ -146,7 +155,7 @@ export function setupRouter(loader) {
       goWorkspace();
     } else if (url.pathname.startsWith('/workspace')) {
       event.preventDefault();
-      goWorkspace(url.pathname.split('/')[2]);
+      goWorkspace(url.pathname.split('/')[2], url.searchParams.get('dataset') || state.datasetId);
     } else if (url.pathname === '/' && ['#home', '#background', '#path', '#evidence'].includes(url.hash)) {
       event.preventDefault();
       goLanding(url.hash);

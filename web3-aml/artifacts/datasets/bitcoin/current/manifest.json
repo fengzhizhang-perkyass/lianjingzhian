@@ -1,0 +1,42 @@
+{
+  "dataset_id": "bitcoin",
+  "label": "比特币",
+  "dataset": "Elliptic++",
+  "fingerprint": "7c6072a04003949ef91a42ff112428766b15f929fcd24be4abb21008d88043b7",
+  "graph_revision": "cb93f7280254d900bed754b1185c4bb1c2a149d6b7a4a1eca16505294908b9d1",
+  "risk_revision": "1a6854638522aa997e006861a7b36d31709610829e3f0efbbff6553f6d5ccc95",
+  "feature_revision": "7a40e0c9fd5ec4d0f3c23ccbafc7dcb92eb19380a0d83b209e9979c96b4e4bb1",
+  "model_display_name": "多维证据风险识别",
+  "model_threshold": 0.1622163259483896,
+  "feature_count": 1783,
+  "scored_addresses": 822942,
+  "graph_nodes": 822942,
+  "graph_edges": 2784344,
+  "features_path": "model_upgrade/transaction_evidence/cache_v3_frozen/features.npy",
+  "model_path": "model_upgrade/remote_records/entity_refit/model_upgrade/all_pretest_refit/runs/fixed_s42/model.pkl",
+  "source_hashes": {
+    "data/processed/address_to_idx.json": "b977c3d165f843e26bbaa72aa55594cde01afc6126384cefe24286a1be76cefc",
+    "data/processed/idx_to_address.json": "e26adba3b9b57e5b999e669f63c1f486d4ff130a05bf09c816713a0bd1cb0583",
+    "data/processed/outgoing_neighbors.pkl": "5ba462cb5c4a9bc29c2cdf69f513fb5bc2548abb799a68f9d293cfdec45e250f",
+    "data/processed/incoming_neighbors.pkl": "831e117e4fa49b2eda9fa0b3c647907355e1703241fe013e42b6ec6012114b8e",
+    "model_upgrade/remote_records/entity_refit/model_upgrade/all_pretest_refit/runs/fixed_s42/model.pkl": "caf785077e055ae5ecb0a05b3296e505aefd224f3dc040320699c1a7155805d3",
+    "model_upgrade/transaction_evidence/cache_v3_frozen/features.npy": "a2ed1c8b29d1fd6a55725b2746bf9f61ab09dec766767e51aac35fed324fb232",
+    "model_upgrade/transaction_evidence/cache_v3_frozen/schema.json": "beb49814c8dc753cff85ba51d08606f8c33498848998073bc3be5bc1d1fdfb2e"
+  },
+  "runtime_hashes": {
+    "address_to_idx.json": "b977c3d165f843e26bbaa72aa55594cde01afc6126384cefe24286a1be76cefc",
+    "idx_to_address.json": "e26adba3b9b57e5b999e669f63c1f486d4ff130a05bf09c816713a0bd1cb0583",
+    "outgoing_neighbors.pkl": "5ba462cb5c4a9bc29c2cdf69f513fb5bc2548abb799a68f9d293cfdec45e250f",
+    "incoming_neighbors.pkl": "831e117e4fa49b2eda9fa0b3c647907355e1703241fe013e42b6ec6012114b8e",
+    "schema.json": "a1ea91b840fc3f9ecac9bbd8889508100ed23ba5b865c8715ad099d4df3ddaa8",
+    "risk_scores.parquet": "0e0c86c470e901338f6b93bb47c95325d1a4a9f9cff3089f6b46df99acac0aba"
+  },
+  "verification": {
+    "frozen_feature_bytes_match": true,
+    "frozen_fixture_rows": 64,
+    "fixture_probability_max_error": 0.0,
+    "training_performed": false,
+    "test_labels_loaded": false
+  },
+  "seconds": 14.453781916992739
+}
